@@ -396,38 +396,65 @@ const SERVICIO=[
  {t:'Menús',li:['Menú del día (precios de octubre): 14,90 € de lunes a jueves; 19,90 € viernes, sábados, domingos y festivos. Pan, entrante, principal y café.','Menú de grupos: 30 € por persona.']},
  {t:'Alérgenos y sin gluten',li:['Ante cualquier alergia, consultar la pestaña Alérgenos y confirmar con cocina antes de prometer nada.','Todo es sin gluten salvo el pan de burger y el pan brioche de la torrija; de los dos hay versión sin gluten.','Cervezas sin gluten: Tyris Gluten Free y Mahou Sin Gluten.']},
 ];
-const VINOS=[]; /* {n,tipo,do,uva,copa,botella,temp,marida} */
-const CERVEZAS=[ /* {n,estilo,formato,pvp,nota} */
- {n:'Tyris Gluten Free',estilo:'',formato:'',pvp:'',nota:'Sin gluten'},
- {n:'Mahou Sin Gluten',estilo:'',formato:'',pvp:'',nota:'Sin gluten'},
+const VINOS=[ /* [tipo, nombre, D.O., uvas, notas, botella, copa] — copa: '' = no se sirve por copa */
+ ['Blanco','Tramoya','Valladolid','Verdejo · Rueda','13º','18','4'],
+ ['Blanco','Sola de Ramírez','Rioja','Viura joven','12,5º','18','4'],
+ ['Blanco','Cañas y Barro','Valencia','Malvasía · Merseguera · Moscatel romano','11,5º','21','4'],
+ ['Blanco','Rozas Albariño','Rías Baixas','Albariño','12,5º','24','4,80'],
+ ['Blanco','Senda de la Higuera','Bierzo','Godello sobre lías','Orgánico · vegano · 14º','23','4,30'],
+ ['Blanco','Fuentelvira','Valladolid','Verdejo · Rueda','13º','22',''],
+ ['Blanco','Il·lusionat','Valencia','Sauvignon blanc · Viognier','14º','20',''],
+ ['Blanco','Valdelagunde','Castilla y León','Sauvignon blanc','Orgánico · vegano · 13º','23',''],
+ ['Tinto','Sarmentero','Ribera del Duero','Tempranillo','14º','22','4,5'],
+ ['Tinto','Malcriat','Valencia','Merlot · Garnacha','Vegano · 13º','21','4,5'],
+ ['Tinto','Melic','Valencia','Bobal · Cabernet sauvignon · Merlot','Vegano · 13,5º','22','4'],
+ ['Tinto','Alto de las Minas','Bierzo','Mencía','Vegano · 13,5º','22',''],
+ ['Tinto','Maneras de Vivir','Valencia','Bobal · Shiraz','Vegano · 13,5º','23',''],
+ ['Tinto','Luis XIV','Alicante','Monastrell · Bonicaire · Arco','14º · madurado 4 meses en ánfora','24',''],
+ ['Tinto','Pasiego Bobal','Utiel-Requena','Bobal','14º','24',''],
+ ['Rosado','Il·lusionat rosado','Valencia','Marselan · Tempranillo','Vegano · 12º','22','preguntar'],
+ ['Rosado','La Querida de Miguel','Bierzo','Mencía rosé','Vegano · orgánico · 12º','23','preguntar'],
 ];
-const CASA=[['Agua de Valencia (vaso)','8 €'],['Agua de Valencia (jarra)','19 €'],['Sangría (jarra)','20 €'],['Sangría blanca (jarra)','20 €'],['Tinto de verano','7 €']];
+const CERVEZAS=[ /* [nombre, formato, PVP, nota] */
+ ['Mahou 5 Estrellas','Tercio','2,90',''],['Alhambra Reserva Verde','Tercio','3,50',''],['Alhambra Reserva Roja','Tercio','3,50',''],
+ ['Estrella Galicia','Tercio','3,00',''],['Stella Artois','Tercio','3,80',''],['Coronita','Tercio','4,00',''],
+ ['Tyris Original','Tercio','3,40',''],['Tyris Gluten Free','Tercio','3,50','Sin gluten'],['Tyris IPA','Tercio','3,50',''],
+ ['Radler Mahou','Tercio','2,70',''],['Mahou Sin Gluten','Tercio','3,50','Sin gluten'],['Mahou 0,0 Tostada','Tercio','3,50','Sin alcohol'],
+ ['Mahou 0,0 Rubia','Tercio','3,20','Sin alcohol'],['Leffe','Tercio','4,50',''],
+ ['Mahou Clásica','Tirador · doble','3,00',''],['Mahou Clásica','Tirador · tanque','4,50',''],
+ ['Mahou Maestra','Tirador · doble','3,50',''],['Mahou Maestra','Tirador · tanque','4,90',''],
+];
+const REFRESCOS=[['Agua Solán de Cabras','2,50'],['Agua Solán de Cabras 1 L','3,80'],['Agua con gas Solán de Cabras','2,60'],['Zumo de naranja natural','3,80'],['Zumo de melocotón','2,60'],['Zumo de piña','2,60'],['Coca-Cola','2,70'],['Coca-Cola Zero','2,80'],['Nestea','2,70'],['Aquarius naranja','2,60'],['Aquarius limón','2,60'],['Fanta limón','2,70'],['Fanta naranja','2,70'],['Tónica','2,80'],['Sprite','2,60']];
+const CASA=[['Agua de Valencia','8,00','19'],['Sangría','7,50','20'],['Sangría blanca','7,50','20'],['Tinto de verano','7,00','']];
 const COCTELES=[ /* {c,n,ing:[],pasos:[],vaso,hielo,deco,pvp,alg:[],foto,sa} */
- {c:'Clásicos',n:'Mojito',foto:'mojito',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['½ onza de sirope','1 onza de ron Don Pablo','½ lima exprimida','La otra ½ lima en 4 trozos','5 hojas de hierbabuena (dar un golpe)','Sprite para completar'],pasos:['En el vaso: sirope, ron, la media lima exprimida y la otra media en 4 trozos.','Añadir las hojas de hierbabuena, dándoles antes un golpe.','Presionar con el machacador.','Llenar hasta la mitad con hielo perla.','Mezclar con la cuchara de coctelería pegada al vaso.','Terminar con Sprite.'],deco:'Rodaja de lima y hierbabuena (golpe)',alg:[]},
- {c:'Clásicos',n:'Moscow Mule (vodka)',foto:'mule',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['1 lima exprimida','1 onza de vodka','1 onza de sirope','Ginger beer para completar'],pasos:['Llenar el vaso de hielo perla.','Exprimir la lima en el vaso.','Añadir vodka y sirope.','Completar con ginger beer.'],deco:'Rodaja de jengibre, tira de pepino en serpiente y hierbabuena (golpe)',alg:[]},
- {c:'Clásicos',n:'London Mule (ginebra)',foto:'mule',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['1 lima exprimida','1 onza de ginebra','1 onza de sirope','Ginger beer para completar'],pasos:['Llenar el vaso de hielo perla.','Exprimir la lima en el vaso.','Añadir ginebra y sirope.','Completar con ginger beer.'],deco:'Rodaja de jengibre, tira de pepino en serpiente y hierbabuena (golpe)',alg:[]},
- {c:'Clásicos',n:'Negroni',foto:'negroni',vaso:'Vaso de coctelería para mezclar; se sirve en vaso bajo',hielo:'1 piedra para mezclar, 2 piedras en el vaso',ing:['1 onza de ginebra Bulldog','1 onza de Campari','1 onza de vermut Cinzano Rosso','1 gota de angostura'],pasos:['En el vaso de coctelería, una piedra de hielo.','Añadir ginebra, Campari, vermut y la gota de angostura.','Mezclar.','Colar en un vaso con 2 piedras de hielo.'],deco:'Rodaja de naranja y perfumar con naranja',alg:['sulfitos']},
- {c:'Clásicos',n:'Espresso Martini',foto:'espresso-martini',vaso:'Vaso de coctelería para mezclar',hielo:'1 piedra',ing:['1 onza de licor de café','2 shots de café','1 onza de vodka','1 onza de sirope'],pasos:['En el vaso de coctelería, una piedra de hielo.','Añadir licor de café, café, vodka y sirope.','Mezclar hasta sacar espuma.','Colar.'],deco:'3 granos de café',alg:[]},
+ {c:'Clásicos',n:'Mojito',foto:'mojito',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['½ onza de sirope','1 onza de ron Don Pablo','½ lima exprimida','La otra ½ lima en 4 trozos','5 hojas de hierbabuena (dar un golpe)','Sprite para completar'],pasos:['En el vaso: sirope, ron, la media lima exprimida y la otra media en 4 trozos.','Añadir las hojas de hierbabuena, dándoles antes un golpe.','Presionar con el machacador.','Llenar hasta la mitad con hielo perla.','Mezclar con la cuchara de coctelería pegada al vaso.','Terminar con Sprite.'],deco:'Rodaja de lima y hierbabuena (golpe)',alg:[],pvp:'9 €',carta:'Ron blanco, lima, menta, azúcar y soda. Servido con hielo picado.'},
+ {c:'Clásicos',n:'Moscow Mule (vodka)',foto:'mule',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['1 lima exprimida','1 onza de vodka','1 onza de sirope','Ginger beer para completar'],pasos:['Llenar el vaso de hielo perla.','Exprimir la lima en el vaso.','Añadir vodka y sirope.','Completar con ginger beer.'],deco:'Rodaja de jengibre, tira de pepino en serpiente y hierbabuena (golpe)',alg:[],pvp:'9 €',carta:'Ginebra, lima y ginger beer. Servido en cobre con mucho hielo. Moscow Mule: con vodka.'},
+ {c:'Clásicos',n:'London Mule (ginebra)',foto:'mule',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['1 lima exprimida','1 onza de ginebra','1 onza de sirope','Ginger beer para completar'],pasos:['Llenar el vaso de hielo perla.','Exprimir la lima en el vaso.','Añadir ginebra y sirope.','Completar con ginger beer.'],deco:'Rodaja de jengibre, tira de pepino en serpiente y hierbabuena (golpe)',alg:[],pvp:'9 €',carta:'Ginebra, lima y ginger beer. Servido en cobre con mucho hielo. London Mule: con ginebra.'},
+ {c:'Clásicos',n:'Negroni',foto:'negroni',vaso:'Vaso de coctelería para mezclar; se sirve en vaso bajo',hielo:'1 piedra para mezclar, 2 piedras en el vaso',ing:['1 onza de ginebra Bulldog','1 onza de Campari','1 onza de vermut Cinzano Rosso','1 gota de angostura'],pasos:['En el vaso de coctelería, una piedra de hielo.','Añadir ginebra, Campari, vermut y la gota de angostura.','Mezclar.','Colar en un vaso con 2 piedras de hielo.'],deco:'Rodaja de naranja y perfumar con naranja',alg:['sulfitos'],pvp:'8 €',carta:'Ginebra, Campari y vermut rojo. Un clásico.'},
+ {c:'Clásicos',n:'Espresso Martini',foto:'espresso-martini',vaso:'Vaso de coctelería para mezclar',hielo:'1 piedra',ing:['1 onza de licor de café','2 shots de café','1 onza de vodka','1 onza de sirope'],pasos:['En el vaso de coctelería, una piedra de hielo.','Añadir licor de café, café, vodka y sirope.','Mezclar hasta sacar espuma.','Colar.'],deco:'3 granos de café',alg:[],pvp:'9 €',carta:'Vodka, licor de café y espresso recién hecho. Servido frío, sin hielo, con tres granos de café.'},
  {c:'Clásicos',n:'Margarita',foto:'margarita',vaso:'Vaso de coctelería para mezclar',hielo:'1 piedra para mezclar, 2 piedras al servir',ing:['1 onza de tequila','1 onza de sirope','½ onza de vodka','1 lima exprimida'],pasos:['En el vaso de coctelería, una piedra de hielo.','Añadir tequila, sirope, vodka y la lima exprimida.','Mezclar y colar.','Añadir 2 piedras de hielo.'],deco:'Media parte del borde con sal y rodaja de lima',alg:[]},
- {c:'Clásicos',n:'Margarita spicy',foto:'margarita-spicy',vaso:'Coctelera; se sirve en vaso bajo',hielo:'Perla en el vaso',ing:['1 onza de sirope','1 onza de tequila','1 onza de vodka','1½ limas exprimidas','2 gotas de tabasco'],pasos:['Todo en la coctelera.','Agitar (shake) y colar.','Servir en el vaso con hielo perla.'],deco:'Medio borde del vaso frotado con lima y tajín, y rodaja de lima',alg:[]},
- {c:'Spritz',n:'Aperol Sprite',foto:'aperol-sprite',vaso:'Copa de Aperol',hielo:'3 piedras',ing:['1 parte de cava','1 parte de Aperol','1 parte de Sprite'],pasos:['Poner 3 piedras de hielo en la copa.','Añadir cava, Aperol y Sprite a partes iguales.'],deco:'Rodaja de naranja y pajita',alg:['sulfitos']},
- {c:'Spritz',n:'Campari Sprite',foto:'campari-sprite',vaso:'Copa de Campari',hielo:'3 piedras',ing:['1 parte de Campari','1 parte de prosecco','1 parte de Sprite'],pasos:['Poner 3 piedras de hielo en la copa.','Añadir Campari, prosecco y Sprite a partes iguales.'],deco:'Rodaja de naranja y pajita',alg:['sulfitos']},
- {c:'De la casa',n:'Agua de Valencia',foto:'agua-de-valencia',pvp:'8 € vaso · 19 € jarra',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['½ onza de agua de Valencia','1 parte de zumo de naranja natural','1 parte de cava o prosecco'],pasos:['Llenar el vaso de hielo perla.','Añadir el agua de Valencia, el zumo de naranja y el cava.'],deco:'Rodaja de naranja y perfumar con naranja',alg:['sulfitos']},
- {c:'De la casa',n:'Sangría',foto:'sangria',pvp:'20 € jarra',vaso:'Old fashioned',hielo:'Perla',ing:['½ onza de sangría','1 parte de Fanta de limón','1 parte de Fanta de naranja','2 partes de vino tinto'],pasos:['Llenar el vaso de hielo perla.','Añadir la sangría, las dos Fantas y el vino tinto.'],deco:'Rodaja de limón y de naranja',alg:['sulfitos']},
- {c:'De la casa',n:'Sangría blanca',foto:'sangria-blanca',pvp:'20 € jarra',vaso:'Old fashioned',hielo:'Perla',ing:['½ onza de agua de Valencia','1 parte de Fanta de limón','1 parte de Sprite','2 partes de vino blanco'],pasos:['Llenar el vaso de hielo perla.','Añadir el agua de Valencia, la Fanta de limón, el Sprite y el vino blanco.'],deco:'Perfumar con limón y rodaja de limón',alg:['sulfitos']},
- {c:'De la casa',n:'Tinto de verano',foto:'tinto-de-verano',pvp:'7 €',vaso:'Old fashioned',hielo:'Perla',ing:['1 parte de Fanta de limón','1 parte de Fanta de naranja','2 partes de vino tinto'],pasos:['Llenar el vaso de hielo perla.','Añadir las dos Fantas y el vino tinto.'],deco:'Rodaja de limón y de naranja',alg:['sulfitos']},
- {c:'Sin alcohol',n:'Mocktail naranja',foto:'mocktail-naranja',sa:1,vaso:'Old fashioned',hielo:'Perla',ing:['½ de zumo de naranja','½ de ginger beer'],pasos:['Llenar el vaso de hielo perla.','Mitad de zumo de naranja y mitad de ginger beer.'],deco:'Rodaja de naranja y perfumar',alg:[]},
- {c:'Sin alcohol',n:'Mocktail frutos rojos',foto:'mocktail-frutos-rojos',sa:1,vaso:'Old fashioned',hielo:'Perla',ing:['1 onza de sirope','2 cucharadas de frutos rojos','Tónica para terminar'],pasos:['Llenar el vaso de hielo perla.','Añadir el sirope y los frutos rojos.','Terminar con tónica.'],deco:'Rodaja de lima',alg:[]},
+ {c:'Clásicos',n:'Margarita spicy',foto:'margarita-spicy',vaso:'Coctelera; se sirve en vaso bajo',hielo:'Perla en el vaso',ing:['1 onza de sirope','1 onza de tequila','1 onza de vodka','1½ limas exprimidas','2 gotas de tabasco'],pasos:['Todo en la coctelera.','Agitar (shake) y colar.','Servir en el vaso con hielo perla.'],deco:'Medio borde del vaso frotado con lima y tajín, y rodaja de lima',alg:[],pvp:'9 €',carta:'Tequila, triple sec, lima y un toque picante. Borde de chile y sal.'},
+ {c:'Clásicos',n:'Gin Tonic Classic',pvp:'9 €',carta:'Ginebra y tónica, con piel de limón. Servido en copa con hielo.',vaso:'Copa',hielo:'',ing:['Ginebra','Tónica','Piel de limón'],pasos:[],deco:'Piel de limón',alg:[]},
+ {c:'Clásicos',n:'Fernet',pvp:'8 €',carta:'Fernet Branca con cola o soda. Servido con hielo y rodaja de limón.',vaso:'',hielo:'',ing:['Fernet Branca','Cola o soda'],pasos:[],deco:'Rodaja de limón',alg:[]},
+ {c:'Spritz',n:'Aperol Sprite',foto:'aperol-sprite',vaso:'Copa de Aperol',hielo:'3 piedras',ing:['1 parte de cava','1 parte de Aperol','1 parte de Sprite'],pasos:['Poner 3 piedras de hielo en la copa.','Añadir cava, Aperol y Sprite a partes iguales.'],deco:'Rodaja de naranja y pajita',alg:['sulfitos'],pvp:'8 €',carta:'Aperol Spritz: Aperol, cava y soda. Con hielo y rodaja de naranja.'},
+ {c:'Spritz',n:'Campari Sprite',foto:'campari-sprite',vaso:'Copa de Campari',hielo:'3 piedras',ing:['1 parte de Campari','1 parte de prosecco','1 parte de Sprite'],pasos:['Poner 3 piedras de hielo en la copa.','Añadir Campari, prosecco y Sprite a partes iguales.'],deco:'Rodaja de naranja y pajita',alg:['sulfitos'],pvp:'8 €',carta:'Campari Spritz: Campari, cava y soda. Con hielo y rodaja de naranja.'},
+ {c:'De la casa',n:'Agua de Valencia',foto:'agua-de-valencia',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['½ onza de agua de Valencia','1 parte de zumo de naranja natural','1 parte de cava o prosecco'],pasos:['Llenar el vaso de hielo perla.','Añadir el agua de Valencia, el zumo de naranja y el cava.'],deco:'Rodaja de naranja y perfumar con naranja',alg:['sulfitos'],pvp:'8 € · 19 € 1 L',carta:'Cava, vodka, ginebra y zumo de naranja natural. Servida bien fría.'},
+ {c:'De la casa',n:'Sangría',foto:'sangria',vaso:'Old fashioned',hielo:'Perla',ing:['½ onza de sangría','1 parte de Fanta de limón','1 parte de Fanta de naranja','2 partes de vino tinto'],pasos:['Llenar el vaso de hielo perla.','Añadir la sangría, las dos Fantas y el vino tinto.'],deco:'Rodaja de limón y de naranja',alg:['sulfitos'],pvp:'7,50 € · 20 € 1 L',carta:'Vino tinto, brandy, fruta de temporada y canela. Servida con hielo.',aviso:'En la carta de cócteles la jarra sale a 19 € y en la de bebidas a 20 €: confirmar.'},
+ {c:'De la casa',n:'Sangría blanca',foto:'sangria-blanca',vaso:'Old fashioned',hielo:'Perla',ing:['½ onza de agua de Valencia','1 parte de Fanta de limón','1 parte de Sprite','2 partes de vino blanco'],pasos:['Llenar el vaso de hielo perla.','Añadir el agua de Valencia, la Fanta de limón, el Sprite y el vino blanco.'],deco:'Perfumar con limón y rodaja de limón',alg:['sulfitos'],pvp:'7,50 € · 20 € 1 L',carta:'Vino blanco, licor de melocotón y fruta de temporada. Servida con hielo.'},
+ {c:'De la casa',n:'Tinto de verano',foto:'tinto-de-verano',vaso:'Old fashioned',hielo:'Perla',ing:['1 parte de Fanta de limón','1 parte de Fanta de naranja','2 partes de vino tinto'],pasos:['Llenar el vaso de hielo perla.','Añadir las dos Fantas y el vino tinto.'],deco:'Rodaja de limón y de naranja',alg:['sulfitos'],pvp:'7 €',carta:'Vino tinto y gaseosa (o limón). Servido con hielo y rodaja de naranja.'},
+ {c:'Sin alcohol',n:'Mocktail naranja',foto:'mocktail-naranja',sa:1,vaso:'Old fashioned',hielo:'Perla',ing:['½ de zumo de naranja','½ de ginger beer'],pasos:['Llenar el vaso de hielo perla.','Mitad de zumo de naranja y mitad de ginger beer.'],deco:'Rodaja de naranja y perfumar',alg:[],pvp:'5,50 €',carta:'Zumo de naranja natural, jengibre y ginger beer.',aviso:'En la carta de bebidas sale a 5,50 € y en la de cócteles a 7,5 €: confirmar.'},
+ {c:'Sin alcohol',n:'Mocktail frutos rojos',foto:'mocktail-frutos-rojos',sa:1,vaso:'Old fashioned',hielo:'Perla',ing:['1 onza de sirope','2 cucharadas de frutos rojos','Tónica para terminar'],pasos:['Llenar el vaso de hielo perla.','Añadir el sirope y los frutos rojos.','Terminar con tónica.'],deco:'Rodaja de lima',alg:[],pvp:'5,50 €',carta:'Zumo de lima, sirope de frutos rojos y agua con gas.',aviso:'En la carta de bebidas sale a 5,50 € y en la de cócteles a 7,5 €: confirmar.'},
 ];
 
+const R=a=>a.map(n=>[n,'','','','']);
 const PEDIDO=[ /* categoría -> [referencia, mínimo, objetivo, proveedor, día] */
- ['Alcoholes',[]],
- ['Vinos',[]],
- ['Cervezas',[['Tyris Gluten Free','','','',''],['Mahou Sin Gluten','','','','']]],
- ['Refrescos y aguas',[]],
- ['Hielo y consumibles de barra',[]],
+ ['Alcoholes',R(['Ron Don Pablo','Vodka','Ginebra Bulldog','Tequila','Campari','Aperol','Vermut Cinzano Rosso','Licor de café','Fernet Branca','Brandy','Licor de melocotón','Angostura','Base de agua de Valencia','Base de sangría','Cava / prosecco'])],
+ ['Vinos',R(VINOS.map(v=>v[1]))],
+ ['Cervezas',R([...CERVEZAS.filter(c=>c[1]==='Tercio').map(c=>c[0]),'Barril Mahou Clásica','Barril Mahou Maestra'])],
+ ['Refrescos y aguas',R([...REFRESCOS.filter(r=>!/natural/.test(r[0])).map(r=>r[0]),'Ginger beer'])],
+ ['Hielo y consumibles de barra',R(['Hielo perla','Hielo en piedra','Sirope','Limas','Naranjas','Limones','Hierbabuena','Jengibre','Pepino','Frutos rojos','Café en grano','Tajín','Sal','Pajitas'])],
 ];
-const SC=['Servicio','Bebidas','Pedido mínimo'];
+const SC=['Servicio','Vinos','Cervezas y refrescos','Cócteles','Pedido mínimo'];
 let sc='Servicio';
 $('#scats').innerHTML=SC.map(c=>`<button data-sc="${c}" aria-pressed="${c===sc}">${c}</button>`).join('');
 $('#scats').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;sc=b.dataset.sc;$$('[data-sc]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderS()});
@@ -436,17 +463,27 @@ const dash=v=>v?esc(v):'<span class="pend">Pendiente</span>';
 function renderS(){
   let h='';
   if(sc==='Servicio')h=SERVICIO.map(x=>`<div class="card"><div class="hd"><h3>${esc(x.t)}</h3>${x.prop?'<span class="tag">Propuesta</span>':''}</div><div class="bd"><ul class="ing">${x.li.map(l=>`<li>${esc(l)}</li>`).join('')}</ul></div></div>`).join('');
-  if(sc==='Bebidas'){
-    h+=`<p class="banner" style="background:var(--head);color:var(--headink)">Aquí solo aparece el precio de venta. Los costes de compra no se enseñan en la app.</p>`;
-    h+=`<p class="sec">Vinos</p>`+(VINOS.length?VINOS.map(v=>`<div class="card"><div class="hd"><h3>${esc(v.n)}</h3><span class="price">${v.copa?esc(v.copa)+' copa':''}${v.botella?' · '+esc(v.botella)+' bot.':''}</span></div><div class="bd"><p class="meta"><span class="k">Tipo:</span> ${dash(v.tipo)} · <span class="k">D.O.:</span> ${dash(v.do)} · <span class="k">Uva:</span> ${dash(v.uva)}</p><p class="meta"><span class="k">Servir a:</span> ${dash(v.temp)}</p><p class="meta"><span class="k">Marida con:</span> ${dash(v.marida)}</p></div></div>`).join(''):vacio('vinos','tipo, bodega o D.O., uva, precio por copa y por botella, temperatura y maridaje'));
-    h+=`<p class="sec">Cervezas</p><div class="card"><div class="bd"><table class="stack"><thead><tr><th>Cerveza</th><th>Estilo</th><th>Formato</th><th class="n">PVP</th></tr></thead><tbody>${CERVEZAS.map(c=>`<tr><td><b>${esc(c.n)}</b>${c.nota?`<br><span class="tag ok" style="margin-top:4px">${esc(c.nota)}</span>`:''}</td><td>${dash(c.estilo)}</td><td>${dash(c.formato)}</td><td class="n">${dash(c.pvp)}</td></tr>`).join('')}</tbody></table><p class="meta">Faltan el resto de cervezas (barril, botella, sin alcohol).</p></div></div>`;
-    h+=`<p class="sec">De la casa</p><div class="card"><div class="bd"><table><tbody>${CASA.map(r=>`<tr><td>${esc(r[0])}</td><td class="n"><b>${esc(r[1])}</b></td></tr>`).join('')}</tbody></table></div></div>`;
-    h+=`<p class="sec">Cócteles</p>`;
+    const BAN=`<p class="banner" style="background:var(--head);color:var(--headink)">Aquí solo aparece el precio de venta. Los costes de compra no se enseñan en la app.</p>`;
+  if(sc==='Vinos'){
+    h+=BAN;
+    for(const t of ['Blanco','Tinto','Rosado']){
+      h+=`<p class="sec">Vino ${t.toLowerCase()}</p>`+VINOS.filter(v=>v[0]===t).map(([_,n,dO,uva,not,bt,cp])=>`<div class="card"><div class="hd"><h3 style="font-size:20px">${esc(n)}</h3><span class="price">${esc(bt)} € bot.</span></div><div class="bd" style="padding-top:8px"><p style="margin:0">${esc(uva)}</p><p class="meta" style="margin:4px 0 0">D.O. ${esc(dO)} · ${esc(not)}</p><p class="meta" style="margin:6px 0 0"><span class="k">Copa:</span> ${cp==='preguntar'?'Preguntar':cp?esc(cp)+' €':'No se sirve por copa'}</p></div></div>`).join('');
+    }
+    h+=`<p class="sec">Cava</p><div class="card"><div class="bd"><p style="margin:0">Según disponibilidad: en la carta pone «pregunta a nuestro personal».</p></div></div>`;
+  }
+  if(sc==='Cervezas y refrescos'){
+    h+=BAN;
+    h+=`<p class="sec">Cervezas</p><div class="card"><div class="bd"><table><thead><tr><th>Cerveza</th><th>Formato</th><th class="n">PVP</th></tr></thead><tbody>${CERVEZAS.map(([n,f,p,nota])=>`<tr><td><b>${esc(n)}</b>${nota?`<br><span class="tag ok" style="margin-top:4px">${esc(nota)}</span>`:''}</td><td>${esc(f)}</td><td class="n">${esc(p)} €</td></tr>`).join('')}</tbody></table></div></div>`;
+    h+=`<p class="sec">Refrescos, aguas y zumos</p><div class="card"><div class="bd"><table><tbody>${REFRESCOS.map(([n,p])=>`<tr><td>${esc(n)}</td><td class="n"><b>${esc(p)} €</b></td></tr>`).join('')}</tbody></table></div></div>`;
+    h+=`<p class="sec">Las de la casa</p><div class="card"><div class="bd"><table><thead><tr><th>Bebida</th><th class="n">Copa</th><th class="n">1 L</th></tr></thead><tbody>${CASA.map(([n,c,l])=>`<tr><td>${esc(n)}</td><td class="n"><b>${esc(c)} €</b></td><td class="n">${l?'<b>'+esc(l)+' €</b>':'—'}</td></tr>`).join('')}</tbody></table><p class="meta">Las recetas están en Cócteles.</p></div></div>`;
+  }
+  if(sc==='Cócteles'){
+    h+=BAN;
     let lc='';for(const c of COCTELES){if(c.c!==lc){h+=`<p class="meta" style="font-weight:600;color:var(--ink);margin:14px 0 6px">${esc(c.c)}</p>`;lc=c.c}
       h+=`<details class="card"><summary><h3>${esc(c.n)}</h3><span class="price">${esc(c.pvp||'')}</span></summary><div class="bd">${c.foto?`<img class="foto" src="img/${c.foto}.jpg" alt="${esc(c.n)}" loading="lazy">`:'<figure class="ph"><span>Foto pendiente</span></figure>'}
-      <p class="meta" style="margin:0 0 8px"><span class="k">Vaso:</span> ${dash(c.vaso)} · <span class="k">Hielo:</span> ${dash(c.hielo)}</p>
+      ${c.carta?`<p style="margin:0 0 8px;font-style:italic">«${esc(c.carta)}»</p><p class="meta" style="margin:-4px 0 10px">Así aparece en la carta.</p>`:''}${c.aviso?`<p class="warn" style="margin:0 0 10px">${esc(c.aviso)}</p>`:''}<p class="meta" style="margin:0 0 8px"><span class="k">Vaso:</span> ${dash(c.vaso)} · <span class="k">Hielo:</span> ${dash(c.hielo)}</p>
       <h3 style="font-size:18px;margin:8px 0 4px">Ingredientes</h3><ul class="ing">${c.ing.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>
-      <h3 style="font-size:18px;margin:14px 0 4px">Cómo se hace</h3><ol class="steps">${c.pasos.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
+      <h3 style="font-size:18px;margin:14px 0 4px">Cómo se hace</h3>${c.pasos.length?`<ol class="steps">${c.pasos.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`:'<p class="meta pend">Pasos pendientes</p>'}
       <p class="meta"><span class="k">Decoración:</span> ${dash(c.deco)}</p>
       ${c.pvp?'':'<p class="meta"><span class="k">Precio:</span> <span class="pend">Pendiente</span></p>'}
       <div class="chips">${c.sa?'<span class="tag ok">Sin alcohol</span>':''}${c.alg.map(k=>`<span class="tag a">${ALG[k]}</span>`).join('')}</div></div></details>`}
