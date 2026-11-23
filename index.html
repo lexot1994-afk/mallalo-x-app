@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1c1a16">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mállalo X">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta charset="utf-8">
+<title>Mállalo X · Equipo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: directa, de cocina, cálida como la casa ("cocinamos para nuestras abuelitas")
+   IDEA: la biblia de la casa en el bolsillo: fichas como páginas de un libro de cocina
+   PICTURE: cada sección abre con su índice; las fichas son la imagen
+   COLOUR and TYPE: provisional hasta tener la carta 2026: tinta, crema y un acento; Playfair Display (carta) + Inter
+   LAYOUT: cabecera corta, pestañas abajo, una columna de fichas */
+:root{color-scheme:light dark;
+--bg:light-dark(#f6f1e7,#15130f);--card:light-dark(#fffdf8,#201d18);--ink:light-dark(#1c1a16,#f2ece1);
+--mute:light-dark(#6d655a,#a69c8e);--line:light-dark(#e4dccd,#35302a);
+--acc:light-dark(#b3361f,#ff7a5c);--ok:light-dark(#3f6b2a,#a9d68a);--head:#1c1a16;--headink:#f2ece1;--warn:light-dark(#8a5a00,#f2b84b)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip;padding-bottom:88px}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;line-height:1.1;margin:0;text-wrap:balance}
+header{background:var(--head);color:var(--headink);padding:calc(18px + env(safe-area-inset-top)) max(5vw,16px) 20px}
+header .row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;max-width:900px;margin:auto}
+header h1{font-size:clamp(30px,7vw,44px);font-weight:800}
+header h1 i{color:#ff7a5c;font-style:italic}
+header p{margin:4px 0 0;color:#b9ae9f;font-size:14px}
+main{max-width:900px;margin:auto;padding:18px max(4vw,12px)}
+.view{display:none}.view.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;margin:0 0 14px}
+.card .hd{padding:14px 16px 10px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.card .hd h2,.card .hd h3{font-size:24px}
+.card .bd{padding:12px 16px 16px}
+.card .bd>p{margin:0 0 8px}
+details.card>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:56px}
+details.card>summary::-webkit-details-marker{display:none}
+details.card>summary h3{font-size:21px}
+details.card>summary::after{content:"+";font:600 24px Inter;color:var(--mute);flex:none}
+details.card[open]>summary::after{content:"–"}
+details.card[open]>summary{border-bottom:1px solid var(--line)}
+.sec{font:600 13px Inter;color:var(--acc);margin:22px 0 8px}
+.big-title{font-size:clamp(28px,6vw,38px);margin:4px 0 6px}
+.lead{color:var(--mute);margin:0 0 16px}
+.tag{font-size:13px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--line);color:var(--ink);white-space:nowrap;display:inline-block}
+.tag.a{background:var(--acc);color:#fff}.tag.ok{background:var(--ok);color:light-dark(#fff,#15130f)}
+.price{font:600 17px "Playfair Display",serif;white-space:nowrap}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}
+.seg button,.btn{font:600 15px Inter,sans-serif;min-height:44px;padding:0 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg.big button{font-size:17px;min-height:50px;padding:0 22px}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+input[type=search]{width:100%;font:16px Inter;min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);margin:0 0 12px}
+ul.ing{margin:0;padding:0;list-style:none}ul.ing li{padding:6px 0;border-bottom:1px dotted var(--line)}
+ol.steps{margin:10px 0 0;padding-left:22px}ol.steps li{margin:5px 0}
+.meta{font-size:14px;color:var(--mute);margin:8px 0 0}
+.k{font-weight:600;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.warn{border-left:4px solid var(--warn);background:light-dark(#fff5df,#2a2214);padding:10px 12px;font-size:14px;margin:0 0 14px;border-radius:2px}
+.pend{color:var(--warn);font-weight:600}
+ul.chk{list-style:none;margin:0;padding:0}
+ul.chk li{border-bottom:1px solid var(--line)}ul.chk li:last-child{border:0}
+ul.chk label{display:flex;gap:12px;align-items:center;min-height:48px;padding:6px 0;cursor:pointer}
+ul.chk input{width:24px;height:24px;accent-color:var(--ok);flex:none}
+ul.chk input:checked+span{color:var(--mute);text-decoration:line-through}
+.prog{display:flex;align-items:center;gap:12px;margin:0 0 14px}
+.prog b{font:800 34px "Playfair Display",serif;white-space:nowrap}
+.bar{flex:1;height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .4s}
+@media(prefers-reduced-motion:reduce){.bar i{transition:none}}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 13px Inter;color:var(--mute)}
+td.n{text-align:right;white-space:nowrap}
+.stock input{width:64px;font:16px Inter;min-height:40px;padding:0 8px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);text-align:right}
+.who{display:block;font-size:13px;color:var(--mute);text-decoration:none}
+#sync{font-weight:600}#sync[data-k=db]{color:var(--ok)}#sync[data-k=ro],#sync[data-k=slow],#sync[data-k=local]{color:var(--warn)}
+.btn:disabled,input:disabled{opacity:.55;cursor:default}
+.name{display:flex;align-items:center;gap:10px;font-weight:600;margin:0 0 12px}.name input{flex:1;font:16px Inter;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+#install{display:none;margin-top:10px;background:#ff7a5c;color:#1c1a16;border:0;border-radius:99px;font:600 15px Inter;min-height:44px;padding:0 18px;cursor:pointer}
+#ioshint{display:none;margin:8px 0 0;font-size:13px;color:#b9ae9f}
+.low{color:var(--acc);font-weight:600}
+.ph{margin:0 0 12px;aspect-ratio:4/3;border:2px dashed var(--line);border-radius:6px;display:grid;place-items:center;background:light-dark(#efe8da,#1a1814);color:var(--mute);font-size:14px;font-weight:600}
+.ph::before{content:"";width:44px;height:34px;border:2px solid currentColor;border-radius:6px;margin-bottom:8px;grid-area:1/1;align-self:center;transform:translateY(-16px)}
+.ph span{grid-area:1/1;transform:translateY(22px)}
+.banner{background:var(--ok);color:light-dark(#fff,#15130f);border-radius:6px;padding:10px 14px;font-weight:600;margin:0 0 14px}
+.empty{border:2px dashed var(--line);border-radius:6px;padding:20px 16px;text-align:center;color:var(--mute)}
+.empty h3{color:var(--ink);font-size:24px;margin-bottom:6px}
+.empty ul{text-align:left;display:inline-block;margin:10px 0 0}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--head);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));z-index:5;padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs button{background:none;border:0;color:#b9ae9f;font:600 15px Inter,sans-serif;min-height:62px;cursor:pointer;padding:4px}
+nav.tabs button[aria-current=page]{color:#fff;box-shadow:inset 0 3px 0 #ff7a5c}
+@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mute);font-weight:600}.stack td:empty{display:none}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<header><div class="row">
+  <div><h1>Mállalo <i>X</i></h1><p>App del equipo · cocina y sala</p></div>
+  <div><span class="tag" style="background:#35302a;color:#f2ece1" id="today"></span><br><button id="install">Instalar app</button></div>
+  <p id="ioshint">Para instalarla: botón Compartir y «Añadir a pantalla de inicio».</p>
+</div></header>
+
+<main>
+<!-- BIBLIA -->
+<section class="view on" id="v-biblia">
+  <div class="seg big" role="group" aria-label="Biblia">
+    <button data-b="cocina" aria-pressed="true">Biblia de cocina</button>
+    <button data-b="sala" aria-pressed="false">Biblia de sala</button>
+  </div>
+  <div id="b-cocina">
+    <p class="banner">Cocina 100 % sin gluten. Solo llevan gluten el pan de burger y el pan brioche de la torrija.</p>
+    <input type="search" id="q" placeholder="Buscar plato, receta o ingrediente" aria-label="Buscar en la biblia de cocina">
+    <div class="seg" role="group" aria-label="Apartado" id="bcats"></div>
+    <div id="bcont"></div>
+  </div>
+  <div id="b-sala" hidden>
+    <div class="empty">
+      <h3>Biblia de sala</h3>
+      <p>Espacio reservado. Aquí irá el manual de sala, con la misma idea que la de cocina: que todo salga igual lo sirva quien lo sirva.</p>
+      <ul>
+        <li>Filosofía de servicio y bienvenida</li>
+        <li>Pasos del servicio en mesa</li>
+        <li>Carta explicada: cómo vender cada plato</li>
+        <li>Bebidas, cócteles y vinos</li>
+        <li>Alérgenos y sin gluten: cómo informar</li>
+        <li>Caja, TPV y cierre</li>
+      </ul>
+      <p class="meta">Índice propuesto, pendiente de rellenar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROTOCOLOS -->
+<section class="view" id="v-protocolos">
+  <div class="seg big" role="group" aria-label="Protocolos">
+    <button data-p="cocina" aria-pressed="true">Protocolos de cocina</button>
+    <button data-p="sala" aria-pressed="false">Protocolos de sala</button>
+  </div>
+  <div id="p-cocina"></div>
+  <div id="p-sala" hidden></div>
+</section>
+
+<!-- ALÉRGENOS -->
+<section class="view" id="v-alergenos">
+  <h2 class="big-title">Alérgenos de la carta</h2>
+  <p class="banner">Todo es sin gluten salvo el pan de burger y el pan de la torrija (los dos con versión sin gluten).</p>
+  <p class="lead">Toca un alérgeno para ver solo los platos que <b>no</b> lo llevan.</p>
+  <div class="seg" role="group" aria-label="Excluir alérgeno" id="afil"></div>
+  <p class="warn"><b>Antes de confirmar a un cliente:</b> los platos marcados con «Verificar» tienen ingredientes de etiqueta (kimchi, salsas, marinados). Ante la duda, se pregunta a cocina.</p>
+  <div id="alist"></div>
+</section>
+
+<!-- CHECKLIST -->
+<section class="view" id="v-checklist">
+  <div class="seg big" role="group" aria-label="Checklist">
+    <button data-k="cocina" aria-pressed="true">Cocina</button>
+    <button data-k="sala" aria-pressed="false">Sala</button>
+  </div>
+  <label class="name">Tu nombre <input id="nombre" autocomplete="name" placeholder="Para saber quién marca"></label>
+  <p class="meta" id="sync" aria-live="polite" style="margin:0 0 10px"></p><div class="prog"><b><span id="pct">0</span>%</b><div class="bar"><i id="barra"></i></div><button class="btn" id="reset">Reiniciar</button></div>
+  <div id="kcont"></div>
+  <p class="meta">Se pone a cero sola cada día.</p>
+</section>
+</main>
+
+<nav class="tabs" aria-label="Secciones">
+  <button data-v="biblia" aria-current="page">Biblia</button>
+  <button data-v="protocolos">Protocolos</button>
+  <button data-v="alergenos">Alérgenos</button>
+  <button data-v="checklist">Checklist</button>
+</nav>
+
+<script>
+{
+const P='<span class="pend">Pendiente</span>';
+/* ---------- BIBLIA DE COCINA ---------- */
+const FILO=[
+ 'Mállalo X nace del amor hacia los demás. Dar de comer es un acto de cuidado y cariño. Un buen servicio y el amor por el producto bien trabajado.',
+ 'Cocina fusión latina, española y asiática, hecha con buen producto, tiempo y ganas de hacer las cosas diferentes. Gastrobar con opciones sin gluten.'];
+const REGLAS=['Todo plato sale igual, lo cocine quien lo cocine: se cocina con ficha, no de memoria.','Se pesa, no se calcula a ojo.','Producto fresco, bien recibido y bien conservado.','Lo con gluten se trabaja aparte, siempre.','Si un plato no cumple el estándar, no sale.','Respeto por el producto y respeto por el servicio.','Qué es «bien hecho»: un plato que haces para la persona que más quieres y admiras.','Siempre cocinamos para nuestras abuelitas. Ese es el mínimo, de ahí para arriba.'];
+const ESTA=[['Fríos y ensaladas','Ensaladas, ceviche, steak tartar, tacos'],['Frituras','Croquetas, calamar, crispy chicken, espárragos, bravas, Don Chicharrón'],['Plancha y vitro','Entraña, lomo alto, burgers, pulpo'],['Postres','Torrija, tortitas, tarta, helado']];
+const NEVERAS=[['Nevera central · balda 1','Postres, gildas, atún y sardinas, guacamole, decoraciones, pico de gallo, chimichurri y cebolla en pluma'],['Balda 2','Menú del día'],['Balda 3','Salsas, rúcula y espinacas, y espacio para dejar género'],['Baldas 4 y 5','Tomate, aguacate y otras verduras'],['Cajones','1 helados · 2 tortitas · 3 pescados · 4 verduras · 5 carnes · 6 cajón desastre'],['Nevera Mahou 1','Carne de burger, pulpo y lonchas de queso'],['Nevera Mahou 2','Col laminada, pimiento de padrón y verduras en tuppers'],['Caliente 1','Bravas, crispy, croquetas y bikinis'],['Caliente 2','Patatas bastón y calamar'],['Caliente 3','Smash burger, burger de wagyu, lomo alto y entraña'],['Caliente 4','Menú, caldos y pastas marcadas']];
+const BM='Triturar todo menos los huevos hasta conseguir una mezcla homogénea. Añadir los huevos y triturar con la túrmix fija, buscando una emulsión densa. Ir subiendo la túrmix poco a poco para integrar todo a la misma textura.';
+const REC=[
+ {c:'Salsas',n:'All i olí',i:['250 g aceite de girasol','50 g AOVE','3 g sal','10 g ajo pelado','2 huevos frescos talla M'],p:[BM,'Sin zumo de limón.']},
+ {c:'Salsas',n:'All i olí de piparras',i:['250 g aceite de girasol','50 g AOVE','3 g sal','10 g ajo pelado','15 g piparras sin rama','2 huevos'],p:[BM]},
+ {c:'Salsas',n:'Mayo kimchi',i:['400 g aceite de girasol','100 g kimchi pura (base Momoya, no kimchi troceado)','1 huevo'],p:['Triturar todo con la túrmix fija hasta una emulsión densa, subiendo poco a poco para integrar.']},
+ {c:'Salsas',n:'Salsa brava',i:['3 fuet a trozos','2 cebollas en 8 trozos','30 g ajo','300 g aceite de girasol','1.800 g tomate triturado','8-10 g cayena','25 g sal'],p:['Freír fuet, cebolla, ajo y aceite 10 min a fuego medio.','Añadir tomate, cayena y sal.','Sofreír hasta que el tomate esté más anaranjado y triturar.']},
+ {c:'Salsas',n:'Chimichurri de tomate seco',i:['1 manojo de perejil sin medio tallo (unos 400 g)','300 g cebolla roja','125 g albahaca','40 g ajo','150 g tomate deshidratado','400 g aceite de girasol','50 g AOVE','200 g vinagre de manzana','30 g sal'],p:['Triturar todo y guardar en tuppers de 500 cc. Etiquetado.']},
+ {c:'Salsas',n:'Demiglace de rabo de toro',i:['Caldo de rabo filtrado'],p:['Reducir hasta 1/3 de su volumen.','1,5 L de caldo dan 500 ml de demiglace.']},
+ {c:'Salsas',n:'Salsa burger',i:['150 g pepino','150 g cebolla roja','30 g ajo','50 g caldo de pepinillo','200 g aceite de girasol','200 g barbacoa','50 g mostaza','20 g sal'],p:['Triturar todo y colocar en bolsas de vacío. Etiquetado.']},
+ {c:'Salsas',n:'Mayonesa de aguacate',i:['1,5 aguacates','50 g cebolla roja','20 g cilantro con tallo','8 g sal','Zumo de 1 lima','150 g aceite de girasol'],p:['Triturar y dejar en bolsa de vacío. Etiquetado.']},
+ {c:'Salsas',n:'Vinagreta de piñones',i:['70 g piñones','150 g aceite de girasol','100 g AOVE','50 g vinagre balsámico'],p:['Infusionar piñones y girasol a fuego medio 8-10 min, tostando sin quemar.','Añadir AOVE y balsámico.','Tupper de partida blanco con tapa y etiqueta.']},
+ {c:'Salsas',n:'Mantequilla de salvia',i:['500 g mantequilla','125 g salvia escaldada'],p:['Enfriar la salvia y picar muy fino.','Integrar en la mantequilla blanda con movimientos envolventes.','Rulo muy apretado con film, a nevera.']},
+ {c:'Salsas',n:'Vinagreta de tamarindo',i:['400 g aceite de girasol','300 g tamarindo','200 g miel','100 g lima'],p:['Reservar en biberón.']},
+ {c:'Salsas',n:'Sweet chili y salsa del día',i:[],p:[],pend:'Receta pendiente'},
+ {c:'Bases',n:'Leche de tigre',i:['200 g tomate','300 g cebolla roja','100 g apio','50 g jengibre','20 g sal','30 g cilantro con tallo','100 g agua','100 g caldo de pescado','200 g lima exprimida'],p:[],pend:'Elaboración pendiente'},
+ {c:'Bases',n:'Leche de torrijas',i:['1,5 L leche','Piel de 1 naranja','Piel de 1 limón','1 rama de canela','50 ml ron'],p:[]},
+ {c:'Bases',n:'Aceites herbales',i:['70 % aceite de girasol','30 % hierbas frescas (albahaca, salvia, tomillo…)'],p:['A fuego medio hasta que rompa a hervir. Apagar y enfriar.','Triturar, filtrar y reservar en bolsas de vacío. Etiquetado.']},
+ {c:'Bases',n:'Sal de vino',i:['400 g sal gruesa','Vino tinto hasta cubrir'],p:['Microondas en tandas de 5 min a máxima potencia hasta secar el vino en la sal.']},
+ {c:'Bases',n:'Pico de gallo',i:['300 g tomate','250 g cebolla roja','50 g cilantro en chiffonade','2 limas exprimidas','10 g sal'],p:['Reservar en tupper. Etiquetado.']},
+ {c:'Bases',n:'Mise en place de pase',i:['Mezcla de steak: 50 % pepinillos y 50 % cebolla roja','Cebolla en lámina, flores, brotes y cebollino','Macedonia de fresa, naranja y arándanos'],p:[]},
+ {c:'Bases',n:'Tempura sin gluten',i:['1 cerveza sin gluten','300 g harina sin gluten','2 huevos'],p:['Triturar con túrmix.','Espárragos rebozados hasta la mitad, con las puntas a la vista.','Panko GF para espárragos y crispy chicken; harina GF para el calamar.']},
+ {c:'Bases',n:'Guiso de rabo de toro',i:['2,5-3 kg rabo de toro','3 tomates pera','3 zanahorias','2 cebollas rojas','1/2 nabo','1 chirivía','1/2 puerro','3 ramas de apio','50 g tomillo','50 g sal','1,5 L vino tinto','2 L agua'],p:['Marcar el rabo por ambas caras en plancha con aceite y sal.','Todo a la olla más grande y cocer 3 h a fuego fuerte.','Deshuesar y guardar en tupper. Base de la croqueta y del bikini.']},
+ {c:'Bases',n:'Bikini de rabo (montaje)',i:['1 loncha de queso','50 g de rabo de toro','1 loncha de queso','Pan de molde sin gluten'],p:['Montar y filmar dejando una forma compacta.']},
+ {c:'Croquetas',n:'Croqueta cremosa de jamón ibérico',i:['500 g jamón ibérico picado fino','500 g cebolla roja en brunoise','250 g aceite de girasol','300 g harina sin gluten','3-3,5 L leche infusionada con hueso de jamón (de 4,5 L)','30 g gelatina en hojas','Sal al gusto. Sin nuez moscada'],p:['Blanquear el hueso e infusionar en la leche 40-60 min a fuego suave hasta 3-3,5 L. Colar y mantener caliente.','Pochar la cebolla en el aceite unos 15 min a fuego medio-bajo.','Jamón 2 min. Harina 3 min sin color.','Leche caliente poco a poco; cocer 12-15 min hasta que despegue.','Fuera del fuego, gelatina hidratada. Rectificar sal.','Film al contacto, reposo mínimo 8 h a 4 °C.'],m:'Rinde unos 4,1 kg: 135 croquetas de 30 g. Pochar bien la cebolla para que la masa no quede floja.'},
+ {c:'Croquetas',n:'Croqueta cremosa de rabo de toro',i:['500 g rabo braseado deshilachado','375 g cebolla roja en brunoise','185 g aceite de girasol','225 g harina sin gluten','2 L leche','1,5 L demiglace de rabo','30 g gelatina en hojas','Sal al gusto. Sin nuez moscada'],p:['Calentar aparte demiglace y leche.','Pochar la cebolla en el aceite 15 min.','Harina 3 min sin color.','Primero demiglace, después leche; cocer 12-15 min hasta que despegue.','Fuera del fuego, rabo y gelatina. Rectificar sal.','Film al contacto, reposo mínimo 8 h a 4 °C.'],m:'Rinde unos 3,3 kg: 110 croquetas de 30 g. El demiglace ya lleva sal: probar antes. Hacer primero 1/10 para afinar la gelatina.'},
+ {c:'Croquetas',n:'Rebozado y fritura',i:['Para ~100 croquetas: 300 g harina sin gluten','6 huevos','400 g pan rallado y panko sin gluten al 50 %'],p:['Bolas de 30-35 g.','Harina SG, huevo y pan rallado/panko SG. Congelar 1 h.','Freír a 175-180 °C, 2-3 min. Con mayonesa de huevo frito.']},
+];
+const FICHAS=[
+ {c:'Pequeños',n:'Huevos rotos con atún',pr:'10 €',d:'Patatas fritas, huevos rotos y atún.',pres:null,a:['huevo','pescado'],nuevo:1},
+ {c:'Pequeños',n:'Croquetas de jamón ibérico',pr:'3 €/ud',d:'Caseras, crujientes por fuera y melosas por dentro.',pres:'Croqueta con copos crujientes, punto de mayonesa, lámina de jamón y pétalo amarillo. Plato de cristal.',a:['gluten','lacteos','huevo']},
+ {c:'Pequeños',n:'Croquetas de rabo de toro con parmesano',pr:'3,5 €/ud',d:'Rabo de toro guisado y parmesano. El guiso del domingo, en un bocado.',pres:'Croqueta con punto de mayonesa, cebollino picado y pétalo amarillo. Plato de cristal.',a:['gluten','lacteos','huevo','apio','sulfitos']},
+ {c:'Pequeños',n:'Taco de atún fresco',pr:'6 €',d:'Taco de maíz crujiente con atún fresco, base de aguacate, cebolla roja y tobiko naranja.',pres:null,a:['pescado'],sg:1},
+ {c:'Pequeños',n:'Gilda de atún rojo',pr:'4 €/ud',d:'Atún fresco con piparras y olivas sobre chimichurri de tomate seco.',pres:'Pincho de atún, olivas y piparra sobre chimichurri, con brotes. Plato de cristal.',a:['pescado','sulfitos'],sg:1},
+ {c:'Pequeños',n:'Gilda de cecina y demiglace',pr:'3,5 €/ud',d:'Tomate seco, cheddar y cecina de León con demiglace de puchero.',pres:'Brocheta de queso, tomate seco y cecina, demiglace en zigzag y cebollino. Plato de cristal.',a:['lacteos','apio','sulfitos'],sg:1},
+ {c:'Lo nuestro',n:'Don Chicharrón',pr:null,d:'Torrezno con piparras sobre pico de gallo, brunoise de tomate, cebolla roja, cilantro y lima.',pres:'Panceta crujiente en tacos sobre cebolla roja y tomate, con brotes, cebollino y pétalos. Plato alargado blanco.',a:['sulfitos'],sg:1},
+ {c:'Lo nuestro',n:'Bravas Mállalo',pr:null,d:'Patata crujiente con salsa de fuet y all i oli de vitets.',pres:'Patata en dados con pimentón, salsa de fuet y all i oli, con cebollino. Plato gris moteado.',a:['huevo'],sg:1,v:'Fuet: etiqueta (posibles lácteos)'},
+ {c:'Lo nuestro',n:'Guacamole y totopos',pr:null,d:'Aguacate fresco con cebolla roja y cilantro, pico de gallo y totopos caseros de maíz.',pres:null,a:[],sg:1},
+ {c:'Ensaladas',n:'Tomate y sardina ahumada',pr:'13,5 €',d:'Corte grueso de tomate con sardina ahumada, vinagreta de piñones y salicornia.',pres:'Tomate grueso con dos lomos de sardina, piñones, brotes, flor y cebollino; cebolla en pluma, aceitunas y piparras. Plato blanco hondo.',a:['pescado','frutos','sulfitos'],sg:1},
+ {c:'Ensaladas',n:'La Verde',pr:'14,5 €',d:'Espinacas, aguacate, edamame y pepino en vinagre de arroz. Se termina en mesa con granizado de yuzu y AOVE.',pres:'Espinaca baby, cintas de pepino, edamame y aguacate con granizado de yuzu. Plato blanco hondo con borde ocre.',a:['soja'],sg:1},
+ {c:'Ensaladas',n:'La Umami',pr:'16,5 €',d:'Col morada, mango, langostino a la plancha con mantequilla de ajo, cacahuete, sésamo, cilantro y vinagreta de tamarindo y lima.',pres:null,a:['crustaceos','lacteos','cacahuete','sesamo'],sg:1},
+ {c:'Carnes',n:'Steak tartar de wagyu',pr:'19,5 €',d:'Wagyu picado a cuchillo con pepinillos, alcaparras y cebolla roja, espuma de holandesa, sobre patata paja.',pres:'Tartar sobre nido de patata paja, láminas de rábano, cebollino y pimentón. Plato blanco hondo.',a:['huevo','lacteos','sulfitos'],sg:1},
+ {c:'Carnes',n:'Lomo alto de vaca (500 g)',pr:'35 €',d:'Con patatas bastón y pimientos.',pres:null,a:[],sg:1},
+ {c:'Carnes',n:'Entraña de vaca',pr:'19 €',d:'Salmuera de ajo y romero, con patatas bastón y pimientos. Porción de 160 g.',pres:'Carne laminada con patatas bastón, padrón y ensalada de hojas con cebolla en pluma. Plato blanco.',a:[],sg:1},
+ {c:'Carnes',n:'Burger de wagyu',pr:'16,9 €',d:'Carne de wagyu con grana padano fundido, pepinillos de la casa, mayo kimchi y rúcula selvática en pan de patata. Con patatas fritas.',pres:null,a:['gluten','lacteos','huevo','sulfitos'],v:'Lleva gluten por el pan. Disponible con pan sin gluten. Kimchi: etiqueta (suele llevar pescado y crustáceos)'},
+ {c:'Carnes',n:'Doble Smash Burger',pr:'16,9 €',d:'Dos smash de vaca con cecina de León, edam y salsa burger. Con patatas fritas.',pres:'Dos smash con queso fundido y cecina crujiente en brioche, rúcula y patatas. Plato blanco.',a:['gluten','lacteos','mostaza','sulfitos'],v:'Lleva gluten por el pan. Disponible con pan sin gluten'},
+ {c:'Pescados',n:'Ceviche de corvina',pr:'15,9 €',d:'Corvina marinada en leche de tigre, cebolla roja, tomate y cilantro, con mazorca y chips de yuca.',pres:'Corvina en dados sobre cebolla en pluma y tomate, leche de tigre, brotes, caléndula, cilantro y pimentón en el borde. Plato hondo blanco.',a:['pescado','apio'],sg:1},
+ {c:'Pescados',n:'Pulpo a feira',pr:'19,5 €',d:'Pata de pulpo sobre patatas Vivaldi con sal marina, AOVE y pimentón de la Vera.',pres:'Pata de pulpo enroscada sobre patatas en rodajas, pimentón y cebollino. Plato alargado blanco.',a:['moluscos'],sg:1},
+ {c:'Sin gluten',n:'Bikini de rabo de toro',pr:'12 €',d:'Sándwich de emmental con guiso de rabo de toro y polvo de cecina.',pres:'Sándwich en triángulos con queso fundido y rabo, cecina en polvo y cebollino, con patata paja. Plato de cristal acanalado.',a:['lacteos','apio','sulfitos']},
+ {c:'Sin gluten',n:'Espárragos crujientes',pr:'8,9 €',d:'Trigueros en panko gluten free sobre mayonesa de aguacate, cilantro y lima, con sweet chili.',pres:'Cuatro espárragos rebozados hasta la mitad sobre mayonesa verde, hilo de sweet chili, pimentón, caléndula, brotes y cebollino. Plato blanco llano.',a:['huevo'],sg:1,v:'Sweet chili: etiqueta'},
+ {c:'Sin gluten',n:'Calamar crujiente',pr:'12,5 €',d:'Calamar en harina gluten free con mayo kimchi, cilantro y lima.',pres:'Anillas sobre plato alargado blanco, salsa naranja en zigzag, cilantro y cuña de lima.',a:['moluscos','huevo'],sg:1,v:'Kimchi: etiqueta (suele llevar pescado y crustáceos)'},
+ {c:'Sin gluten',n:'Crispy chicken',pr:'9,5 €',d:'Contramuslo marinado, crujiente en panko gluten free, con salsa cajún.',pres:'Pollo troceado en tabla alargada, salsa amarilla en zigzag, pimentón, brotes y capuchina.',a:[],sg:1,v:'Marinado y cajún: posible huevo, lácteos y mostaza'},
+ {c:'Postres',n:'Torrija de pan brioche',pr:'8 €',d:'Con helado de leche merengada, dulce de leche y aroma de naranja.',pres:'Torrija caramelizada, bola de helado con canela, piel de naranja y pétalos. Plato de cerámica decorado.',a:['gluten','lacteos','huevo'],v:'Lleva gluten por el pan brioche. Disponible con pan sin gluten'},
+ {c:'Postres',n:'Tortitas',pr:'7,5 €',d:'Con Nutella, helado de chocolate con pepitas y frutos rojos.',pres:'Pila de tortitas con Nutella en hilo, helado de chocolate, frutos rojos con menta y cacao. Plato hondo.',a:['gluten','lacteos','huevo','frutos','soja']},
+ {c:'Postres',n:'Tarta de queso manchego',pr:'7,5 €',d:'Con macedonia de naranja y frutos rojos.',pres:'Porción redonda con migas y almendra, tira de naranja, salsa oscura, arándanos, fresa y menta. Plato de cristal azul.',a:['lacteos','huevo'],v:'Almendra de la foto (frutos de cáscara): confirmar'},
+ {c:'Postres',n:'Helado de queso de cabra',pr:'8 €',d:'Con miel, mango y pistacho.',pres:null,a:['lacteos','frutos'],sg:1},
+];
+const CONG=['Burger de wagyu','Doble Smash Burger','Torrija de pan brioche'];
+FICHAS.forEach(f=>{if(!CONG.includes(f.n)){f.a=f.a.filter(k=>k!=='gluten');f.sg=1}});
+const ALG={gluten:'Gluten',crustaceos:'Crustáceos',huevo:'Huevo',pescado:'Pescado',cacahuete:'Cacahuete',soja:'Soja',lacteos:'Lácteos',frutos:'Frutos de cáscara',apio:'Apio',mostaza:'Mostaza',sesamo:'Sésamo',sulfitos:'Sulfitos',altramuces:'Altramuces',moluscos:'Moluscos'};
+
+/* ---------- PROTOCOLOS ---------- */
+const PCOC=[
+ {t:'Recepción de género',rows:[['Burger doble smash','4 discos por tupper'],['Burger de wagyu','2 por tupper'],['Entraña','Limpia y porcionada a 160 g'],['Lomo bajo','Porciones de 400 g, al vacío o con film bien apretado'],['Corvina fresca','Lomos sin espinas; bolsas de 60 g para ceviche'],['Cebollas y patatas','Fuera de la malla, en sus cubos'],['Resto de verduras','En tupper, fuera de bolsas de plástico, con etiqueta']]},
+ {t:'Almacenamiento y etiquetado',li:['Etiqueta en todo: producto, fecha de elaboración, fecha de caducidad y quién lo hizo.','Neveras entre 4 y 8 °C. Congeladores entre -15 y -20 °C.','Todo en tuppers y porcionado: quesos, jamón, verduras…','Cada cosa en su balda: ver «Neveras y partidas» en la Biblia de cocina.']},
+ {t:'Sin gluten',li:['Toda la cocina es sin gluten. Solo llevan gluten el pan de burger y el pan brioche de la torrija.','Esos dos panes se trabajan aparte, siempre. Hay pan sin gluten para burgers y torrija.','Panko GF para espárragos y crispy; harina GF para calamar.','Cervezas sin gluten: Tyris Gluten Free y Mahou Sin Gluten.'],pend:'Contaminación cruzada: freidora exclusiva, utensilios y superficies, orden de elaboración'},
+ {t:'Tiempos del menú del día',li:['Pan de bienvenida: 5 min después de entrar la comanda.','Primeros: 5 min después del pan.','Segundos: 15 min después de los primeros, siempre con el visto bueno de sala.','No agobiamos con la comida y respetamos los tiempos de cada persona.'],pend:'Cuarto tiempo por definir'},
+ {t:'Fuera de carta',li:['Usar platos del menú de mediodía (por ejemplo, cachopo).','Aprovechar lo que haya en el congelador para crear un plato nuevo.','Un plato de nivel, en técnica y en creatividad.']},
+ {t:'Apertura y cierre',li:['Apertura y cierre de cocina: en la pestaña Checklist.']},
+];
+const PSAL=[
+ {t:'Tiempos del menú del día',li:['Sala da el visto bueno para que salgan los segundos (15 min después de los primeros).','Respetamos el ritmo de cada mesa: no se agobia con la comida.']},
+ {t:'Alérgenos y sin gluten',li:['Ante cualquier alergia, consultar la pestaña Alérgenos y confirmar con cocina.','Todo es sin gluten salvo el pan de burger y el pan de la torrija; de los dos hay versión sin gluten.','Cervezas sin gluten: Tyris Gluten Free y Mahou Sin Gluten.']},
+ {t:'Apertura y cierre',li:['Apertura y cierre de sala: en la pestaña Checklist.']},
+];
+
+/* ---------- CHECKLISTS ---------- */
+const KCOC=[
+ {t:'Apertura',it:['Revisar checklist de preparación del día','Revisar stock mínimo y reponer','Comprobar temperaturas de cámaras','Mise en place de salsas y rebozados']},
+ {t:'Salsas base',it:['All i oli','All i oli de ajo confitado','Mayonesa kimchi (base Momoya, huevo M, sin limón)','All i oli de piparras','Pico de gallo','Leche de tigre','Vinagreta de piñones','Leche de torrijas','Salsa brava de fuet / all i oli de vitets','Demiglace de puchero','Chimichurri de tomate seco','Salsa cajún','Salsa sweet chili']},
+ {t:'Rebozados',it:['Tempura sin gluten (cerveza SG + harina SG + 2 huevos)','Espárragos en panko GF (hasta la mitad, puntas a la vista)','Calamar en harina GF','Pollo crispy en panko GF']},
+ {t:'Mise en place',it:['Mezcla de steak (50 % pepinillos y cebolla roja)','Cebolla en lámina','Flores','Brotes','Cebollino','Macedonia de fresa, naranja y arándanos','Leche infusionada de torrija y azúcar (con y sin gluten)']},
+ {t:'Sin gluten',it:['Pan de menú sin gluten','Torrijas sin gluten']},
+ {t:'Cierre',it:['Etiquetar y guardar elaboraciones','Limpieza de estaciones','Inventario rápido y pedidos del día siguiente']},
+];
+const KSAL=[
+ {t:'Apertura',it:['Abrir, luces y música','Montar mesas y terraza','Revisar cartas y códigos QR','Cortar fruta y preparar hielo para la barra','Comprobar caja inicial y TPV','Repasar con cocina faltas y fuera de carta'],prop:1},
+ {t:'Cierre',it:['Cerrar caja y TPV, cuadrar efectivo','Recoger y limpiar terraza','Limpiar barra y reponer neveras','Apuntar faltas de bebida para el pedido','Fregar suelos y baños','Apagar luces, música y cerrar'],prop:1},
+];
+const STOCK=[['Entrantes',10,['Huevos rotos con atún','Croquetas de jamón ibérico','Croquetas de rabo de toro','Taco de atún fresco','Gilda de atún rojo','Gilda de cecina','Bravas Mállalo','Don Chicharrón','Guacamole y totopos','Bikini de rabo de toro']],['Ensaladas',10,['Tomate y sardina ahumada','La Verde','La Umami']],['Postres',10,['Torrija','Tortitas','Tarta de queso manchego','Helado de queso de cabra']],['Frituras',30,['Espárragos crujientes','Calamar crujiente','Crispy chicken']],['Carne',20,['Steak tartar de wagyu','Lomo alto','Entraña','Burger de wagyu','Doble smash burger']],['Pulpo',10,['Pulpo a feira']],['Ceviche',10,['Ceviche de corvina']]];
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const now=new Date(),dkey=now.toLocaleDateString('sv');
+$('#today').textContent=now.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+const toggle=(attr,on,map)=>{$$(`[data-${attr}]`).forEach(b=>b.setAttribute('aria-pressed',b.dataset[attr]===on));for(const k in map)$(map[k]).hidden=k!==on};
+
+/* Biblia */
+$$('[data-b]').forEach(b=>b.addEventListener('click',()=>toggle('b',b.dataset.b,{cocina:'#b-cocina',sala:'#b-sala'})));
+const BC=['Todo','La casa','Salsas','Bases','Croquetas','Fichas de plato','Neveras'];
+let bc='Todo';
+$('#bcats').innerHTML=BC.map(c=>`<button data-bc="${c}" aria-pressed="${c===bc}">${c}</button>`).join('');
+$('#bcats').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;bc=b.dataset.bc;$$('[data-bc]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderB()});
+const recHTML=r=>`<details class="card"><summary><h3>${esc(r.n)}</h3></summary><div class="bd">
+ ${r.i.length?`<ul class="ing">${r.i.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+ ${r.p.length?`<ol class="steps">${r.p.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`:''}
+ ${r.m?`<p class="meta">${esc(r.m)}</p>`:''}${r.pend?`<p class="meta pend">${esc(r.pend)}</p>`:''}</div></details>`;
+const algChips=f=>`<div class="chips">${f.a.length?f.a.map(k=>`<span class="tag a">${ALG[k]}</span>`).join(''):'<span class="tag">Sin alérgenos principales</span>'}${f.sg?'<span class="tag ok">Sin gluten</span>':''}</div>${f.v?`<p class="meta"><span class="k">Verificar:</span> ${esc(f.v)}</p>`:''}`;
+const fichaHTML=f=>`<details class="card"><summary><h3>${esc(f.n)}</h3><span class="price">${f.pr||''}</span></summary><div class="bd">
+ <figure class="ph"><span>${f.pres?'Foto por subir':'Foto pendiente'}</span></figure>
+ <p>${esc(f.d)}</p>
+ <p class="meta"><span class="k">Presentación:</span> ${f.pres?esc(f.pres):P+' (foto)'}</p>
+ <p class="meta"><span class="k">Gramajes y elaboración:</span> ${/Croquetas/.test(f.n)?'ver Croquetas':/Bikini/.test(f.n)?'ver Bases · Bikini':P}</p>
+ ${algChips(f)}</div></details>`;
+function renderB(){
+  const q=$('#q').value.trim().toLowerCase(),m=t=>!q||t.toLowerCase().includes(q);
+  let h='';
+  if((bc==='Todo'||bc==='La casa')&&!q){
+    h+=`<p class="sec">La casa</p><div class="card"><div class="bd">${FILO.map(p=>`<p>${esc(p)}</p>`).join('')}
+    <h3 style="font-size:20px;margin:14px 0 6px">Reglas de la casa</h3><ol class="steps">${REGLAS.map(r=>`<li>${esc(r)}</li>`).join('')}</ol><p class="meta">— Lex, Chef</p></div></div>
+    <div class="card"><div class="hd"><h3>Estaciones</h3></div><div class="bd"><table class="stack"><thead><tr><th>Estación</th><th>Platos</th></tr></thead><tbody>${ESTA.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join('')}</tbody></table></div></div>`;
+  }
+  for(const c of ['Salsas','Bases','Croquetas']){
+    if(bc!=='Todo'&&bc!==c)continue;
+    const l=REC.filter(r=>r.c===c&&m(r.n+' '+r.i.join(' ')));
+    if(l.length)h+=`<p class="sec">${c}</p>`+l.map(recHTML).join('');
+  }
+  if(bc==='Todo'||bc==='Fichas de plato'){
+    const l=FICHAS.filter(f=>m(f.n+' '+f.d));
+    let last='';for(const f of l){if(f.c!==last){h+=`<p class="sec">Fichas · ${f.c}</p>`;last=f.c}h+=fichaHTML(f)}
+  }
+  if((bc==='Todo'||bc==='Neveras')&&!q)h+=`<p class="sec">Neveras y partidas</p><div class="card"><div class="bd"><table class="stack"><thead><tr><th>Dónde</th><th>Qué va</th></tr></thead><tbody>${NEVERAS.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join('')}</tbody></table></div></div>`;
+  $('#bcont').innerHTML=h||'<p class="meta">Nada coincide con esa búsqueda.</p>';
+}
+$('#q').addEventListener('input',renderB);
+
+/* Protocolos */
+$$('[data-p]').forEach(b=>b.addEventListener('click',()=>toggle('p',b.dataset.p,{cocina:'#p-cocina',sala:'#p-sala'})));
+const protHTML=x=>`<div class="card"><div class="hd"><h3>${esc(x.t)}</h3></div><div class="bd">
+ ${x.rows?`<table class="stack"><thead><tr><th>Producto</th><th>Cómo</th></tr></thead><tbody>${x.rows.map(r=>`<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table>`:''}
+ ${x.li?`<ul class="ing">${x.li.map(l=>`<li>${esc(l)}</li>`).join('')}</ul>`:''}
+ ${x.pend?`<p class="meta"><span class="pend">Pendiente:</span> ${esc(x.pend)}</p>`:''}</div></div>`;
+$('#p-cocina').innerHTML=PCOC.map(protHTML).join('');
+$('#p-sala').innerHTML=PSAL.map(protHTML).join('')+'<div class="empty"><h3>Más protocolos de sala</h3><p>Pendientes: servicio en mesa, reservas, cobro y quejas.</p></div>';
+
+/* Alérgenos */
+const used=Object.keys(ALG).filter(k=>FICHAS.some(f=>f.a.includes(k)));
+let ex=new Set();
+$('#afil').innerHTML=used.map(k=>`<button data-al="${k}" aria-pressed="false">Sin ${ALG[k].toLowerCase()}</button>`).join('');
+$('#afil').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.al;ex.has(k)?ex.delete(k):ex.add(k);b.setAttribute('aria-pressed',ex.has(k));renderA()});
+function renderA(){
+  const l=FICHAS.filter(f=>![...ex].some(k=>f.a.includes(k)));
+  let last='',h='';
+  for(const f of l){if(f.c!==last){h+=`<p class="sec">${f.c}</p>`;last=f.c}
+    h+=`<div class="card"><div class="hd"><h3 style="font-size:20px">${esc(f.n)}</h3>${f.v?'<span class="tag" style="color:var(--warn)">Verificar</span>':''}</div><div class="bd" style="padding-top:4px">${algChips(f)}</div></div>`}
+  $('#alist').innerHTML=(ex.size?`<p class="meta">${l.length} de ${FICHAS.length} platos.</p>`:'')+(h||'<p class="meta">Ningún plato cumple esa combinación.</p>');
+}
+
+/* Checklist compartida (Google Apps Script + hoja de cálculo) */
+const slug=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70);
+const iid=(area,g,t)=>`${area}-${slug(g)}-${slug(t)}`;
+const API='https://script.google.com/macros/s/AKfycbzG1u2fAfl06lFcNNPphhgaFRjXFuIlAx2arS-z3Sbntr525ANjulqHBEoXJToHBsioOw/exec';
+const GS=true;
+const call=p=>fetch(API+'?'+new URLSearchParams(p),{cache:'no-store'}).then(r=>r.json()).then(j=>{if(j.error)throw j;return j});
+let NAME='';try{NAME=localStorage.getItem('mx-name')||''}catch(e){}
+$('#nombre').value=NAME;
+$('#nombre').addEventListener('change',e=>{NAME=e.target.value.trim();try{localStorage.setItem('mx-name',NAME)}catch(_){}});
+let local={};
+try{local=JSON.parse(localStorage.getItem('mx-k4')||'{}');if(local.d!==dkey)local={d:dkey}}catch(e){local={d:dkey}}
+const saveLocal=()=>{try{localStorage.setItem('mx-k4',JSON.stringify(local))}catch(e){}};
+let shared={cl:{},st:{}},online=false,pending=0;
+const isDone=id=>online?!!shared.cl[id]:!!local[id];
+const stockOf=id=>online?(shared.st[id]??''):(local[id]??'');
+const SYNC={wait:'Conectando con el equipo…',db:'Compartida con el equipo · se actualiza sola',slow:'Sin conexión ahora mismo; lo marcado puede no estar al día',local:'Modo prueba: solo en este dispositivo'};
+function setSync(k){const el=$('#sync');el.textContent=SYNC[k];el.dataset.k=k}
+let kc='cocina';
+$$('[data-k]').forEach(b=>b.addEventListener('click',()=>{kc=b.dataset.k;$$('[data-k]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderK()}));
+function renderK(){
+  const L=kc==='cocina'?KCOC:KSAL;
+  let h=L.map(g=>`<div class="card"><div class="hd"><h3>${g.t}</h3>${g.prop?'<span class="tag">Propuesta</span>':''}</div><div class="bd"><ul class="chk">${g.it.map(t=>{const id=iid(kc,g.t,t);return`<li><label><input type="checkbox" data-id="${id}"><span>${esc(t)}<small class="who" data-w="${id}"></small></span></label></li>`}).join('')}</ul></div></div>`).join('');
+  if(kc==='cocina')h+=`<div class="card stock"><div class="hd"><h3>Stock al abrir</h3><span class="tag">Mínimo diario</span></div><div class="bd"><table><thead><tr><th>Plato</th><th class="n">Mín</th><th class="n">Hay</th></tr></thead><tbody>${STOCK.map(([c,min,ps])=>`<tr><td colspan="3" style="font-weight:600;color:var(--acc);padding-top:14px">${c}</td></tr>`+ps.map(p=>{const id='st-'+slug(p);return`<tr><td>${esc(p)}</td><td class="n"><span>${min}</span></td><td class="n"><input inputmode="numeric" aria-label="Stock de ${esc(p)}" data-st="${id}" data-min="${min}"></td></tr>`}).join('')).join('')}</tbody></table><p class="meta">En rojo, lo que está por debajo del mínimo.</p></div></div>`;
+  $('#kcont').innerHTML=h;applyK();
+}
+function applyK(){
+  $$('#kcont input[data-id]').forEach(i=>{i.checked=isDone(i.dataset.id)});
+  $$('#kcont input[data-st]').forEach(i=>{if(document.activeElement!==i)i.value=stockOf(i.dataset.st);i.classList.toggle('low',i.value!==''&&+i.value<+i.dataset.min)});
+  const L=kc==='cocina'?KCOC:KSAL;let tot=0,ok=0;
+  L.forEach(g=>g.it.forEach(t=>{tot++;if(isDone(iid(kc,g.t,t)))ok++}));
+  const p=Math.round(ok/tot*100);$('#pct').textContent=p;$('#barra').style.width=p+'%';
+  $$('#kcont .who').forEach(w=>{const x=online&&shared.cl[w.dataset.w];w.textContent=x?' · '+[x.by,x.h].filter(Boolean).join(' '):''});
+}
+function got(r){if(pending)return;shared=r.state;online=true;setSync('db');applyK()}
+function pull(){call({action:'state'}).then(got).catch(()=>setSync('slow'))}
+function put(t,id,val){
+  if(!GS){local[id]=t==='cl'?!!val:val;saveLocal();applyK();return}
+  if(t==='cl'){if(val)shared.cl[id]={d:true,by:NAME,h:new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'})};else delete shared.cl[id]}
+  else shared.st[id]=val;
+  applyK();pending++;
+  call({action:'set',t,id,v:t==='cl'?(val?'1':''):val,who:NAME}).then(r=>{pending--;got(r)}).catch(()=>{pending--;setSync('slow');pull()});
+}
+$('#kcont').addEventListener('change',e=>{const t=e.target;
+  if(t.dataset.id)put('cl',t.dataset.id,t.checked);
+  if(t.dataset.st)put('st',t.dataset.st,t.value.trim());
+});
+$('#kcont').addEventListener('input',e=>{const t=e.target;if(t.dataset.st)t.classList.toggle('low',t.value!==''&&+t.value<+t.dataset.min)});
+$('#reset').addEventListener('click',()=>{$$('#kcont input[data-id]').map(i=>i.dataset.id).filter(isDone).forEach(id=>put('cl',id,false))});
+setSync(GS?'wait':'local');pull();
+setInterval(()=>{if(!document.hidden)pull()},8000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)pull()});
+
+/* Navegación */
+const views=['biblia','protocolos','alergenos','checklist'];
+function go(v){if(!views.includes(v))v='biblia';views.forEach(x=>$('#v-'+x).classList.toggle('on',x===v));
+  $$('nav.tabs button').forEach(b=>{if(b.dataset.v===v)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});scrollTo(0,0)}
+$$('nav.tabs button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.v)));
+renderB();renderA();renderK();go('biblia');
+/* Instalación */
+const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+let deferred=null;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(!standalone)$('#install').style.display='inline-block'});
+$('#install').addEventListener('click',async()=>{if(!deferred)return;deferred.prompt();await deferred.userChoice;deferred=null;$('#install').style.display='none'});
+if(!standalone&&/iphone|ipad|ipod/i.test(navigator.userAgent))$('#ioshint').style.display='block';
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
