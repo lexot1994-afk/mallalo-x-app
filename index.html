@@ -122,19 +122,8 @@ nav.tabs button[aria-current=page]{color:#fff;box-shadow:inset 0 3px 0 #ff7a5c}
     <div id="bcont"></div>
   </div>
   <div id="b-sala" hidden>
-    <div class="empty">
-      <h3>Biblia de sala</h3>
-      <p>Espacio reservado. Aquí irá el manual de sala, con la misma idea que la de cocina: que todo salga igual lo sirva quien lo sirva.</p>
-      <ul>
-        <li>Filosofía de servicio y bienvenida</li>
-        <li>Pasos del servicio en mesa</li>
-        <li>Carta explicada: cómo vender cada plato</li>
-        <li>Bebidas, cócteles y vinos</li>
-        <li>Alérgenos y sin gluten: cómo informar</li>
-        <li>Caja, TPV y cierre</li>
-      </ul>
-      <p class="meta">Índice propuesto, pendiente de rellenar.</p>
-    </div>
+    <div class="seg" role="group" aria-label="Apartado de sala" id="scats"></div>
+    <div id="scont"></div>
   </div>
 </section>
 
@@ -379,13 +368,13 @@ function applyK(){
   const p=Math.round(ok/tot*100);$('#pct').textContent=p;$('#barra').style.width=p+'%';
   $$('#kcont .who').forEach(w=>{const x=online&&shared.cl[w.dataset.w];w.textContent=x?' · '+[x.by,x.h].filter(Boolean).join(' '):''});
 }
-function got(r){if(pending)return;shared=r.state;online=true;setSync('db');applyK()}
+function got(r){if(pending)return;shared=r.state;online=true;setSync('db');applyK();applyS()}
 function pull(){call({action:'state'}).then(got).catch(()=>setSync('slow'))}
 function put(t,id,val){
   if(!GS){local[id]=t==='cl'?!!val:val;saveLocal();applyK();return}
   if(t==='cl'){if(val)shared.cl[id]={d:true,by:NAME,h:new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'})};else delete shared.cl[id]}
   else shared.st[id]=val;
-  applyK();pending++;
+  applyK();applyS();pending++;
   call({action:'set',t,id,v:t==='cl'?(val?'1':''):val,who:NAME}).then(r=>{pending--;got(r)}).catch(()=>{pending--;setSync('slow');pull()});
 }
 $('#kcont').addEventListener('change',e=>{const t=e.target;
@@ -398,12 +387,71 @@ setSync(GS?'wait':'local');pull();
 setInterval(()=>{if(!document.hidden)pull()},8000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)pull()});
 
+/* ---------- BIBLIA DE SALA ---------- */
+const SERVICIO=[
+ {t:'La casa',li:['Mállalo X nace del amor hacia los demás. Dar de comer es un acto de cuidado y cariño.','Un buen servicio y el amor por el producto bien trabajado: eso es lo que vendemos.','Gastrobar fusión latina, española y asiática, con casi toda la carta sin gluten.']},
+ {t:'Pasos del servicio en mesa',prop:1,li:['Bienvenida en menos de un minuto, aunque sea con un «ahora mismo estoy con vosotros».','Preguntar siempre por alergias e intolerancias antes de tomar la comanda.','Ofrecer bebida y explicar la carta: «Lo nuestro» y los platos sin gluten.','Comanda a cocina y vigilar los tiempos de cada mesa.','Pasar por la mesa después del primer bocado.','Ofrecer postre y café; la cuenta, solo cuando la pidan.','Despedida en la puerta e invitar a dejar reseña.']},
+ {t:'Tiempos del menú del día',li:['Pan de bienvenida: 5 min después de entrar la comanda.','Primeros: 5 min después del pan.','Segundos: 15 min después de los primeros, siempre con el visto bueno de sala.','No agobiamos con la comida: respetamos el ritmo de cada mesa.']},
+ {t:'Menús',li:['Menú del día (precios de octubre): 14,90 € de lunes a jueves; 19,90 € viernes, sábados, domingos y festivos. Pan, entrante, principal y café.','Menú de grupos: 30 € por persona.']},
+ {t:'Alérgenos y sin gluten',li:['Ante cualquier alergia, consultar la pestaña Alérgenos y confirmar con cocina antes de prometer nada.','Todo es sin gluten salvo el pan de burger y el pan brioche de la torrija; de los dos hay versión sin gluten.','Cervezas sin gluten: Tyris Gluten Free y Mahou Sin Gluten.']},
+];
+const VINOS=[]; /* {n,tipo,do,uva,copa,botella,temp,marida} */
+const CERVEZAS=[ /* {n,estilo,formato,pvp,nota} */
+ {n:'Tyris Gluten Free',estilo:'',formato:'',pvp:'',nota:'Sin gluten'},
+ {n:'Mahou Sin Gluten',estilo:'',formato:'',pvp:'',nota:'Sin gluten'},
+];
+const CASA=[['Agua de Valencia (vaso)','8 €'],['Agua de Valencia (jarra)','19 €'],['Sangría (jarra)','20 €'],['Sangría blanca (jarra)','20 €'],['Tinto de verano','7 €']];
+const COCTELES=[]; /* {n,ing:[],pasos:[],tec,vaso,hielo,deco,pvp,alg:[],foto} */
+const PEDIDO=[ /* categoría -> [referencia, mínimo, objetivo, proveedor, día] */
+ ['Alcoholes',[]],
+ ['Vinos',[]],
+ ['Cervezas',[['Tyris Gluten Free','','','',''],['Mahou Sin Gluten','','','','']]],
+ ['Refrescos y aguas',[]],
+ ['Hielo y consumibles de barra',[]],
+];
+const SC=['Servicio','Bebidas','Pedido mínimo'];
+let sc='Servicio';
+$('#scats').innerHTML=SC.map(c=>`<button data-sc="${c}" aria-pressed="${c===sc}">${c}</button>`).join('');
+$('#scats').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;sc=b.dataset.sc;$$('[data-sc]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderS()});
+const vacio=(que,campos)=>`<div class="empty" style="padding:14px"><p style="margin:0 0 6px"><b>Aún no hay ${que}.</b> Pásame la lista y la cargo.</p><p class="meta" style="margin:0">Cada ficha lleva: ${campos}.</p></div>`;
+const dash=v=>v?esc(v):'<span class="pend">Pendiente</span>';
+function renderS(){
+  let h='';
+  if(sc==='Servicio')h=SERVICIO.map(x=>`<div class="card"><div class="hd"><h3>${esc(x.t)}</h3>${x.prop?'<span class="tag">Propuesta</span>':''}</div><div class="bd"><ul class="ing">${x.li.map(l=>`<li>${esc(l)}</li>`).join('')}</ul></div></div>`).join('');
+  if(sc==='Bebidas'){
+    h+=`<p class="banner" style="background:var(--head);color:var(--headink)">Aquí solo aparece el precio de venta. Los costes de compra no se enseñan en la app.</p>`;
+    h+=`<p class="sec">Vinos</p>`+(VINOS.length?VINOS.map(v=>`<div class="card"><div class="hd"><h3>${esc(v.n)}</h3><span class="price">${v.copa?esc(v.copa)+' copa':''}${v.botella?' · '+esc(v.botella)+' bot.':''}</span></div><div class="bd"><p class="meta"><span class="k">Tipo:</span> ${dash(v.tipo)} · <span class="k">D.O.:</span> ${dash(v.do)} · <span class="k">Uva:</span> ${dash(v.uva)}</p><p class="meta"><span class="k">Servir a:</span> ${dash(v.temp)}</p><p class="meta"><span class="k">Marida con:</span> ${dash(v.marida)}</p></div></div>`).join(''):vacio('vinos','tipo, bodega o D.O., uva, precio por copa y por botella, temperatura y maridaje'));
+    h+=`<p class="sec">Cervezas</p><div class="card"><div class="bd"><table class="stack"><thead><tr><th>Cerveza</th><th>Estilo</th><th>Formato</th><th class="n">PVP</th></tr></thead><tbody>${CERVEZAS.map(c=>`<tr><td><b>${esc(c.n)}</b>${c.nota?`<br><span class="tag ok" style="margin-top:4px">${esc(c.nota)}</span>`:''}</td><td>${dash(c.estilo)}</td><td>${dash(c.formato)}</td><td class="n">${dash(c.pvp)}</td></tr>`).join('')}</tbody></table><p class="meta">Faltan el resto de cervezas (barril, botella, sin alcohol).</p></div></div>`;
+    h+=`<p class="sec">De la casa</p><div class="card"><div class="bd"><table><tbody>${CASA.map(r=>`<tr><td>${esc(r[0])}</td><td class="n"><b>${esc(r[1])}</b></td></tr>`).join('')}</tbody></table></div></div>`;
+    h+=`<p class="sec">Cócteles</p>`+(COCTELES.length?COCTELES.map(c=>`<details class="card"><summary><h3>${esc(c.n)}</h3><span class="price">${esc(c.pvp||'')}</span></summary><div class="bd"><figure class="ph"><span>${c.foto?'Foto por subir':'Foto pendiente'}</span></figure><h3 style="font-size:18px;margin:4px 0">Ingredientes</h3><ul class="ing">${c.ing.map(i=>`<li>${esc(i)}</li>`).join('')}</ul><h3 style="font-size:18px;margin:14px 0 4px">Cómo se hace</h3>${(c.pasos||[]).length?`<ol class="steps">${c.pasos.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`:'<p class="meta pend">Pasos pendientes</p>'}<p class="meta"><span class="k">Técnica:</span> ${dash(c.tec)} · <span class="k">Vaso:</span> ${dash(c.vaso)} · <span class="k">Hielo:</span> ${dash(c.hielo)}</p><p class="meta"><span class="k">Decoración:</span> ${dash(c.deco)}</p>${algChips({a:c.alg||[],sg:1})}</div></details>`).join(''):vacio('cócteles','foto, ingredientes con medidas, cómo se hace paso a paso, técnica, vaso, hielo, decoración, precio y alérgenos'));
+  }
+  if(sc==='Pedido mínimo'){
+    h+=`<div class="card"><div class="bd"><p style="margin:0">Al hacer inventario, apunta lo que <b>hay</b>. Si algo está por debajo del <b>mínimo</b>, se pide hasta llegar al <b>objetivo</b>. Lo que se anota se ve en todos los móviles.</p></div></div>`;
+    for(const [cat,rows] of PEDIDO){
+      h+=`<p class="sec">${cat}</p>`;
+      if(!rows.length){h+=`<div class="empty" style="padding:14px"><p style="margin:0">Sin referencias todavía. Pásame la lista con mínimo, objetivo, proveedor y día de pedido.</p></div>`;continue}
+      h+=`<div class="card stock"><div class="bd"><table class="stack"><thead><tr><th>Referencia</th><th class="n">Mín</th><th class="n">Obj.</th><th class="n">Hay</th><th class="n">Pedir</th><th>Proveedor</th><th>Día</th></tr></thead><tbody>${rows.map(([n,mi,ob,pr,dia])=>{const id='beb-'+slug(cat+'-'+n);return`<tr><td><b>${esc(n)}</b></td><td class="n">${dash(mi)}</td><td class="n">${dash(ob)}</td><td class="n"><input inputmode="numeric" aria-label="Hay de ${esc(n)}" data-bst="${id}" data-min="${esc(mi)}" data-obj="${esc(ob)}"></td><td class="n"><b data-ped="${id}"></b></td><td>${dash(pr)}</td><td>${dash(dia)}</td></tr>`}).join('')}</tbody></table></div></div>`;
+    }
+  }
+  $('#scont').innerHTML=h;applyS();
+}
+function applyS(){
+  $$('#scont input[data-bst]').forEach(i=>{if(document.activeElement!==i)i.value=stockOf(i.dataset.bst);calcPed(i)});
+}
+function calcPed(i){
+  const v=i.value===''?null:+i.value,mi=+i.dataset.min,ob=+i.dataset.obj,o=$(`[data-ped="${i.dataset.bst}"]`);
+  const low=v!==null&&i.dataset.min!==''&&v<mi;i.classList.toggle('low',low);
+  if(o)o.textContent=low&&i.dataset.obj!==''?Math.max(0,ob-v):'';
+}
+$('#scont').addEventListener('input',e=>{if(e.target.dataset.bst)calcPed(e.target)});
+$('#scont').addEventListener('change',e=>{const t=e.target;if(t.dataset.bst)put('st',t.dataset.bst,t.value.trim())});
+
 /* Navegación */
 const views=['biblia','protocolos','alergenos','checklist'];
 function go(v){if(!views.includes(v))v='biblia';views.forEach(x=>$('#v-'+x).classList.toggle('on',x===v));
   $$('nav.tabs button').forEach(b=>{if(b.dataset.v===v)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});scrollTo(0,0)}
 $$('nav.tabs button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.v)));
-renderB();renderA();renderK();go('biblia');
+renderB();renderA();renderK();renderS();go('biblia');
 /* Instalación */
 const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
 let deferred=null;
