@@ -1,34 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1c1a16">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Mállalo X">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta charset="utf-8">
-<title>Mállalo X · Equipo</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mállalo X 2.0</title>
+<meta name="apple-mobile-web-app-title" content="Mállalo X 2.0"><meta name="application-name" content="Mállalo X 2.0">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1c1a16">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* VOICE: directa, de cocina, cálida como la casa ("cocinamos para nuestras abuelitas")
    IDEA: la biblia de la casa en el bolsillo: fichas como páginas de un libro de cocina
    PICTURE: cada sección abre con su índice; las fichas son la imagen
-   COLOUR and TYPE: provisional hasta tener la carta 2026: tinta, crema y un acento; Playfair Display (carta) + Inter
+   COLOUR and TYPE: crema, tinta y acento rojo; Playfair Display + Inter (diseño original)
    LAYOUT: cabecera corta, pestañas abajo, una columna de fichas */
 :root{color-scheme:light dark;
 --bg:light-dark(#f6f1e7,#15130f);--card:light-dark(#fffdf8,#201d18);--ink:light-dark(#1c1a16,#f2ece1);
 --mute:light-dark(#6d655a,#a69c8e);--line:light-dark(#e4dccd,#35302a);
---acc:light-dark(#b3361f,#ff7a5c);--ok:light-dark(#3f6b2a,#a9d68a);--head:#1c1a16;--headink:#f2ece1;--warn:light-dark(#8a5a00,#f2b84b)}
+--acc:light-dark(#b3361f,#ff7a5c);--ok:light-dark(#3f6b2a,#a9d68a);--head:#1c1a16;--headink:#f2ece1;--bar:#1c1a16;--warn:light-dark(#8a5a00,#f2b84b)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip;padding-bottom:88px}
 h1,h2,h3{font-family:"Playfair Display",Georgia,serif;line-height:1.1;margin:0;text-wrap:balance}
-header{background:var(--head);color:var(--headink);padding:calc(18px + env(safe-area-inset-top)) max(5vw,16px) 20px}
+header{background:var(--head);color:var(--headink);padding:18px max(5vw,16px) 20px}
 header .row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;max-width:900px;margin:auto}
 header h1{font-size:clamp(30px,7vw,44px);font-weight:800}
 header h1 i{color:#ff7a5c;font-style:italic}
@@ -43,10 +37,11 @@ main{max-width:900px;margin:auto;padding:18px max(4vw,12px)}
 details.card>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:56px}
 details.card>summary::-webkit-details-marker{display:none}
 details.card>summary h3{font-size:21px}
-details.card>summary::after{content:"+";font:600 24px Inter;color:var(--mute);flex:none}
+details.card>summary::after{content:"+";font:600 24px Inter,sans-serif;color:var(--mute);flex:none}
 details.card[open]>summary::after{content:"–"}
 details.card[open]>summary{border-bottom:1px solid var(--line)}
 .sec{font:600 13px Inter;color:var(--acc);margin:22px 0 8px}
+.hand{font-family:"Playfair Display",Georgia,serif}
 .big-title{font-size:clamp(28px,6vw,38px);margin:4px 0 6px}
 .lead{color:var(--mute);margin:0 0 16px}
 .tag{font-size:13px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--line);color:var(--ink);white-space:nowrap;display:inline-block}
@@ -57,7 +52,7 @@ details.card[open]>summary{border-bottom:1px solid var(--line)}
 .seg button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .seg.big button{font-size:17px;min-height:50px;padding:0 22px}
 button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
-input[type=search]{width:100%;font:16px Inter;min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);margin:0 0 12px}
+input[type=search]{width:100%;font:17px Inter,sans-serif;min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);margin:0 0 12px}
 ul.ing{margin:0;padding:0;list-style:none}ul.ing li{padding:6px 0;border-bottom:1px dotted var(--line)}
 ol.steps{margin:10px 0 0;padding-left:22px}ol.steps li{margin:5px 0}
 .meta{font-size:14px;color:var(--mute);margin:8px 0 0}
@@ -69,6 +64,8 @@ ul.chk{list-style:none;margin:0;padding:0}
 ul.chk li{border-bottom:1px solid var(--line)}ul.chk li:last-child{border:0}
 ul.chk label{display:flex;gap:12px;align-items:center;min-height:48px;padding:6px 0;cursor:pointer}
 ul.chk input{width:24px;height:24px;accent-color:var(--ok);flex:none}
+.fedit{border:1px solid var(--line);border-radius:8px;padding:12px;margin:0 0 12px;background:var(--bg)}.fedit textarea{width:100%;box-sizing:border-box;font:16px/1.5 Inter,sans-serif;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}.fthumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.fth{position:relative;aspect-ratio:1;border-radius:6px;overflow:hidden;background:var(--line)}.fth img{width:100%;height:100%;object-fit:cover;display:block}.fth .del{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.6);color:#fff;border-radius:99px;min-width:36px;min-height:36px;font-size:20px}.fnew{display:grid;place-items:center;border:2px dashed var(--mute);font-weight:600;color:var(--ink);cursor:pointer;background:var(--card)}
+ul.chk .krow{display:flex;align-items:center}ul.chk .krow label{flex:1}.kadd{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.kadd input{flex:1 1 160px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:16px Inter,sans-serif}#kcont .confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 8px;padding:10px;border-radius:6px;background:light-dark(#fbeceb,#3a1c19);color:var(--acc)}#kcont .confirm span{flex:1 1 100%}
 ul.chk input:checked+span{color:var(--mute);text-decoration:line-through}
 .prog{display:flex;align-items:center;gap:12px;margin:0 0 14px}
 .prog b{font:800 34px "Playfair Display",serif;white-space:nowrap}
@@ -77,36 +74,49 @@ ul.chk input:checked+span{color:var(--mute);text-decoration:line-through}
 @media(prefers-reduced-motion:reduce){.bar i{transition:none}}
 table{width:100%;border-collapse:collapse;font-size:15px}
 th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font:600 13px Inter;color:var(--mute)}
+th{font:600 13px Inter,sans-serif;color:var(--mute)}
 td.n{text-align:right;white-space:nowrap}
-.stock input{width:64px;font:16px Inter;min-height:40px;padding:0 8px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);text-align:right}
+.stock input{width:64px;font:17px Inter,sans-serif;min-height:40px;padding:0 8px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);text-align:right}
 .who{display:block;font-size:13px;color:var(--mute);text-decoration:none}
 #sync{font-weight:600}#sync[data-k=db]{color:var(--ok)}#sync[data-k=ro],#sync[data-k=slow],#sync[data-k=local]{color:var(--warn)}
 .btn:disabled,input:disabled{opacity:.55;cursor:default}
-.name{display:flex;align-items:center;gap:10px;font-weight:600;margin:0 0 12px}.name input{flex:1;font:16px Inter;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
-#install{display:none;margin-top:10px;background:#ff7a5c;color:#1c1a16;border:0;border-radius:99px;font:600 15px Inter;min-height:44px;padding:0 18px;cursor:pointer}
-#ioshint{display:none;margin:8px 0 0;font-size:13px;color:#b9ae9f}
 .low{color:var(--acc);font-weight:600}
-.foto{display:block;width:100%;max-height:420px;object-fit:cover;border-radius:6px;margin:0 0 12px;background:var(--line)}
+
+#v-pedido table{table-layout:fixed}#v-pedido th:nth-child(2){width:52px}#v-pedido th:nth-child(3){width:76px}#v-pedido table.limp th:nth-child(2),#v-pedido table.limp th:nth-child(3){width:76px}#v-pedido td,#v-pedido th{padding:9px 4px}
+.stock input.low{color:var(--acc);border:2px solid var(--acc);font-weight:700;background:light-dark(#fbeceb,#3a1c19)}
 .ph{margin:0 0 12px;aspect-ratio:4/3;border:2px dashed var(--line);border-radius:6px;display:grid;place-items:center;background:light-dark(#efe8da,#1a1814);color:var(--mute);font-size:14px;font-weight:600}
 .ph::before{content:"";width:44px;height:34px;border:2px solid currentColor;border-radius:6px;margin-bottom:8px;grid-area:1/1;align-self:center;transform:translateY(-16px)}
 .ph span{grid-area:1/1;transform:translateY(22px)}
+.photos{display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 0 12px;border-radius:6px}
+.photos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;scroll-snap-align:start;display:block;background:var(--line)}
+#clist .it{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line)}#clist .it:last-child{border:0}
+#clist .it label{display:flex;gap:12px;align-items:center;flex:1;min-height:44px;cursor:pointer}#clist .it input{width:24px;height:24px;accent-color:var(--ok);flex:none}
+#clist .it.done .t{color:var(--mute);text-decoration:line-through}#clist .q{color:var(--mute);white-space:nowrap}
+#cform input{font:17px Inter,sans-serif;min-height:46px;padding:0 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);width:100%}
+.del{background:none;border:0;color:var(--mute);font:600 22px Inter,sans-serif;min-width:44px;min-height:44px;cursor:pointer}
+.coc{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;align-items:center;padding:12px 0;border-bottom:1px dotted var(--line)}.coc:last-child{border:0}.coc img{width:92px;height:120px;object-fit:cover;border-radius:6px}.coc h4{margin:0 0 4px;font:600 19px "Playfair Display",Georgia,serif}.coc p{margin:0}
+#clist .it{display:block;padding:10px 12px}#clist .row1{display:flex;align-items:center;gap:10px}
+#clist .row2{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:6px 0 2px 36px;font-size:15px;color:var(--mute)}
+#clist .row2 label{display:flex;align-items:center;gap:6px;min-height:0;flex:none}#clist .row2 input{width:58px;font:17px Inter,sans-serif;min-height:40px;padding:0 8px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);text-align:right}
+#clist .pedir{display:flex;align-items:center;gap:6px}#clist .pedir button{font:600 15px Inter,sans-serif;min-height:40px;min-width:46px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+#clist .pedir button[data-pd=si][aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}#clist .pedir button[data-pd=no][aria-pressed=true]{background:var(--ok);color:#fff;border-color:var(--ok)}
+#clist .it.need .t{color:var(--acc);font-weight:600}#clist .who{margin-left:36px;color:var(--acc)}
+#clist .confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 4px 36px;padding:10px;border-radius:6px;background:light-dark(#fbeceb,#3a1c19);color:var(--acc)}#clist .confirm span{flex:1 1 100%}#clist .confirm .btn{min-height:40px}.btn.danger{background:var(--acc);color:#fff;border-color:var(--acc)}#clist .row1 .q{margin-left:auto}
 .banner{background:var(--ok);color:light-dark(#fff,#15130f);border-radius:6px;padding:10px 14px;font-weight:600;margin:0 0 14px}
 .empty{border:2px dashed var(--line);border-radius:6px;padding:20px 16px;text-align:center;color:var(--mute)}
 .empty h3{color:var(--ink);font-size:24px;margin-bottom:6px}
 .empty ul{text-align:left;display:inline-block;margin:10px 0 0}
-nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--head);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));z-index:5;padding-bottom:env(safe-area-inset-bottom)}
-nav.tabs button{background:none;border:0;color:#b9ae9f;font:600 15px Inter,sans-serif;min-height:62px;cursor:pointer;padding:4px}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--bar);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));z-index:5;padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs button{background:none;border:0;color:#b9ae9f;line-height:1.15;font:600 13px Inter,sans-serif;min-height:62px;cursor:pointer;padding:4px}
 nav.tabs button[aria-current=page]{color:#fff;box-shadow:inset 0 3px 0 #ff7a5c}
-@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mute);font-weight:600}.stack td:empty{display:none}}
+@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mute);font-weight:600}.stack td:empty{display:none}}
 </style>
 <script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
 </head>
 <body>
 <header><div class="row">
-  <div><h1>Mállalo <i>X</i></h1><p>App del equipo · cocina y sala</p></div>
-  <div><span class="tag" style="background:#35302a;color:#f2ece1" id="today"></span><br><button id="install">Instalar app</button></div>
-  <p id="ioshint">Para instalarla: botón Compartir y «Añadir a pantalla de inicio».</p>
+  <div><h1>Mállalo <i>X</i> 2.0</h1><p>App del equipo · cocina y sala</p></div>
+  <span class="tag" style="background:#35302a;color:#f2ece1" id="today"></span>
 </div></header>
 
 <main>
@@ -123,21 +133,147 @@ nav.tabs button[aria-current=page]{color:#fff;box-shadow:inset 0 3px 0 #ff7a5c}
     <div id="bcont"></div>
   </div>
   <div id="b-sala" hidden>
-    <div class="seg" role="group" aria-label="Apartado de sala" id="scats"></div>
-    <div id="scont"></div>
+    <p class="sec">Recetario de cócteles</p>
+    <div id="cocteles"></div>
+    <p class="sec">Introducción y filosofía Mallalo</p>
+    <details class="card"><summary><h3>1.1. ¿Qué es Mallalo?</h3></summary><div class="bd">
+      <p>Mallalo es un restaurante de cocina de fusión, con una propuesta gastronómica propia y una característica fundamental: <b>nuestra cocina es sin gluten</b>.</p>
+      <p>Nuestra identidad se construye alrededor de tres pilares:</p>
+      <ul class="ing"><li>Un producto que merece ser cuidado.</li><li>Una cocina con personalidad, creatividad y elaboración.</li><li>Una sala que convierte una comida en una experiencia.</li></ul>
+      <p>No queremos ser un restaurante más. Queremos que el cliente recuerde nuestros platos, nuestras bebidas, nuestro ambiente y, especialmente, cómo se ha sentido atendido.</p>
+    </div></details>
+    <details class="card"><summary><h3>1.2. La filosofía de la cremita</h3></summary><div class="bd">
+      <p>En Mallalo tenemos una expresión que define nuestra manera de trabajar:</p>
+      <p style="font:italic 700 22px 'Playfair Display',Georgia,serif;margin:6px 0 10px">Todo lleva cremita.</p>
+      <p>La cremita significa que nada debe salir simplemente correcto si puede salir excelente.</p>
+      <ul class="ing">
+        <li>La cerveza debe estar bien tirada, con una corona de crema fina y consistente, no una espuma excesiva.</li>
+        <li>Los cócteles deben estar equilibrados, bien elaborados y presentados con personalidad.</li>
+        <li>Los gin-tonics deben cuidar la temperatura, el hielo, la proporción y la presentación.</li>
+        <li>Los cafés deben tener una extracción correcta y una crema que permita disfrutar del producto.</li>
+        <li>Los platos deben llegar a la mesa en perfectas condiciones, con una presentación cuidada y temperatura adecuada.</li>
+        <li>La atención debe ser cercana, personalizada y anticipativa.</li>
+      </ul>
+      <p><b>La cremita también se aplica a los problemas.</b></p>
+      <p>Si una mesa lleva demasiado tiempo esperando, ponemos cremita. Si un cliente ha tenido una mala experiencia, ponemos cremita. Si algo no está a la altura, lo corregimos.</p>
+      <p><b>La cremita es nuestra cultura de servicio.</b></p>
+    </div></details>
+    <details class="card"><summary><h3>1.3. Nuestra manera de entender la hospitalidad</h3></summary><div class="bd">
+      <p><b>Damos un servicio, pero no somos sirvientes.</b></p>
+      <p>Atendemos con educación, respeto, conocimiento y profesionalidad. Queremos que el cliente se sienta cómodo, escuchado y bien asesorado.</p>
+      <p>Pero también tenemos límites.</p>
+      <ul class="ing">
+        <li>El respeto debe ser mutuo.</li>
+        <li>El cliente no siempre tiene la razón.</li>
+        <li>Escuchamos las reclamaciones sin discutir.</li>
+        <li>No aceptamos insultos, amenazas ni faltas de respeto hacia ningún trabajador.</li>
+        <li>No prometemos lo que no podemos cumplir.</li>
+        <li>No sacrificamos la calidad del producto para satisfacer una petición inadecuada.</li>
+      </ul>
+      <p>Tenemos una propuesta gastronómica, un producto y unos estándares. El cliente debe entender qué ofrecemos y qué experiencia está contratando.</p>
+      <p>No pretendemos ofrecer un servicio de estrella Michelin a precio de Burger King. Pretendemos ofrecer una experiencia honesta, profesional y coherente con nuestro concepto.</p>
+    </div></details>
+    <p class="sec">Imagen personal y actitud del equipo</p>
+    <details class="card"><summary><h3>2.1. Uniformidad e higiene</h3></summary><div class="bd">
+      <p><b>La imagen del personal es parte de la experiencia Mallalo.</b></p>
+      <p>Todo trabajador debe presentarse al servicio:</p>
+      <ul class="ing">
+        <li>Con uniforme limpio y en buen estado.</li>
+        <li>Calzado adecuado y limpio.</li>
+        <li>Higiene personal impecable.</li>
+        <li>Cabello limpio y recogido cuando corresponda.</li>
+        <li>Uñas limpias y cuidadas.</li>
+        <li>Perfumes discretos.</li>
+        <li>Sin elementos personales que dificulten el trabajo.</li>
+      </ul>
+      <p>La imagen debe transmitir limpieza, profesionalidad y coherencia con el establecimiento.</p>
+    </div></details>
+    <details class="card"><summary><h3>2.2. Actitud profesional</h3></summary><div class="bd">
+      <p>Durante el servicio:</p>
+      <ul class="ing">
+        <li>No se grita de una punta a otra de la sala.</li>
+        <li>No se discute delante de los clientes.</li>
+        <li>No se utilizan teléfonos personales en sala.</li>
+        <li>No se habla mal de clientes, compañeros o cocina.</li>
+        <li>No se forman corrillos.</li>
+        <li>No se permanece apoyado en barras, paredes o mobiliario.</li>
+        <li>No se ignora una mesa porque no sea de nuestra zona.</li>
+        <li>Se mantiene siempre una actitud activa.</li>
+      </ul>
+      <p><b>En Mallalo no esperamos a que nos llamen para trabajar. Observamos, anticipamos y actuamos.</b></p>
+    </div></details>
+    <p class="sec">Filosofía de servicio y bienvenida</p>
+    <details class="card"><summary><h3>4.1. La primera impresión</h3></summary><div class="bd">
+      <p><b>Los primeros segundos son fundamentales.</b></p>
+      <p>Cuando entra un cliente, debe percibir que lo hemos visto y que estamos preparados para atenderlo.</p>
+      <p>Nunca debe entrar alguien y quedarse esperando sin recibir atención.</p>
+      <h3 style="font-size:18px;margin:12px 0 4px">Protocolo de bienvenida</h3>
+      <ol class="steps"><li>Saludar con una sonrisa natural.</li><li>Establecer contacto visual.</li><li>Dar la bienvenida.</li><li>Preguntar si tiene reserva.</li><li>Confirmar el número de personas.</li><li>Acompañar a la mesa.</li><li>Entregar las cartas.</li><li>Informar de cualquier particularidad relevante.</li></ol>
+      <p class="meta" style="margin-bottom:2px">Ejemplo:</p>
+      <p style="border-left:3px solid var(--acc);padding:4px 0 4px 12px;font-style:italic">«¡Buenas tardes! Bienvenidos a Mallalo. ¿Tenéis reserva? Perfecto, acompañadme, por favor».</p>
+    </div></details>
+    <details class="card"><summary><h3>4.2. Presentación del concepto</h3></summary><div class="bd">
+      <p>El camarero debe saber explicar qué es Mallalo.</p>
+      <p class="meta" style="margin-bottom:2px">Ejemplo:</p>
+      <p style="border-left:3px solid var(--acc);padding:4px 0 4px 12px;font-style:italic">«Nuestra propuesta es una cocina de fusión, con elaboraciones propias y una combinación de sabores y técnicas. Además, toda nuestra cocina es sin gluten. Nos gusta cuidar mucho la presentación, el producto y los pequeños detalles. Si tenéis cualquier duda sobre la carta, estaré encantado de ayudaros».</p>
+      <p><b>No debemos recitar un discurso memorizado. Debemos transmitirlo de forma natural.</b></p>
+    </div></details>
+    <details class="card"><summary><h3>4.3. Conocimiento del cliente</h3></summary><div class="bd">
+      <p>Debemos identificar qué busca cada mesa:</p>
+      <ul class="ing"><li>Una comida rápida.</li><li>Una experiencia gastronómica.</li><li>Una celebración.</li><li>Una comida informal.</li><li>Una cena tranquila.</li><li>Una experiencia de cócteles.</li></ul>
+      <p>Adaptamos el ritmo y el tipo de atención.</p>
+      <p><b>Personalizar no significa improvisar. Significa aplicar nuestros estándares de una manera inteligente.</b></p>
+    </div></details>
+    <p class="sec">Pasos del servicio en mesa</p>
+    <details class="card"><summary><h3>5. El recorrido del cliente</h3></summary><div class="bd">
+      <p><b>Este es el recorrido obligatorio de una mesa en Mallalo.</b></p>
+      <ol class="steps"><li><b>Recepción y bienvenida</b><br>Saludo, reserva, número de comensales y acompañamiento.</li><li><b>Acomodación</b><br>Entrega de cartas, colocación cómoda y primera atención.</li><li><b>Primera bebida</b><br>Ofrecer agua, aperitivo, cerveza, vino o cóctel.</li><li><b>Presentación de la carta</b><br>Explicar la propuesta y resolver dudas.</li><li><b>Toma de comanda</b><br>Escuchar, recomendar, confirmar y registrar correctamente.</li><li><b>Servicio de bebidas y platos</b><br>Revisar presentación, temperatura y coordinación con cocina.</li><li><b>Seguimiento de mesa</b><br>Comprobar satisfacción, ritmo y posibles necesidades.</li><li><b>Postres y sobremesa</b><br>Ofrecer postres, cafés y bebidas finales.</li><li><b>Cobro</b><br>Presentar la cuenta y gestionar el pago correctamente.</li><li><b>Despedida</b><br>Agradecer la visita e invitar a volver.</li></ol>
+    </div></details>
+    <details class="card"><summary><h3>5.1. Toma de comanda</h3></summary><div class="bd">
+      <p><b>La comanda debe ser clara, completa y sin suposiciones.</b></p>
+      <p>Se debe registrar:</p>
+      <ul class="ing"><li>Número de comensales.</li><li>Platos solicitados.</li><li>Modificaciones autorizadas.</li><li>Alergias e intolerancias comunicadas.</li><li>Orden de salida.</li><li>Bebidas.</li><li>Observaciones relevantes.</li></ul>
+      <p>Antes de enviar la comanda, revisar que todo esté correcto.</p>
+      <p><b>Si existe una duda, se consulta. Nunca se inventa una respuesta.</b></p>
+    </div></details>
+    <details class="card"><summary><h3>5.2. Servicio de platos</h3></summary><div class="bd">
+      <p>Antes de sacar cualquier plato:</p>
+      <ul class="ing"><li>Comprobar que corresponde a la mesa.</li><li>Revisar que está completo.</li><li>Comprobar presentación y limpieza del plato.</li><li>Confirmar las modificaciones solicitadas.</li><li>Asegurar que sale a temperatura adecuada.</li></ul>
+      <p>Durante el servicio:</p>
+      <ul class="ing"><li>No lanzar platos sobre la mesa.</li><li>No tocar la zona de contacto de los cubiertos.</li><li>No meter los dedos en vasos o copas.</li><li>No interrumpir conversaciones innecesariamente.</li><li>Identificar cada elaboración cuando se sirve.</li></ul>
+      <p class="meta" style="margin-bottom:2px">Frase recomendada:</p>
+      <p style="border-left:3px solid var(--acc);padding:4px 0 4px 12px;font-style:italic">«Este es nuestro..., elaborado con... ¡Que lo disfrutéis!».</p>
+    </div></details>
+    <details class="card"><summary><h3>5.3. Seguimiento</h3></summary><div class="bd">
+      <p>Después de servir, debemos comprobar que todo está correcto en un momento oportuno.</p>
+      <p class="meta" style="margin-bottom:2px">Ejemplo:</p>
+      <p style="border-left:3px solid var(--acc);padding:4px 0 4px 12px;font-style:italic">«¿Está todo a vuestro gusto? ¿Cómo estáis encontrando los platos?».</p>
+      <p><b>No se trata de preguntar constantemente. Se trata de estar presentes sin resultar invasivos.</b></p>
+    </div></details>
+    <details class="card"><summary><h3>5.4. Despedida</h3></summary><div class="bd">
+      <p><b>Nunca dejamos que una mesa se marche sin agradecer su visita.</b></p>
+      <p style="border-left:3px solid var(--acc);padding:4px 0 4px 12px;font-style:italic">«Muchas gracias por venir a Mallalo. Esperamos que hayáis disfrutado de la experiencia. ¡Hasta pronto!».</p>
+    </div></details>
+    <p class="sec">Carta explicada: cómo vender cada plato</p>
+    <details class="card" id="s6"><summary><h3>6. Carta explicada</h3></summary><div class="bd">
+      <p>Un camarero no debe limitarse a decir el nombre de un plato.</p>
+      <p><b>Debe conocerlo, entenderlo y saber transmitirlo.</b></p>
+    </div></details>
+    <details class="card"><summary><h3>6.1. Técnicas de venta</h3></summary><div class="bd">
+      <ul class="ing"><li>Recomendar antes que presionar.</li><li>Conocer las preferencias de la mesa.</li><li>Ofrecer platos para compartir cuando encaje.</li><li>Proponer bebidas que acompañen la comida.</li><li>Explicar los platos especiales.</li><li>Sugerir postres antes de que el cliente dé por finalizada la comida.</li></ul>
+      <p><b>Nunca debemos mentir sobre ingredientes, cantidades o elaboraciones.</b></p>
+      <p><b>La venta bien hecha nace del conocimiento, no de la insistencia.</b></p>
+    </div></details>
+    <p class="sec">Las cinco reglas de oro de la sala</p>
+    <div class="card"><div class="bd"><ol class="steps"><li>No abrimos una sala que no esté perfecta.</li><li>No cerramos una sala dejando trabajo al siguiente turno.</li><li>No dejamos suciedad para mañana.</li><li>No damos por hecho que algo está hecho: lo comprobamos.</li><li>Cada persona es responsable de cuidar Mallalo.</li></ol><p style="font:italic 700 20px 'Playfair Display',Georgia,serif;margin:10px 0 0">Todo lleva cremita.</p><p class="meta" style="margin:2px 0 0">La excelencia está en los detalles.</p></div></div>
+    <p class="sec">Vinos</p>
+    <div id="bebcarta"></div>
+    <p class="sec">Protocolos de sala</p>
+    <div id="p-sala"></div>
   </div>
 </section>
 
 <!-- PROTOCOLOS -->
-<section class="view" id="v-protocolos">
-  <div class="seg big" role="group" aria-label="Protocolos">
-    <button data-p="cocina" aria-pressed="true">Protocolos de cocina</button>
-    <button data-p="sala" aria-pressed="false">Protocolos de sala</button>
-  </div>
-  <div id="p-cocina"></div>
-  <div id="p-sala" hidden></div>
-</section>
-
 <!-- ALÉRGENOS -->
 <section class="view" id="v-alergenos">
   <h2 class="big-title">Alérgenos de la carta</h2>
@@ -149,12 +285,39 @@ nav.tabs button[aria-current=page]{color:#fff;box-shadow:inset 0 3px 0 #ff7a5c}
 </section>
 
 <!-- CHECKLIST -->
+<section class="view" id="v-pedido">
+  <h2 class="big-title">Stock</h2>
+  <div class="seg big" role="group" aria-label="Stock">
+    <button data-pm="cocina" aria-pressed="true">Cocina</button>
+    <button data-pm="sala" aria-pressed="false">Sala</button>
+    <button data-pm="limpieza" aria-pressed="false">Limpieza</button>
+  </div>
+  <p class="lead">Apunta en «Hay» lo que queda. En rojo, lo que está por debajo del mínimo: hay que pedirlo.</p>
+  <div id="pm-cocina"></div>
+  <div id="pm-sala" hidden><div id="bebstock"></div></div>
+  <div id="pm-limpieza" hidden></div>
+</section>
+
+<section class="view" id="v-compra">
+  <h2 class="big-title">Compras</h2>
+  <div class="seg" role="group" aria-label="Proveedor" id="provs"></div>
+  <form id="cform" class="card" style="padding:12px;display:grid;grid-template-columns:minmax(0,1fr) 84px;gap:8px">
+    <input id="ct" type="text" placeholder="Producto" aria-label="Producto" autocomplete="off" required>
+    <input id="cq" type="text" placeholder="Cant." aria-label="Cantidad" autocomplete="off">
+    <button class="btn" type="submit" style="grid-column:1/-1;background:var(--bar);color:#fff;border:0">Añadir a <span id="cprov"></span></button>
+  </form>
+  <div id="clist"></div>
+  <p class="meta" id="cnote"></p>
+</section>
+
 <section class="view" id="v-checklist">
   <div class="seg big" role="group" aria-label="Checklist">
     <button data-k="cocina" aria-pressed="true">Cocina</button>
     <button data-k="sala" aria-pressed="false">Sala</button>
+    <button data-k="pcocina" aria-pressed="false">Producción cocina</button>
+    <button data-k="psala" aria-pressed="false">Producción sala</button>
+    <button data-k="pend" aria-pressed="false">Lo que falta</button>
   </div>
-  <label class="name">Tu nombre <input id="nombre" autocomplete="name" placeholder="Para saber quién marca"></label>
   <p class="meta" id="sync" aria-live="polite" style="margin:0 0 10px"></p><div class="prog"><b><span id="pct">0</span>%</b><div class="bar"><i id="barra"></i></div><button class="btn" id="reset">Reiniciar</button></div>
   <div id="kcont"></div>
   <p class="meta">Se pone a cero sola cada día.</p>
@@ -163,8 +326,9 @@ nav.tabs button[aria-current=page]{color:#fff;box-shadow:inset 0 3px 0 #ff7a5c}
 
 <nav class="tabs" aria-label="Secciones">
   <button data-v="biblia" aria-current="page">Biblia</button>
-  <button data-v="protocolos">Protocolos</button>
   <button data-v="alergenos">Alérgenos</button>
+  <button data-v="pedido">Stock</button>
+  <button data-v="compra">Compras</button>
   <button data-v="checklist">Checklist</button>
 </nav>
 
@@ -234,6 +398,8 @@ const FICHAS=[
  {c:'Postres',n:'Tarta de queso manchego',pr:'7,5 €',d:'Con macedonia de naranja y frutos rojos.',pres:'Porción redonda con migas y almendra, tira de naranja, salsa oscura, arándanos, fresa y menta. Plato de cristal azul.',a:['lacteos','huevo'],v:'Almendra de la foto (frutos de cáscara): confirmar'},
  {c:'Postres',n:'Helado de queso de cabra',pr:'8 €',d:'Con miel, mango y pistacho.',pres:null,a:['lacteos','frutos'],sg:1},
 ];
+const IMGS={'Gilda de atún rojo':['gildas'],'Gilda de cecina y demiglace':['gildas'],'Bikini de rabo de toro':['bikini','bikini-2'],'Entraña de vaca':['entrana'],'Don Chicharrón':['chicharron'],'Pulpo a feira':['pulpo'],'Doble Smash Burger':['smash'],'Tortitas':['tortitas'],'Helado de queso de cabra':['helado-cabra'],'Steak tartar de wagyu':['tartar']};
+FICHAS.forEach(f=>{if(IMGS[f.n])f.img=IMGS[f.n]});
 const CONG=['Burger de wagyu','Doble Smash Burger','Torrija de pan brioche'];
 FICHAS.forEach(f=>{if(!CONG.includes(f.n)){f.a=f.a.filter(k=>k!=='gluten');f.sg=1}});
 const ALG={gluten:'Gluten',crustaceos:'Crustáceos',huevo:'Huevo',pescado:'Pescado',cacahuete:'Cacahuete',soja:'Soja',lacteos:'Lácteos',frutos:'Frutos de cáscara',apio:'Apio',mostaza:'Mostaza',sesamo:'Sésamo',sulfitos:'Sulfitos',altramuces:'Altramuces',moluscos:'Moluscos'};
@@ -241,7 +407,7 @@ const ALG={gluten:'Gluten',crustaceos:'Crustáceos',huevo:'Huevo',pescado:'Pesca
 /* ---------- PROTOCOLOS ---------- */
 const PCOC=[
  {t:'Recepción de género',rows:[['Burger doble smash','4 discos por tupper'],['Burger de wagyu','2 por tupper'],['Entraña','Limpia y porcionada a 160 g'],['Lomo bajo','Porciones de 400 g, al vacío o con film bien apretado'],['Corvina fresca','Lomos sin espinas; bolsas de 60 g para ceviche'],['Cebollas y patatas','Fuera de la malla, en sus cubos'],['Resto de verduras','En tupper, fuera de bolsas de plástico, con etiqueta']]},
- {t:'Almacenamiento y etiquetado',li:['Etiqueta en todo: producto, fecha de elaboración, fecha de caducidad y quién lo hizo.','Neveras entre 4 y 8 °C. Congeladores entre -15 y -20 °C.','Todo en tuppers y porcionado: quesos, jamón, verduras…','Cada cosa en su balda: ver «Neveras y partidas» en la Biblia de cocina.']},
+ {t:'Almacenamiento y etiquetado',li:['Etiqueta en todo: producto, fecha de elaboración, fecha de caducidad y quién lo hizo.','Neveras entre 4 y 8 °C. Congeladores entre -15 y -20 °C.','Todo en tuppers y porcionado: quesos, jamón, verduras…','Cada cosa en su balda: ver «Neveras» en la Biblia de cocina.']},
  {t:'Sin gluten',li:['Toda la cocina es sin gluten. Solo llevan gluten el pan de burger y el pan brioche de la torrija.','Esos dos panes se trabajan aparte, siempre. Hay pan sin gluten para burgers y torrija.','Panko GF para espárragos y crispy; harina GF para calamar.','Cervezas sin gluten: Tyris Gluten Free y Mahou Sin Gluten.'],pend:'Contaminación cruzada: freidora exclusiva, utensilios y superficies, orden de elaboración'},
  {t:'Tiempos del menú del día',li:['Pan de bienvenida: 5 min después de entrar la comanda.','Primeros: 5 min después del pan.','Segundos: 15 min después de los primeros, siempre con el visto bueno de sala.','No agobiamos con la comida y respetamos los tiempos de cada persona.'],pend:'Cuarto tiempo por definir'},
  {t:'Fuera de carta',li:['Usar platos del menú de mediodía (por ejemplo, cachopo).','Aprovechar lo que haya en el congelador para crear un plato nuevo.','Un plato de nivel, en técnica y en creatividad.']},
@@ -255,18 +421,30 @@ const PSAL=[
 
 /* ---------- CHECKLISTS ---------- */
 const KCOC=[
- {t:'Apertura',it:['Revisar checklist de preparación del día','Revisar stock mínimo y reponer','Comprobar temperaturas de cámaras','Mise en place de salsas y rebozados']},
+ {t:'Apertura',it:['Revisar la producción de cocina del día','Revisar stock mínimo y reponer','Comprobar temperaturas de cámaras','Mise en place de salsas y rebozados']},
+ {t:'Cierre',it:['Etiquetar y guardar elaboraciones','Limpieza de estaciones','Inventario rápido y pedidos del día siguiente']},
+];
+const KPCOC=[
  {t:'Salsas base',it:['All i oli','All i oli de ajo confitado','Mayonesa kimchi (base Momoya, huevo M, sin limón)','All i oli de piparras','Pico de gallo','Leche de tigre','Vinagreta de piñones','Leche de torrijas','Salsa brava de fuet / all i oli de vitets','Demiglace de puchero','Chimichurri de tomate seco','Salsa cajún','Salsa sweet chili']},
  {t:'Rebozados',it:['Tempura sin gluten (cerveza SG + harina SG + 2 huevos)','Espárragos en panko GF (hasta la mitad, puntas a la vista)','Calamar en harina GF','Pollo crispy en panko GF']},
  {t:'Mise en place',it:['Mezcla de steak (50 % pepinillos y cebolla roja)','Cebolla en lámina','Flores','Brotes','Cebollino','Macedonia de fresa, naranja y arándanos','Leche infusionada de torrija y azúcar (con y sin gluten)']},
  {t:'Sin gluten',it:['Pan de menú sin gluten','Torrijas sin gluten']},
- {t:'Cierre',it:['Etiquetar y guardar elaboraciones','Limpieza de estaciones','Inventario rápido y pedidos del día siguiente']},
+ {t:'Producción del día',it:['Pico de gallo','Gildas (las 2)','Cortar pan artesanal','Totopos','Taco','Crispy de pollo','Espárragos','Cortar pimiento','Cambiar aceite de la freidora']},
 ];
-const KSAL=[
- {t:'Apertura',it:['Abrir, luces y música','Montar mesas y terraza','Revisar cartas y códigos QR','Cortar fruta y preparar hielo para la barra','Comprobar caja inicial y TPV','Repasar con cocina faltas y fuera de carta'],prop:1},
- {t:'Cierre',it:['Cerrar caja y TPV, cuadrar efectivo','Recoger y limpiar terraza','Limpiar barra y reponer neveras','Apuntar faltas de bebida para el pedido','Fregar suelos y baños','Apagar luces, música y cerrar'],prop:1},
+const KLISTS={get cocina(){return KCOC},get sala(){return KSAL},get pcocina(){return KPCOC},get psala(){return KPSAL}};
+const KPSAL=[
+ {t:'Barra',it:['Cortar limas, limones y naranjas','Preparar hielo (cubitos y picado)','Hierbabuena lista para mojitos y mocktails','Reponer tónicas, ginger beer y refrescos en nevera','Sirope de frutos rojos para mocktail','Zumo de naranja natural exprimido'],prop:1},
+ {t:'Jarras y de la casa',it:['Sangría tinta preparada','Sangría blanca preparada','Agua de Valencia: zumo y bases listos','Tinto de verano: vino y gaseosa fríos'],prop:1},
+ {t:'Sala',it:['Servilletas y cubiertos repuestos','Cartas limpias y completas','Vasos y copas pulidos'],prop:1},
+ {t:'Inventario · Carnes y charcutería',it:['Jamón ibérico','Rabo de toro','Vaca madurada (burger)','Vaca para smash burger','Entraña de vaca','Lomo alto / lomo bajo','Cecina de León','Contramuslos de pollo','Torreznos','Wagyu (steak tartar)']},
+ {t:'Inventario · Pescados y marisco',it:['Atún fresco / atún rojo','Sardina ahumada','Corvina fresca','Pulpo fresco','Langostino','Calamar']},
+ {t:'Inventario · Verdura y fruta',it:['Tomate (rallado, rama, seco)','Cebolla roja','Aguacate','Espinacas','Edamame','Pepino','Col morada','Mango','Espárragos trigueros','Cilantro','Lima / limón / naranja','Piparras y olivas','Maíz (mazorca y totopos)','Yuca','Patata (Vivaldi, bastón, paja)','Pimientos','Ajo / tomillo / salvia','Frutos rojos']},
+ {t:'Inventario · Lácteos, huevo y grasas',it:['Huevo fresco talla M','Mantequilla','Queso emmental','Queso edam','Queso cheddar','Grana padano / parmesano','Queso manchego','Queso de cabra','Aceite de oliva virgen extra','Aceite de girasol','Leche y nata']},
+ {t:'Inventario · Secos, salsas y conservas',it:['Harina (y harina sin gluten)','Pan rallado y panko (sin gluten)','Gelatina','Tobiko','Sésamo y cacahuete tostado','Base kimchi Momoya','Vinagre de arroz / tamarindo','Pimentón de la Vera','Sal marina / sal de vino tinto','Piñones y pistacho','Pan artesanal / patata / brioche','Pepinillos y alcaparras']},
+ {t:'Inventario · Dulces y bebidas de cocina',it:['Cerveza sin gluten (tempura)','Ron (torrijas)','Canela en rama','Nutella','Helados (chocolate, leche merengada, queso de cabra)','Dulce de leche','Miel','Mocktails / zumos']},
 ];
-const STOCK=[['Entrantes',10,['Huevos rotos con atún','Croquetas de jamón ibérico','Croquetas de rabo de toro','Taco de atún fresco','Gilda de atún rojo','Gilda de cecina','Bravas Mállalo','Don Chicharrón','Guacamole y totopos','Bikini de rabo de toro']],['Ensaladas',10,['Tomate y sardina ahumada','La Verde','La Umami']],['Postres',10,['Torrija','Tortitas','Tarta de queso manchego','Helado de queso de cabra']],['Frituras',30,['Espárragos crujientes','Calamar crujiente','Crispy chicken']],['Carne',20,['Steak tartar de wagyu','Lomo alto','Entraña','Burger de wagyu','Doble smash burger']],['Pulpo',10,['Pulpo a feira']],['Ceviche',10,['Ceviche de corvina']]];
+const KSAL=[{"t": "Apertura · A. Limpieza y estado general", "it": ["Barrer y fregar los suelos.", "Limpiar mesas, sillas y patas de mobiliario.", "Comprobar paredes, cristales, puertas y ventanas.", "Eliminar polvo y posibles manchas visibles.", "Comprobar que no hay olores desagradables.", "Revisar que toda la sala esté ordenada."]}, {"t": "Apertura · B. Mesas y montaje", "it": ["Mesas limpias, secas y correctamente colocadas.", "Sillas limpias y alineadas.", "Manteles, individuales o elementos de montaje impecables, según el concepto.", "Cubiertos limpios y correctamente colocados.", "Cristalería sin marcas, huellas ni restos.", "Vajilla limpia y sin desconchones.", "Cartas limpias y en buen estado.", "Comprobar que todas las mesas están completas."]}, {"t": "Apertura · C. Ambientación Mallalo", "it": ["Encender iluminación y comprobar todos los puntos de luz.", "Seleccionar la música adecuada al momento del día.", "Regular el volumen de la música.", "Comprobar temperatura y climatización.", "Preparar velas aromáticas de sala.", "Comprobar que los aromas sean discretos y agradables.", "Colocar las velas de forma segura, lejos de elementos inflamables.", "Revisar que el ambiente general transmita la identidad Mallalo."]}, {"t": "Apertura · D. Baños", "it": ["Limpiar y desinfectar lavabos e inodoros.", "Limpiar espejos y superficies.", "Comprobar suelos y papeleras.", "Reponer papel higiénico.", "Reponer jabón de manos.", "Comprobar papel secamanos o secadores.", "Comprobar buen olor y ventilación.", "Preparar ambientación aromática segura y discreta.", "Comprobar iluminación y funcionamiento de grifos."]}, {"t": "Apertura · E. Estaciones y material de servicio", "it": ["Reponer servilletas.", "Reponer cubiertos de servicio.", "Preparar pinzas, bandejas y accesorios.", "Comprobar abridores, sacacorchos y utensilios.", "Revisar menaje y material auxiliar.", "Ordenar las estaciones de trabajo.", "Comprobar que hay material suficiente para todo el servicio."]}, {"t": "Apertura · F. Bebidas y cafetería", "it": ["Comprobar cámaras y temperaturas de conservación.", "Revisar stock de cervezas, refrescos y aguas.", "Comprobar vinos y su conservación.", "Preparar cristalería adecuada para cada bebida.", "Comprobar hielo y utensilios de coctelería.", "Revisar cafetera, molinillo y material de cafetería.", "Comprobar limpieza y funcionamiento de la máquina de café.", "Preparar leche y alternativas según necesidades y protocolos."]}, {"t": "Apertura · G. Organización y coordinación", "it": ["Comprobar reservas y número de comensales.", "Revisar distribución de mesas y zonas.", "Consultar platos agotados y sugerencias del día.", "Conocer posibles cambios en carta y bebidas.", "Confirmar personal asignado a cada zona.", "Realizar briefing con cocina.", "Comprobar que todo el equipo conoce sus funciones.", "Confirmar que TPV y datáfono funcionan correctamente."]}, {"t": "Apertura · H. Revisión final", "it": ["Dar una última vuelta completa por la sala.", "Comprobar que todas las mesas están listas.", "Comprobar baños por última vez.", "Confirmar música, luz y ambientación.", "Comprobar que no hay material de limpieza a la vista.", "Confirmar que la entrada está limpia y preparada.", "Autorizar apertura al público."]}, {"t": "Apertura · Control del responsable de sala", "it": ["Limpieza general", "Mesas y montaje", "Baños", "Estaciones de servicio", "Bebidas y cafetería", "Música y ambientación", "TPV y caja", "Seguridad del local", "Comunicación de incidencias"]}, {"t": "Cierre · A. Recogida y limpieza de sala", "it": ["Retirar toda la vajilla y cristalería de las mesas.", "Limpiar y desinfectar todas las mesas.", "Limpiar sillas y revisar posibles manchas.", "Barrer y fregar el suelo.", "Limpiar manchas y restos debajo de las mesas.", "Vaciar papeleras.", "Limpiar estaciones de servicio.", "Retirar restos de comida y bebidas.", "Dejar toda la sala ordenada."]}, {"t": "Cierre · B. Cristalería, vajilla y cubertería", "it": ["Lavar y guardar toda la cristalería.", "Comprobar que no quedan copas o vasos sucios.", "Limpiar y guardar cubiertos.", "Lavar y guardar vajilla.", "Separar y retirar piezas rotas o deterioradas.", "Dejar el material preparado para el próximo turno."]}, {"t": "Cierre · C. Estaciones y reposición", "it": ["Reponer servilletas.", "Reponer cubiertos y material auxiliar.", "Guardar bandejas y utensilios.", "Ordenar sacacorchos y abridores.", "Dejar estaciones limpias y abastecidas.", "Comunicar productos y materiales que necesitan reposición.", "Guardar correctamente los productos y consumibles."]}, {"t": "Cierre · D. Bebidas y cafetería", "it": ["Guardar bebidas abiertas según su conservación.", "Cerrar correctamente vinos y otros productos abiertos.", "Comprobar cámaras y equipos de refrigeración.", "Dejar las bebidas ordenadas y registradas según protocolo.", "Limpiar cafetera y purgar los circuitos según fabricante.", "Limpiar portafiltros, vaporizador y zona de trabajo.", "Vaciar y limpiar bandejas y recipientes de residuos.", "Guardar correctamente los productos de coctelería.", "Comprobar y guardar el hielo según protocolo."]}, {"t": "Cierre · E. Baños", "it": ["Limpiar y desinfectar inodoros y lavabos.", "Limpiar espejos y superficies.", "Fregar suelos.", "Vaciar papeleras.", "Reponer jabón y papel.", "Comprobar grifos, luces y ventilación.", "Dejar los baños con buen olor.", "Comprobar que no quedan pertenencias olvidadas."]}, {"t": "Cierre · F. Ambiente y seguridad", "it": ["Apagar todas las velas y comprobar que están completamente extinguidas.", "Retirar elementos aromáticos que deban apagarse o guardarse.", "Apagar música y equipos de sonido.", "Apagar luces no necesarias.", "Regular climatización según protocolo del local.", "Comprobar que no quedan aparatos encendidos innecesariamente.", "Cerrar ventanas y puertas.", "Comprobar accesos y sistemas de seguridad.", "Verificar que no quedan riesgos de incendio o fugas."]}, {"t": "Cierre · G. Caja y TPV", "it": ["Cerrar mesas pendientes según protocolo.", "Comprobar comandas y operaciones registradas.", "Realizar cierre de TPV.", "Comprobar cobros en efectivo y tarjeta.", "Realizar arqueo de caja.", "Comunicar diferencias o incidencias.", "Guardar documentación y efectivo según procedimiento autorizado.", "Dejar datáfonos y dispositivos cargando si corresponde."]}, {"t": "Cierre · H. Comunicación y cierre final", "it": ["Comunicar productos agotados.", "Informar de roturas o material deteriorado.", "Registrar incidencias del servicio.", "Informar de reservas o necesidades del siguiente turno.", "Comprobar que no quedan clientes ni pertenencias olvidadas.", "Realizar una última inspección de sala.", "Confirmar que todo queda cerrado y asegurado.", "Entregar el cierre al responsable."]}, {"t": "Cierre · Control del responsable de sala", "it": ["Limpieza general", "Mesas y montaje", "Baños", "Estaciones de servicio", "Bebidas y cafetería", "Música y ambientación", "TPV y caja", "Seguridad del local", "Comunicación de incidencias"]}];
+const STOCK=[['Entrantes',10,['Huevos rotos con atún','Croquetas de jamón ibérico','Croquetas de rabo de toro','Taco de atún fresco','Gilda de atún rojo','Gilda de cecina','Bravas Mállalo','Don Chicharrón','Guacamole y totopos','Bikini de rabo de toro']],['Ensaladas',10,['Tomate y sardina ahumada','La Verde','La Umami']],['Postres',10,['Torrija','Tortitas','Tarta de queso manchego','Helado de queso de cabra']],['Frituras',30,['Espárragos crujientes','Calamar crujiente','Crispy chicken']],['Carne',20,['Steak tartar de wagyu','Lomo alto','Entraña','Burger de wagyu','Doble smash burger']],['Pulpo',10,['Pulpo a feira']],['Ceviche',10,['Ceviche de corvina']],['Género y bases (sin mínimo)',null,['Burger madurada','Smash burger congelada','Lomo alto congelado','Patatas bastón','Paca de patatas','Langostino (tuppers)','Corvina (kg)','Salsa brava (tuppers)','Pan sin gluten','Barra de pan sin gluten','Pan de torrija cortado','Barra de pan de torrija','Fuet']]];
 
 /* ---------- helpers ---------- */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -277,7 +455,7 @@ const toggle=(attr,on,map)=>{$$(`[data-${attr}]`).forEach(b=>b.setAttribute('ari
 
 /* Biblia */
 $$('[data-b]').forEach(b=>b.addEventListener('click',()=>toggle('b',b.dataset.b,{cocina:'#b-cocina',sala:'#b-sala'})));
-const BC=['Todo','La casa','Salsas','Bases','Croquetas','Fichas de plato','Neveras'];
+const BC=['Todo','La casa','Protocolos','Salsas','Bases','Croquetas','Fichas de plato','Neveras'];
 let bc='Todo';
 $('#bcats').innerHTML=BC.map(c=>`<button data-bc="${c}" aria-pressed="${c===bc}">${c}</button>`).join('');
 $('#bcats').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;bc=b.dataset.bc;$$('[data-bc]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderB()});
@@ -286,12 +464,26 @@ const recHTML=r=>`<details class="card"><summary><h3>${esc(r.n)}</h3></summary><
  ${r.p.length?`<ol class="steps">${r.p.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`:''}
  ${r.m?`<p class="meta">${esc(r.m)}</p>`:''}${r.pend?`<p class="meta pend">${esc(r.pend)}</p>`:''}</div></details>`;
 const algChips=f=>`<div class="chips">${f.a.length?f.a.map(k=>`<span class="tag a">${ALG[k]}</span>`).join(''):'<span class="tag">Sin alérgenos principales</span>'}${f.sg?'<span class="tag ok">Sin gluten</span>':''}</div>${f.v?`<p class="meta"><span class="k">Verificar:</span> ${esc(f.v)}</p>`:''}`;
-const fichaHTML=f=>`<details class="card"><summary><h3>${esc(f.n)}</h3><span class="price">${f.pr||''}</span></summary><div class="bd">
- <figure class="ph"><span>${f.pres?'Foto por subir':'Foto pendiente'}</span></figure>
- <p>${esc(f.d)}</p>
+const fxOf=f=>{try{return (mode==='db'?shared.fx:localFx)['f-'+slug(f.n)]||{}}catch(e){return {}}};
+const fkey=f=>'f-'+slug(f.n);
+let editF=null,openF=new Set(),fBusy=false,fDraft=null;
+function fPhotos(f){const o=fxOf(f),hid=o.hid||[];return [...(o.fotos||[]).map(p=>({src:p.src,k:'n:'+p.k})),...(f.img||[]).filter(x=>!hid.includes(x)).map(x=>({src:'img/'+x+'.jpg',k:'o:'+x}))]}
+const fichaHTML=f=>{const o=fxOf(f),ph=fPhotos(f),k=fkey(f),ed=editF===k,desc=o.d!=null?o.d:f.d;
+ return `<details class="card" data-fk="${k}" ${openF.has(k)||ed?'open':''}><summary><h3>${esc(f.n)}</h3></summary><div class="bd">
+ ${ph.length?`<div class="photos">${ph.map(p=>`<img src="${esc(p.src)}" alt="${esc(f.n)}">`).join('')}</div>`:`<figure class="ph"><span>Foto pendiente</span></figure>`}
+ ${ed?`<div class="fedit">
+   <h3 style="font-size:18px;margin:0 0 6px">Fotos</h3>
+   <div class="fthumbs">${ph.map(p=>`<div class="fth"><img src="${esc(p.src)}" alt=""><button class="del" data-fdel="${esc(p.k)}" aria-label="Quitar foto">×</button></div>`).join('')}
+   <label class="fth fnew">${fBusy?'Subiendo…':'+ Foto'}<input type="file" accept="image/*" data-fup="${k}" hidden ${fBusy?'disabled':''}></label></div>
+   <h3 style="font-size:18px;margin:14px 0 6px">Descripción</h3>
+   <textarea data-fdesc rows="4">${esc(fDraft!=null?fDraft:desc)}</textarea>
+   <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn danger" data-fsave="${k}">Guardar</button><button class="btn" data-fcancel>Cerrar</button>${o.d!=null?`<button class="btn" data-freset="${k}">Volver a la descripción original</button>`:''}</div>
+   ${o.at?`<p class="meta" style="margin:8px 0 0">Última edición: ${new Date(o.at).toLocaleString('es-ES',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</p>`:''}
+ </div>`:`<p>${esc(desc)}</p>`}
  <p class="meta"><span class="k">Presentación:</span> ${f.pres?esc(f.pres):P+' (foto)'}</p>
  <p class="meta"><span class="k">Gramajes y elaboración:</span> ${/Croquetas/.test(f.n)?'ver Croquetas':/Bikini/.test(f.n)?'ver Bases · Bikini':P}</p>
- ${algChips(f)}</div></details>`;
+ ${algChips(f)}
+ ${!ed&&!ro?`<button class="btn" data-fedit="${k}" style="margin-top:10px">Editar fotos y descripción</button>`:''}</div></details>`};
 function renderB(){
   const q=$('#q').value.trim().toLowerCase(),m=t=>!q||t.toLowerCase().includes(q);
   let h='';
@@ -300,6 +492,7 @@ function renderB(){
     <h3 style="font-size:20px;margin:14px 0 6px">Reglas de la casa</h3><ol class="steps">${REGLAS.map(r=>`<li>${esc(r)}</li>`).join('')}</ol><p class="meta">— Lex, Chef</p></div></div>
     <div class="card"><div class="hd"><h3>Estaciones</h3></div><div class="bd"><table class="stack"><thead><tr><th>Estación</th><th>Platos</th></tr></thead><tbody>${ESTA.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join('')}</tbody></table></div></div>`;
   }
+  if((bc==='Todo'||bc==='Protocolos')&&!q)h+=`<p class="sec">Protocolos de cocina</p>`+PCOC.map(protHTML).join('');
   for(const c of ['Salsas','Bases','Croquetas']){
     if(bc!=='Todo'&&bc!==c)continue;
     const l=REC.filter(r=>r.c===c&&m(r.n+' '+r.i.join(' ')));
@@ -309,19 +502,40 @@ function renderB(){
     const l=FICHAS.filter(f=>m(f.n+' '+f.d));
     let last='';for(const f of l){if(f.c!==last){h+=`<p class="sec">Fichas · ${f.c}</p>`;last=f.c}h+=fichaHTML(f)}
   }
-  if((bc==='Todo'||bc==='Neveras')&&!q)h+=`<p class="sec">Neveras y partidas</p><div class="card"><div class="bd"><table class="stack"><thead><tr><th>Dónde</th><th>Qué va</th></tr></thead><tbody>${NEVERAS.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join('')}</tbody></table></div></div>`;
+  if((bc==='Todo'||bc==='Neveras')&&!q)h+=`<p class="sec">Neveras y partidas</p><div class="card"><div class="bd"><a href="img/mapa-neveras.jpg" target="_blank" rel="noopener" style="display:block;overflow-x:auto;margin:0 0 12px"><img src="img/mapa-neveras.jpg" alt="Mapa de neveras: nevera central, nevera de Mahou y partida de caliente y frituras" style="width:100%;min-width:560px;display:block;border:1px solid var(--line);border-radius:6px"></a><p class="meta" style="margin:0 0 10px">Desliza para ver el mapa entero.</p><table class="stack"><thead><tr><th>Dónde</th><th>Qué va</th></tr></thead><tbody>${NEVERAS.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join('')}</tbody></table></div></div>`;
   $('#bcont').innerHTML=h||'<p class="meta">Nada coincide con esa búsqueda.</p>';
 }
 $('#q').addEventListener('input',renderB);
+let localFx={};try{localFx=JSON.parse(localStorage.getItem('mx-fx')||'{}')}catch(e){}
+function fxSave(k,body){if(mode==='db')put('fx',k,body);else{localFx[k]=body;try{localStorage.setItem('mx-fx',JSON.stringify(localFx))}catch(e){alert('No cabe más en este móvil.')}}renderB()}
+const fxCur=k=>{const o=(mode==='db'?shared.fx:localFx)[k]||{};return {d:o.d??null,fotos:o.fotos||[],hid:o.hid||[]}};
+let ASSETS=null;
+function shrink(file,max=1100,q=.78){return new Promise((ok,ko)=>{const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{const r=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*r);c.height=Math.round(im.height*r);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>b?ok({b,c}):ko(),'image/jpeg',q)};im.onerror=ko;im.src=u})}
+$('#bcont').addEventListener('input',e=>{if(e.target.matches&&e.target.matches('[data-fdesc]'))fDraft=e.target.value});
+$('#bcont').addEventListener('toggle',e=>{const d=e.target;if(d.dataset&&d.dataset.fk){d.open?openF.add(d.dataset.fk):openF.delete(d.dataset.fk)}},true);
+$('#bcont').addEventListener('click',e=>{
+  const ed=e.target.closest('[data-fedit]');if(ed){fDraft=null;editF=ed.dataset.fedit;openF.add(editF);renderB();return}
+  if(e.target.closest('[data-fcancel]')){editF=null;fDraft=null;renderB();return}
+  const sv=e.target.closest('[data-fsave]');if(sv){const k=sv.dataset.fsave,t=$('#bcont [data-fdesc]').value.trim(),c=fxCur(k);editF=null;fDraft=null;fxSave(k,{...c,d:t,by:ME||'',at:Date.now()});return}
+  const rs=e.target.closest('[data-freset]');if(rs){const k=rs.dataset.freset,c=fxCur(k);fxSave(k,{...c,d:null,by:ME||'',at:Date.now()});return}
+  const dl=e.target.closest('[data-fdel]');if(dl&&editF){if(!confirm('¿Quitar esta foto de la ficha?'))return;const c=fxCur(editF),v=dl.dataset.fdel;
+    if(v.startsWith('o:'))c.hid=[...c.hid,v.slice(2)];else{const x=c.fotos.find(p=>'n:'+p.k===v);c.fotos=c.fotos.filter(p=>'n:'+p.k!==v);if(x&&x.id&&ASSETS)ASSETS.delete(x.id).catch(()=>{})}
+    fxSave(editF,{...c,by:ME||'',at:Date.now()})}
+});
+$('#bcont').addEventListener('change',async e=>{const inp=e.target;if(!inp.dataset||!inp.dataset.fup||!inp.files[0])return;const k=inp.dataset.fup;fBusy=true;renderB();
+  try{const {b,c}=await shrink(inp.files[0]);let src,id=null;
+    if(ASSETS){try{const r=await ASSETS.upload(b);id=r.id;src=r.url||('/_blob/'+r.id)}catch(err){}}
+    if(!src){const s2=await shrink(inp.files[0],800,.7);src=s2.c.toDataURL('image/jpeg',.7)}
+    const cur=fxCur(k);fBusy=false;fxSave(k,{...cur,fotos:[{k:Date.now().toString(36),src,id},...cur.fotos],by:ME||'',at:Date.now()})}
+  catch(err){fBusy=false;renderB();alert('No se pudo subir la foto. Prueba otra vez.')}});
+
 
 /* Protocolos */
-$$('[data-p]').forEach(b=>b.addEventListener('click',()=>toggle('p',b.dataset.p,{cocina:'#p-cocina',sala:'#p-sala'})));
 const protHTML=x=>`<div class="card"><div class="hd"><h3>${esc(x.t)}</h3></div><div class="bd">
  ${x.rows?`<table class="stack"><thead><tr><th>Producto</th><th>Cómo</th></tr></thead><tbody>${x.rows.map(r=>`<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table>`:''}
  ${x.li?`<ul class="ing">${x.li.map(l=>`<li>${esc(l)}</li>`).join('')}</ul>`:''}
  ${x.pend?`<p class="meta"><span class="pend">Pendiente:</span> ${esc(x.pend)}</p>`:''}</div></div>`;
-$('#p-cocina').innerHTML=PCOC.map(protHTML).join('');
-$('#p-sala').innerHTML=PSAL.map(protHTML).join('')+'<div class="empty"><h3>Más protocolos de sala</h3><p>Pendientes: servicio en mesa, reservas, cobro y quejas.</p></div>';
+$('#p-sala').innerHTML=PSAL.map(protHTML).join('')+'<p class="meta">Pendientes: servicio en mesa, reservas, cobro y quejas.</p>';
 
 /* Alérgenos */
 const used=Object.keys(ALG).filter(k=>FICHAS.some(f=>f.a.includes(k)));
@@ -332,100 +546,170 @@ function renderA(){
   const l=FICHAS.filter(f=>![...ex].some(k=>f.a.includes(k)));
   let last='',h='';
   for(const f of l){if(f.c!==last){h+=`<p class="sec">${f.c}</p>`;last=f.c}
-    h+=`<div class="card"><div class="hd"><h3 style="font-size:20px">${esc(f.n)}</h3>${f.v?'<span class="tag" style="color:var(--warn)">Verificar</span>':''}</div><div class="bd" style="padding-top:4px">${algChips(f)}</div></div>`}
+    h+=`<div class="card"><div class="hd" style="align-items:center">${f.img?`<img src="img/${f.img[0]}.jpg" alt="" loading="lazy" style="width:52px;height:52px;object-fit:cover;border-radius:6px">`:''}<h3 style="font-size:20px;flex:1">${esc(f.n)}</h3>${f.v?'<span class="tag" style="color:var(--warn)">Verificar</span>':''}</div><div class="bd" style="padding-top:4px">${algChips(f)}</div></div>`}
   $('#alist').innerHTML=(ex.size?`<p class="meta">${l.length} de ${FICHAS.length} platos.</p>`:'')+(h||'<p class="meta">Ningún plato cumple esa combinación.</p>');
 }
 
-/* Checklist compartida (Google Apps Script + hoja de cálculo) */
+/* Checklist (compartida con el equipo vía db; si no hay conexión, solo en este móvil) */
 const slug=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70);
 const iid=(area,g,t)=>`${area}-${slug(g)}-${slug(t)}`;
-const API='https://script.google.com/macros/s/AKfycbzG1u2fAfl06lFcNNPphhgaFRjXFuIlAx2arS-z3Sbntr525ANjulqHBEoXJToHBsioOw/exec';
-const GS=true;
-const call=p=>fetch(API+'?'+new URLSearchParams(p),{cache:'no-store'}).then(r=>r.json()).then(j=>{if(j.error)throw j;return j});
-let NAME='';try{NAME=localStorage.getItem('mx-name')||''}catch(e){}
-$('#nombre').value=NAME;
-$('#nombre').addEventListener('change',e=>{NAME=e.target.value.trim();try{localStorage.setItem('mx-name',NAME)}catch(_){}});
 let local={};
-try{local=JSON.parse(localStorage.getItem('mx-k4')||'{}');if(local.d!==dkey)local={d:dkey}}catch(e){local={d:dkey}}
-const saveLocal=()=>{try{localStorage.setItem('mx-k4',JSON.stringify(local))}catch(e){}};
-let shared={cl:{},st:{}},online=false,pending=0;
-const isDone=id=>online?!!shared.cl[id]:!!local[id];
-const stockOf=id=>online?(shared.st[id]??''):(local[id]??'');
-const SYNC={wait:'Conectando con el equipo…',db:'Compartida con el equipo · se actualiza sola',slow:'Sin conexión ahora mismo; lo marcado puede no estar al día',local:'Modo prueba: solo en este dispositivo'};
+try{local=JSON.parse(localStorage.getItem('mx-k3')||'{}');if(local.d!==dkey)local={d:dkey}}catch(e){local={d:dkey}}
+const saveLocal=()=>{try{localStorage.setItem('mx-k3',JSON.stringify(local))}catch(e){}};
+let DB=null,USER=null,ME=null,mode='local',ro=false;
+const shared={cl:{},st:{},inv:{},compra:{},kx:{},fx:{}};let cReady=false;
+let localInv={};try{localInv=JSON.parse(localStorage.getItem('mx-inv')||'{}')}catch(e){}
+const isDone=id=>mode==='db'?shared.cl[id]?.d===dkey:!!local[id];
+const whoOf=id=>mode==='db'&&shared.cl[id]?.d===dkey?shared.cl[id]:null;
+const stockOf=id=>mode==='db'?(shared.st[id]?.v??''):(localInv[id]??'');
+const SYNC={wait:'Conectando con el equipo…',db:'Compartida con el equipo · se actualiza sola',ro:'Solo lectura',slow:'Sin conexión ahora; lo marcado se enviará al volver',local:'Solo en este móvil'};
 function setSync(k){const el=$('#sync');el.textContent=SYNC[k];el.dataset.k=k}
 let kc='cocina';
-$$('[data-k]').forEach(b=>b.addEventListener('click',()=>{kc=b.dataset.k;$$('[data-k]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderK()}));
+$$('[data-k]').forEach(b=>b.addEventListener('click',()=>{kc=b.dataset.k;recentK.clear();$$('[data-k]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderK()}));
+const KNAMES={cocina:'Cocina',sala:'Sala',pcocina:'Producción cocina',psala:'Producción sala'};
+const recentK=new Set();
+let localKx={};try{localKx=JSON.parse(localStorage.getItem('mx-kx')||'{}')}catch(e){}
+const kxAll=()=>mode==='db'?shared.kx:localKx;
+function effList(k){const X=kxAll();
+  const G=KLISTS[k].map(g=>({t:g.t,prop:g.prop,it:g.it.filter(t=>!X['h-'+iid(k,g.t,t)]).map(t=>({t,id:iid(k,g.t,t),src:'h-'+iid(k,g.t,t),b:1}))}));
+  Object.entries(X).filter(([id,d])=>d&&d.l===k&&d.t&&!d.hide).sort((a,b)=>(a[1].at||0)-(b[1].at||0)).forEach(([id,d])=>{let g=G.find(x=>x.t===d.g);if(!g){g={t:d.g||'Otras tareas',it:[]};G.push(g)}g.it.push({t:d.t,id:'kx-'+id,src:id,b:0})});
+  return G}
+function kxSet(id,body){if(mode==='db')put('kx',id,body);else{localKx[id]=body;try{localStorage.setItem('mx-kx',JSON.stringify(localKx))}catch(e){}renderK()}}
+async function kxDel(id){if(mode==='db'){delete shared.kx[id];renderK();try{await DB.collection('kx').doc(id).delete()}catch(e){refused(e)}}else{delete localKx[id];try{localStorage.setItem('mx-kx',JSON.stringify(localKx))}catch(e){}renderK()}}
+let kdel={id:null,step:0},kPending=false;
+function kGroups(){
+  if(kc!=='pend')return effList(kc);
+  const out=[];for(const k of ['cocina','sala','pcocina','psala'])for(const g of effList(k)){const it=g.it.filter(x=>!isDone(x.id)||recentK.has(x.id));if(it.length)out.push({t:KNAMES[k]+' · '+g.t,it})}
+  return out;
+}
+function allKIds(){const a=[];for(const k of ['cocina','sala','pcocina','psala'])for(const g of effList(k))for(const x of g.it)a.push(x.id);return a}
 function renderK(){
-  const L=kc==='cocina'?KCOC:KSAL;
-  let h=L.map(g=>`<div class="card"><div class="hd"><h3>${g.t}</h3>${g.prop?'<span class="tag">Propuesta</span>':''}</div><div class="bd"><ul class="chk">${g.it.map(t=>{const id=iid(kc,g.t,t);return`<li><label><input type="checkbox" data-id="${id}"><span>${esc(t)}<small class="who" data-w="${id}"></small></span></label></li>`}).join('')}</ul></div></div>`).join('');
-  if(kc==='cocina')h+=`<div class="card stock"><div class="hd"><h3>Stock al abrir</h3><span class="tag">Mínimo diario</span></div><div class="bd"><table><thead><tr><th>Plato</th><th class="n">Mín</th><th class="n">Hay</th></tr></thead><tbody>${STOCK.map(([c,min,ps])=>`<tr><td colspan="3" style="font-weight:600;color:var(--acc);padding-top:14px">${c}</td></tr>`+ps.map(p=>{const id='st-'+slug(p);return`<tr><td>${esc(p)}</td><td class="n"><span>${min}</span></td><td class="n"><input inputmode="numeric" aria-label="Stock de ${esc(p)}" data-st="${id}" data-min="${min}"></td></tr>`}).join('')).join('')}</tbody></table><p class="meta">En rojo, lo que está por debajo del mínimo.</p></div></div>`;
+  const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('#kcont')&&ae.tagName==='INPUT'&&ae.type==='text'){kPending=true;return}
+  kPending=false;
+  const G=kGroups(),ed=kc!=='pend',dis=ro?'disabled':'';
+  const li=({t,id,src})=>`<li><div class="krow"><label><input type="checkbox" data-id="${id}"><span>${esc(t)}<small class="who" data-w="${id}"></small></span></label>${ed?`<button class="del" data-kd="${esc(src)}" data-kt="${esc(t)}" aria-label="Borrar ${esc(t)}" ${dis}>×</button>`:''}</div>${kdel.id===src?`<div class="confirm">${kdel.step===1?`<span>¿Borrar «${esc(t)}» de la lista?</span><button class="btn" data-kk="1">Borrar</button><button class="btn" data-kk="0">Cancelar</button>`:`<span><b>¿Seguro?</b> Se borra para todo el equipo.</span><button class="btn danger" data-kk="2">Sí, borrar</button><button class="btn" data-kk="0">Cancelar</button>`}</div>`:''}</li>`;
+  const add=g=>ed?`<form class="kadd" data-kg="${esc(g)}"><input type="text" placeholder="Añadir tarea" aria-label="Añadir tarea a ${esc(g)}" ${dis}><button class="btn" ${dis}>Añadir</button></form>`:'';
+  let h=G.length?G.map(g=>`<div class="card"><div class="hd"><h3>${esc(g.t)}</h3>${g.prop?'<span class="tag">Propuesta</span>':''}</div><div class="bd"><ul class="chk">${g.it.map(li).join('')}</ul>${add(g.t)}</div></div>`).join(''):'<div class="empty"><p style="margin:0">'+(ed?'No hay tareas en esta lista.':'Todo hecho por hoy.')+'</p></div>';
+  if(ed)h+=`<form class="kadd knew card" style="padding:14px" data-knew="1"><h3 style="font-size:18px;margin:0 0 8px;flex:1 1 100%">Nuevo apartado</h3><input type="text" name="g" placeholder="Nombre del apartado" aria-label="Nombre del apartado" ${dis}><input type="text" name="t" placeholder="Primera tarea" aria-label="Primera tarea" ${dis}><button class="btn" ${dis}>Crear</button></form>`;
   $('#kcont').innerHTML=h;applyK();
 }
-function applyK(){
-  $$('#kcont input[data-id]').forEach(i=>{i.checked=isDone(i.dataset.id)});
-  $$('#kcont input[data-st]').forEach(i=>{if(document.activeElement!==i)i.value=stockOf(i.dataset.st);i.classList.toggle('low',i.value!==''&&+i.value<+i.dataset.min)});
-  const L=kc==='cocina'?KCOC:KSAL;let tot=0,ok=0;
-  L.forEach(g=>g.it.forEach(t=>{tot++;if(isDone(iid(kc,g.t,t)))ok++}));
-  const p=Math.round(ok/tot*100);$('#pct').textContent=p;$('#barra').style.width=p+'%';
-  $$('#kcont .who').forEach(w=>{const x=online&&shared.cl[w.dataset.w];w.textContent=x?' · '+[x.by,x.h].filter(Boolean).join(' '):''});
+$('#kcont').addEventListener('focusout',()=>setTimeout(()=>{const ae=document.activeElement;if(kPending&&!(ae&&ae.closest&&ae.closest('#kcont')&&ae.type==='text'))renderK()},0));
+$('#kcont').addEventListener('click',e=>{
+  const d=e.target.closest('[data-kd]');if(d){kdel={id:d.dataset.kd,step:1};renderK();return}
+  const k=e.target.closest('[data-kk]');if(k){const v=k.dataset.kk;if(v==='1'){kdel.step=2;renderK()}else if(v==='2'){const id=kdel.id;kdel={id:null,step:0};
+      if(id.startsWith('h-'))kxSet(id,{hide:1,l:kc,by:ME||'',at:Date.now()});else kxDel(id)}
+    else{kdel={id:null,step:0};renderK()}}});
+$('#kcont').addEventListener('submit',e=>{const f=e.target.closest('form.kadd');if(!f)return;e.preventDefault();if(ro)return;
+  let g,t;if(f.dataset.knew){g=f.elements.g.value.trim();t=f.elements.t.value.trim();if(!g||!t)return}else{g=f.dataset.kg;t=f.querySelector('input').value.trim();if(!t)return}
+  f.querySelectorAll('input').forEach(i=>{i.value='';i.blur()});
+  kxSet('a'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),{l:kc,g,t,by:ME||'',at:Date.now()})});
+let profReq=0;
+async function applyK(){
+  applyInv();if(cReady)renderC();
+  $$('#kcont input[data-id]').forEach(i=>{i.checked=isDone(i.dataset.id);i.disabled=ro});
+  $$('#pm-cocina input[data-st]').forEach(i=>{if(document.activeElement!==i)i.value=stockOf(i.dataset.st);i.disabled=ro;i.classList.toggle('low',i.value!==''&&+i.value<+i.dataset.min)});
+  $('#reset').disabled=ro;
+  let tot=0,ok=0;
+  (kc==='pend'?allKIds():effList(kc).flatMap(g=>g.it.map(x=>x.id))).forEach(id=>{tot++;if(isDone(id))ok++});
+  const p=tot?Math.round(ok/tot*100):0;$('#pct').textContent=p;$('#barra').style.width=p+'%';
+  const ws=$$('#kcont .who');ws.forEach(w=>w.textContent='');
+  if(mode!=='db'||!USER)return;
+  const ids=[...new Set(ws.map(w=>whoOf(w.dataset.w)?.by).filter(Boolean))];
+  const n=++profReq;let ps={};
+  try{if(ids.length)ps=await USER.profiles(ids)||{}}catch(e){}
+  if(n!==profReq)return;
+  ws.forEach(w=>{const x=whoOf(w.dataset.w);if(!x)return;const nm=(x.by&&ps[x.by]?.name)||'';const hh=x.at?new Date(x.at).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}):'';w.textContent=' · '+[nm,hh].filter(Boolean).join(' ')});
 }
-function got(r){if(pending)return;shared=r.state;online=true;setSync('db');applyK();applyS()}
-function pull(){call({action:'state'}).then(got).catch(()=>setSync('slow'))}
-function put(t,id,val){
-  if(!GS){local[id]=t==='cl'?!!val:val;saveLocal();applyK();return}
-  if(t==='cl'){if(val)shared.cl[id]={d:true,by:NAME,h:new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'})};else delete shared.cl[id]}
-  else shared.st[id]=val;
-  applyK();applyS();pending++;
-  call({action:'set',t,id,v:t==='cl'?(val?'1':''):val,who:NAME}).then(r=>{pending--;got(r)}).catch(()=>{pending--;setSync('slow');pull()});
+function refused(e){if(e&&(e.code==='invalid_argument'||e.code==='not_granted')){ro=true;setSync('ro');applyK()}}
+const busy={};
+async function put(col,id,body){
+  shared[col][id]=body;applyK();
+  if(busy[id]){busy[id]=body;return}
+  busy[id]=body;
+  try{while(true){const b=busy[id];await DB.collection(col).doc(id).set(b);if(busy[id]===b)break}}catch(e){refused(e)}finally{delete busy[id]}
 }
-$('#kcont').addEventListener('change',e=>{const t=e.target;
-  if(t.dataset.id)put('cl',t.dataset.id,t.checked);
-  if(t.dataset.st)put('st',t.dataset.st,t.value.trim());
+$('#kcont').addEventListener('change',e=>{const t=e.target;if(kc==='pend'&&t.dataset.id)recentK.add(t.dataset.id);
+  if(t.dataset.id){if(mode==='db')put('cl',t.dataset.id,t.checked?{d:dkey,by:ME||'',at:Date.now()}:{d:'',by:'',at:Date.now()});else{local[t.dataset.id]=t.checked;saveLocal();applyK()}}
 });
-$('#kcont').addEventListener('input',e=>{const t=e.target;if(t.dataset.st)t.classList.toggle('low',t.value!==''&&+t.value<+t.dataset.min)});
-$('#reset').addEventListener('click',()=>{$$('#kcont input[data-id]').map(i=>i.dataset.id).filter(isDone).forEach(id=>put('cl',id,false))});
-setSync(GS?'wait':'local');pull();
-setInterval(()=>{if(!document.hidden)pull()},8000);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)pull()});
+$('#pm-cocina').addEventListener('change',e=>{const t=e.target;
+  if(t.dataset.st){const v=t.value.trim();if(mode==='db')put('st',t.dataset.st,{v,by:ME||'',at:Date.now()});else{localInv[t.dataset.st]=v;try{localStorage.setItem('mx-inv',JSON.stringify(localInv))}catch(e){}applyK()}}
+});
+$('#pm-cocina').addEventListener('input',e=>{const t=e.target;if(t.dataset.st)t.classList.toggle('low',t.value!==''&&+t.value<+t.dataset.min)});
+$('#reset').addEventListener('click',async()=>{
+  const ids=$$('#kcont input[data-id]').map(i=>i.dataset.id).filter(isDone);
+  if(mode==='db'){for(const id of ids)await put('cl',id,{d:'',by:'',at:Date.now()})}else{ids.forEach(id=>local[id]=false);saveLocal();applyK()}
+});
+setSync('wait');
+const API='https://script.google.com/macros/s/AKfycbzG1u2fAfl06lFcNNPphhgaFRjXFuIlAx2arS-z3Sbntr525ANjulqHBEoXJToHBsioOw/exec';
+const SEED={"compra": {"drycer-00": {"p": "Drycer", "t": "Tubo calamar Illex +24 cm", "q": "", "done": false, "by": "", "at": 1795467600000}, "drycer-01": {"p": "Drycer", "t": "Torrezno Soria horeca", "q": "1 kg", "done": false, "by": "", "at": 1795467600001}, "drycer-02": {"p": "Drycer", "t": "Huevo fresco L", "q": "10 docenas", "done": false, "by": "", "at": 1795467600002}, "drycer-03": {"p": "Drycer", "t": "Edam en lonchas", "q": "1 kg", "done": false, "by": "", "at": 1795467600003}, "drycer-04": {"p": "Drycer", "t": "Jamón en lonchas Montesur", "q": "1 kg", "done": false, "by": "", "at": 1795467600004}, "drycer-05": {"p": "Drycer", "t": "Tortilla de maíz 15 cm", "q": "22 uds", "done": false, "by": "", "at": 1795467600005}, "drycer-06": {"p": "Drycer", "t": "Rulo cabra/vaca Mont France", "q": "", "done": false, "by": "", "at": 1795467600006}, "drycer-07": {"p": "Drycer", "t": "Jamón picadillo Montesur", "q": "1 kg", "done": false, "by": "", "at": 1795467600007}, "drycer-08": {"p": "Drycer", "t": "Sardina ahumada", "q": "", "done": false, "by": "", "at": 1795467600008}, "drycer-09": {"p": "Drycer", "t": "Calamar indio troceado", "q": "3 kg", "done": false, "by": "", "at": 1795467600009}, "drycer-10": {"p": "Drycer", "t": "Arroz Albufera", "q": "10×1 kg", "done": false, "by": "", "at": 1795467600010}, "drycer-11": {"p": "Drycer", "t": "Sepia limpia India", "q": "6 kg", "done": false, "by": "", "at": 1795467600011}, "drycer-12": {"p": "Drycer", "t": "Azúcar", "q": "10 kg", "done": false, "by": "", "at": 1795467600012}, "drycer-13": {"p": "Drycer", "t": "Guindilla", "q": "cubo 1 kg", "done": false, "by": "", "at": 1795467600013}, "drycer-14": {"p": "Drycer", "t": "Gambón nº3", "q": "2 kg", "done": false, "by": "", "at": 1795467600014}, "drycer-15": {"p": "Drycer", "t": "Aceituna deshuesada", "q": "cubo", "done": false, "by": "", "at": 1795467600015}, "drycer-16": {"p": "Drycer", "t": "Canela en rama", "q": "", "done": false, "by": "", "at": 1795467600016}, "drycer-17": {"p": "Drycer", "t": "Tinta de calamar Norma", "q": "", "done": false, "by": "", "at": 1795467600017}, "drycer-18": {"p": "Drycer", "t": "Pepinillo gordo", "q": "cubo 3 kg", "done": false, "by": "", "at": 1795467600018}, "drycer-19": {"p": "Drycer", "t": "Tapera", "q": "cubo", "done": false, "by": "", "at": 1795467600019}, "drycer-20": {"p": "Drycer", "t": "Sal de mesa", "q": "10×1 kg", "done": false, "by": "", "at": 1795467600020}, "drycer-21": {"p": "Drycer", "t": "Yogur griego Dodoni (a coste 0 €)", "q": "1 kg", "done": false, "by": "", "at": 1795467600021}, "drycer-22": {"p": "Drycer", "t": "Aceite Daddy", "q": "bidón 10 L", "done": false, "by": "", "at": 1795467600022}, "drycer-23": {"p": "Drycer", "t": "Girasol Perezsol", "q": "5 L", "done": false, "by": "", "at": 1795467600023, "pedir": "si"}, "drycer-24": {"p": "Drycer", "t": "AOVE Sabor Sur", "q": "5 L", "done": false, "by": "", "at": 1795467600024}, "drycer-25": {"p": "Drycer", "t": "AOVE Flor de Málaga 500 ml", "q": "12 uds", "done": false, "by": "", "at": 1795467600025}, "drycer-26": {"p": "Drycer", "t": "Papel Chemine laminado", "q": "", "done": false, "by": "", "at": 1795467600026}, "drycer-27": {"p": "Drycer", "t": "Toallitas ZZ 2 capas", "q": "", "done": false, "by": "", "at": 1795467600027}, "drycer-28": {"p": "Drycer", "t": "Film industrial 30×300", "q": "", "done": false, "by": "", "at": 1795467600028}, "drycer-29": {"p": "Drycer", "t": "Lavavajillas manual Delenex", "q": "5 L", "done": false, "by": "", "at": 1795467600029}, "drycer-30": {"p": "Drycer", "t": "Limpiador bioalcohol Nettion", "q": "", "done": false, "by": "", "at": 1795467600030}, "drycer-31": {"p": "Drycer", "t": "Rollo de bayeta estampada", "q": "", "done": false, "by": "", "at": 1795467600031}, "drycer-32": {"p": "Drycer", "t": "Papel higiénico (pasta y laminado)", "q": "", "done": false, "by": "", "at": 1795467600032}, "drycer-33": {"p": "Drycer", "t": "Piedra pómez para planchas", "q": "", "done": false, "by": "", "at": 1795467600033}, "drycer-34": {"p": "Drycer", "t": "Lubacin", "q": "5 L", "done": false, "by": "", "at": 1795467600034}, "drycer-35": {"p": "Drycer", "t": "Guantes de nitrilo negros", "q": "tallas S, M y L", "done": false, "by": "", "at": 1795467600035}, "drycer-36": {"p": "Drycer", "t": "Desengrasante Trébol", "q": "5 L", "done": false, "by": "", "at": 1795467600036}, "drycer-37": {"p": "Drycer", "t": "Rollo amarillo precortado", "q": "", "done": false, "by": "", "at": 1795467600037}, "drycer-38": {"p": "Drycer", "t": "Salvauñas industrial", "q": "", "done": false, "by": "", "at": 1795467600038}, "drycer-39": {"p": "Drycer", "t": "Bayetas de microfibra", "q": "", "done": false, "by": "", "at": 1795467600039}, "mercadona-01": {"p": "Mercadona", "t": "Pan bikini", "q": "", "done": false, "by": "", "at": 1795468000001}, "mercadona-02": {"p": "Mercadona", "t": "Aguacate", "q": "", "done": false, "by": "", "at": 1795468000002}, "mercadona-03": {"p": "Mercadona", "t": "Rábanos", "q": "", "done": false, "by": "", "at": 1795468000003}, "mercadona-04": {"p": "Mercadona", "t": "Verduras para caldo", "q": "", "done": false, "by": "", "at": 1795468000004}, "mercadona-05": {"p": "Mercadona", "t": "Fresa", "q": "", "done": false, "by": "", "at": 1795468000005}, "mercadona-06": {"p": "Mercadona", "t": "Arándanos", "q": "", "done": false, "by": "", "at": 1795468000006}, "mercadona-07": {"p": "Mercadona", "t": "Zumo de naranja", "q": "", "done": false, "by": "", "at": 1795468000007}, "mercadona-08": {"p": "Mercadona", "t": "Fuet", "q": "", "done": false, "by": "", "at": 1795468000008}, "mercadona-09": {"p": "Mercadona", "t": "Agua de personal", "q": "", "done": false, "by": "", "at": 1795468000009}, "mercadona-10": {"p": "Mercadona", "t": "Helado leche merengada", "q": "", "done": false, "by": "", "at": 1795468000010}, "mercadona-11": {"p": "Mercadona", "t": "Helado vainilla", "q": "", "done": false, "by": "", "at": 1795468000011}, "mercadona-12": {"p": "Mercadona", "t": "Helado chocolate", "q": "", "done": false, "by": "", "at": 1795468000012}, "mercadona-13": {"p": "Mercadona", "t": "Pan de barra sin gluten", "q": "", "done": false, "by": "", "at": 1795468000013, "pedir": "si"}, "mercadona-14": {"p": "Mercadona", "t": "Pan sin gluten burger / torrija", "q": "", "done": false, "by": "", "at": 1795468000014, "pedir": "si"}, "mercadona-15": {"p": "Mercadona", "t": "Gelatina", "q": "", "done": false, "by": "", "at": 1795468000015}, "mercadona-16": {"p": "Mercadona", "t": "Fregasuelos", "q": "", "done": false, "by": "", "at": 1795468000016}, "mercadona-17": {"p": "Mercadona", "t": "Limpiador baños", "q": "", "done": false, "by": "", "at": 1795468000017}, "mercadona-18": {"p": "Mercadona", "t": "Limpiacristales", "q": "", "done": false, "by": "", "at": 1795468000018}, "mercadona-19": {"p": "Mercadona", "t": "Velas aromáticas", "q": "", "done": false, "by": "", "at": 1795468000019}, "mercadona-20": {"p": "Mercadona", "t": "Pastilla cisterna baño", "q": "", "done": false, "by": "", "at": 1795468000020}, "mercadona-21": {"p": "Mercadona", "t": "Ambientador en spray", "q": "", "done": false, "by": "", "at": 1795468000021}, "mercadona-22": {"p": "Mercadona", "t": "Limpiasuperficies sin lejía", "q": "", "done": false, "by": "", "at": 1795468000022}, "mercadona-23": {"p": "Mercadona", "t": "Bayetas microfibra", "q": "", "done": false, "by": "", "at": 1795468000023}, "makro-000": {"p": "Makro", "t": "Cebollino", "q": "", "done": false, "by": "", "at": 1795468400000, "min": "2", "pedir": ""}, "makro-001": {"p": "Makro", "t": "Cilantro", "q": "", "done": false, "by": "", "at": 1795468400001, "min": "2", "pedir": ""}, "makro-002": {"p": "Makro", "t": "Flor tagete", "q": "", "done": false, "by": "", "at": 1795468400002, "min": "1", "pedir": "si"}, "makro-003": {"p": "Makro", "t": "Espárragos", "q": "", "done": false, "by": "", "at": 1795468400003, "min": "1"}, "makro-004": {"p": "Makro", "t": "Germinados de cebolla", "q": "", "done": false, "by": "", "at": 1795468400004, "min": "2", "pedir": "si"}, "makro-005": {"p": "Makro", "t": "Germinados de cebolleta", "q": "", "done": false, "by": "", "at": 1795468400005, "min": "2"}, "makro-006": {"p": "Makro", "t": "Cebolla roja", "q": "", "done": false, "by": "", "at": 1795468400006, "min": "2kg"}, "makro-007": {"p": "Makro", "t": "Pepino holandés", "q": "", "done": false, "by": "", "at": 1795468400007, "min": "2"}, "makro-008": {"p": "Makro", "t": "Cebolleta china", "q": "", "done": false, "by": "", "at": 1795468400008, "min": "1"}, "makro-009": {"p": "Makro", "t": "Champiñón", "q": "", "done": false, "by": "", "at": 1795468400009, "min": "1kg"}, "makro-010": {"p": "Makro", "t": "Pimiento dulce pequeño", "q": "", "done": false, "by": "", "at": 1795468400010, "min": "500g"}, "makro-011": {"p": "Makro", "t": "Hierbabuena", "q": "", "done": false, "by": "", "at": 1795468400011, "min": "1"}, "makro-012": {"p": "Makro", "t": "Zanahoria", "q": "", "done": false, "by": "", "at": 1795468400012, "min": "5u"}, "makro-013": {"p": "Makro", "t": "Albahaca", "q": "", "done": false, "by": "", "at": 1795468400013, "min": "1"}, "makro-014": {"p": "Makro", "t": "Lombarda", "q": "", "done": false, "by": "", "at": 1795468400014, "min": "1/2"}, "makro-015": {"p": "Makro", "t": "Tomate pera", "q": "", "done": false, "by": "", "at": 1795468400015, "min": "2kg"}, "makro-016": {"p": "Makro", "t": "Romero", "q": "", "done": false, "by": "", "at": 1795468400016, "min": "1"}, "makro-017": {"p": "Makro", "t": "Patata agria", "q": "", "done": false, "by": "", "at": 1795468400017, "min": "15 kg"}, "makro-019": {"p": "Makro", "t": "Puerro", "q": "", "done": false, "by": "", "at": 1795468400019, "min": "2"}, "makro-020": {"p": "Makro", "t": "Tomillo", "q": "", "done": false, "by": "", "at": 1795468400020, "min": "1"}, "makro-021": {"p": "Makro", "t": "Perejil", "q": "", "done": false, "by": "", "at": 1795468400021, "min": "1"}, "makro-022": {"p": "Makro", "t": "Apio", "q": "", "done": false, "by": "", "at": 1795468400022}, "makro-023": {"p": "Makro", "t": "Rúcula", "q": "", "done": false, "by": "", "at": 1795468400023}, "makro-024": {"p": "Makro", "t": "Ajo pelado", "q": "", "done": false, "by": "", "at": 1795468400024}, "makro-025": {"p": "Makro", "t": "Maíz cocido", "q": "", "done": false, "by": "", "at": 1795468400025}, "makro-026": {"p": "Makro", "t": "Mezclum", "q": "", "done": false, "by": "", "at": 1795468400026}, "makro-027": {"p": "Makro", "t": "Espinaca baby", "q": "", "done": false, "by": "", "at": 1795468400027}, "makro-028": {"p": "Makro", "t": "Remolacha cocida", "q": "", "done": false, "by": "", "at": 1795468400028}, "makro-029": {"p": "Makro", "t": "Salicornia", "q": "", "done": false, "by": "", "at": 1795468400029}, "makro-030": {"p": "Makro", "t": "Calabaza en dados congelada", "q": "", "done": false, "by": "", "at": 1795468400030, "pedir": "si"}, "makro-031": {"p": "Makro", "t": "Edamame", "q": "", "done": false, "by": "", "at": 1795468400031}, "makro-032": {"p": "Makro", "t": "Setas con boletus", "q": "", "done": false, "by": "", "at": 1795468400032}, "makro-033": {"p": "Makro", "t": "Limas", "q": "", "done": false, "by": "", "at": 1795468400033}, "makro-034": {"p": "Makro", "t": "Aguacate", "q": "", "done": false, "by": "", "at": 1795468400034}, "makro-035": {"p": "Makro", "t": "Naranja", "q": "", "done": false, "by": "", "at": 1795468400035}, "makro-036": {"p": "Makro", "t": "Pulpa de aguacate", "q": "", "done": false, "by": "", "at": 1795468400036}, "makro-037": {"p": "Makro", "t": "Mango en cubos", "q": "", "done": false, "by": "", "at": 1795468400037}, "makro-038": {"p": "Makro", "t": "Entraña de vaca", "q": "", "done": false, "by": "", "at": 1795468400038}, "makro-039": {"p": "Makro", "t": "Rabo de vaca", "q": "", "done": false, "by": "", "at": 1795468400039}, "makro-040": {"p": "Makro", "t": "Smash burger", "q": "", "done": false, "by": "", "at": 1795468400040}, "makro-041": {"p": "Makro", "t": "Burger txuleta Txogitxu", "q": "", "done": false, "by": "", "at": 1795468400041}, "makro-042": {"p": "Makro", "t": "Hamburguesa Angus", "q": "", "done": false, "by": "", "at": 1795468400042}, "makro-043": {"p": "Makro", "t": "Steak tartar wagyu", "q": "", "done": false, "by": "", "at": 1795468400043}, "makro-044": {"p": "Makro", "t": "Picada de vacuno", "q": "", "done": false, "by": "", "at": 1795468400044}, "makro-045": {"p": "Makro", "t": "Picada de cerdo", "q": "", "done": false, "by": "", "at": 1795468400045}, "makro-046": {"p": "Makro", "t": "Picada mixta", "q": "", "done": false, "by": "", "at": 1795468400046}, "makro-047": {"p": "Makro", "t": "Filete de ternera", "q": "", "done": false, "by": "", "at": 1795468400047}, "makro-048": {"p": "Makro", "t": "Lomo bajo de vaca", "q": "", "done": false, "by": "", "at": 1795468400048}, "makro-049": {"p": "Makro", "t": "Contramuslo de pollo", "q": "", "done": false, "by": "", "at": 1795468400049}, "makro-050": {"p": "Makro", "t": "Pechuga de pollo", "q": "", "done": false, "by": "", "at": 1795468400050}, "makro-051": {"p": "Makro", "t": "Pollo entero", "q": "", "done": false, "by": "", "at": 1795468400051}, "makro-052": {"p": "Makro", "t": "Carcasas de pollo", "q": "", "done": false, "by": "", "at": 1795468400052}, "makro-053": {"p": "Makro", "t": "Conejo", "q": "", "done": false, "by": "", "at": 1795468400053}, "makro-054": {"p": "Makro", "t": "Carrillada de cerdo", "q": "", "done": false, "by": "", "at": 1795468400054, "pedir": "si"}, "makro-055": {"p": "Makro", "t": "Costillar ibérico", "q": "", "done": false, "by": "", "at": 1795468400055}, "makro-056": {"p": "Makro", "t": "Codillo de jamón", "q": "", "done": false, "by": "", "at": 1795468400056}, "makro-057": {"p": "Makro", "t": "Taquitos de jamón serrano", "q": "", "done": false, "by": "", "at": 1795468400057}, "makro-058": {"p": "Makro", "t": "Corvina", "q": "", "done": false, "by": "", "at": 1795468400058, "pedir": "si"}, "makro-059": {"p": "Makro", "t": "Pulpo cocido", "q": "", "done": false, "by": "", "at": 1795468400059}, "makro-060": {"p": "Makro", "t": "Lomo de atún", "q": "", "done": false, "by": "", "at": 1795468400060}, "makro-061": {"p": "Makro", "t": "Langostino", "q": "", "done": false, "by": "", "at": 1795468400061}, "makro-062": {"p": "Makro", "t": "Salmón", "q": "", "done": false, "by": "", "at": 1795468400062}, "makro-063": {"p": "Makro", "t": "Morralla", "q": "", "done": false, "by": "", "at": 1795468400063}, "makro-064": {"p": "Makro", "t": "Leche semi", "q": "", "done": false, "by": "", "at": 1795468400064}, "makro-065": {"p": "Makro", "t": "Bebida de soja barista", "q": "", "done": false, "by": "", "at": 1795468400065}, "makro-066": {"p": "Makro", "t": "Leche condensada", "q": "", "done": false, "by": "", "at": 1795468400066}, "makro-067": {"p": "Makro", "t": "Nata Krona", "q": "", "done": false, "by": "", "at": 1795468400067}, "makro-068": {"p": "Makro", "t": "Nata en spray", "q": "", "done": false, "by": "", "at": 1795468400068}, "makro-069": {"p": "Makro", "t": "Huevos", "q": "", "done": false, "by": "", "at": 1795468400069, "pedir": "si"}, "makro-070": {"p": "Makro", "t": "Burrata", "q": "", "done": false, "by": "", "at": 1795468400070}, "makro-071": {"p": "Makro", "t": "Rulo de queso de cabra/oveja", "q": "", "done": false, "by": "", "at": 1795468400071}, "makro-072": {"p": "Makro", "t": "Grana Padano", "q": "", "done": false, "by": "", "at": 1795468400072}, "makro-073": {"p": "Makro", "t": "Queso rallado", "q": "", "done": false, "by": "", "at": 1795468400073}, "makro-074": {"p": "Makro", "t": "Edam en lonchas", "q": "", "done": false, "by": "", "at": 1795468400074}, "makro-075": {"p": "Makro", "t": "Cheddar en lonchas", "q": "", "done": false, "by": "", "at": 1795468400075}, "makro-076": {"p": "Makro", "t": "Harina de pan sin gluten", "q": "", "done": false, "by": "", "at": 1795468400076}, "makro-077": {"p": "Makro", "t": "Rebozado sin gluten", "q": "", "done": false, "by": "", "at": 1795468400077}, "makro-078": {"p": "Makro", "t": "Pan burger brioche", "q": "", "done": false, "by": "", "at": 1795468400078}, "makro-079": {"p": "Makro", "t": "Brioche trenzado", "q": "", "done": false, "by": "", "at": 1795468400079}, "makro-080": {"p": "Makro", "t": "Tortilla de maíz", "q": "", "done": false, "by": "", "at": 1795468400080}, "makro-081": {"p": "Makro", "t": "Coulant de queso manchego", "q": "", "done": false, "by": "", "at": 1795468400081}, "makro-082": {"p": "Makro", "t": "Nutella", "q": "", "done": false, "by": "", "at": 1795468400082}, "makro-083": {"p": "Makro", "t": "Dulce de leche", "q": "", "done": false, "by": "", "at": 1795468400083}, "makro-084": {"p": "Makro", "t": "Gelatina", "q": "", "done": false, "by": "", "at": 1795468400084}, "makro-085": {"p": "Makro", "t": "Levadura", "q": "", "done": false, "by": "", "at": 1795468400085}, "makro-086": {"p": "Makro", "t": "Tagliatelle fresca", "q": "", "done": false, "by": "", "at": 1795468400086}, "makro-087": {"p": "Makro", "t": "Lasaña fresca", "q": "", "done": false, "by": "", "at": 1795468400087}, "makro-088": {"p": "Makro", "t": "Mezzi rigatoni", "q": "", "done": false, "by": "", "at": 1795468400088}, "makro-089": {"p": "Makro", "t": "Espagueti", "q": "", "done": false, "by": "", "at": 1795468400089}, "makro-090": {"p": "Makro", "t": "Papel de arroz", "q": "", "done": false, "by": "", "at": 1795468400090}, "makro-091": {"p": "Makro", "t": "Salsa kimchi", "q": "", "done": false, "by": "", "at": 1795468400091}, "makro-092": {"p": "Makro", "t": "Salsa yuzu", "q": "", "done": false, "by": "", "at": 1795468400092}, "makro-093": {"p": "Makro", "t": "Salsa sweet chili", "q": "", "done": false, "by": "", "at": 1795468400093}, "makro-094": {"p": "Makro", "t": "Salsa BBQ", "q": "", "done": false, "by": "", "at": 1795468400094}, "makro-095": {"p": "Makro", "t": "Salsa tartufata", "q": "", "done": false, "by": "", "at": 1795468400095}, "makro-096": {"p": "Makro", "t": "Pasta de tamarindo", "q": "", "done": false, "by": "", "at": 1795468400096}, "makro-097": {"p": "Makro", "t": "Balsámico PX", "q": "", "done": false, "by": "", "at": 1795468400097}, "makro-098": {"p": "Makro", "t": "Pimentón dulce", "q": "paprika para bravas", "done": false, "by": "", "at": 1795468400098, "pedir": "si"}, "makro-099": {"p": "Makro", "t": "Tomate triturado", "q": "", "done": false, "by": "", "at": 1795468400099}, "makro-100": {"p": "Makro", "t": "Tomate seco", "q": "", "done": false, "by": "", "at": 1795468400100}, "makro-101": {"p": "Makro", "t": "Maíz dulce", "q": "", "done": false, "by": "", "at": 1795468400101}, "makro-102": {"p": "Makro", "t": "Mermelada de arándanos", "q": "", "done": false, "by": "", "at": 1795468400102}, "makro-103": {"p": "Makro", "t": "Crema de cacahuete", "q": "", "done": false, "by": "", "at": 1795468400103}, "makro-104": {"p": "Makro", "t": "Almendra cruda", "q": "", "done": false, "by": "", "at": 1795468400104}, "makro-105": {"p": "Makro", "t": "Pistacho", "q": "", "done": false, "by": "", "at": 1795468400105}, "makro-106": {"p": "Makro", "t": "Cacahuete", "q": "", "done": false, "by": "", "at": 1795468400106}, "makro-107": {"p": "Makro", "t": "Aceite alto rendimiento", "q": "10 L", "done": false, "by": "", "at": 1795468400107}, "makro-108": {"p": "Makro", "t": "Coca-Cola", "q": "", "done": false, "by": "", "at": 1795468400108}, "makro-109": {"p": "Makro", "t": "Coca-Cola Zero", "q": "", "done": false, "by": "", "at": 1795468400109}, "makro-110": {"p": "Makro", "t": "Sprite", "q": "", "done": false, "by": "", "at": 1795468400110}, "makro-111": {"p": "Makro", "t": "Fanta naranja", "q": "", "done": false, "by": "", "at": 1795468400111}, "makro-112": {"p": "Makro", "t": "Fanta limón", "q": "", "done": false, "by": "", "at": 1795468400112}, "makro-113": {"p": "Makro", "t": "Tónica Schweppes", "q": "", "done": false, "by": "", "at": 1795468400113}, "makro-114": {"p": "Makro", "t": "Tónica Fever-Tree", "q": "", "done": false, "by": "", "at": 1795468400114}, "makro-115": {"p": "Makro", "t": "Cerveza Estrella Galicia", "q": "", "done": false, "by": "", "at": 1795468400115}, "makro-116": {"p": "Makro", "t": "Cerveza Alhambra 1925", "q": "", "done": false, "by": "", "at": 1795468400116}, "makro-117": {"p": "Makro", "t": "Ginebra Seagram's", "q": "", "done": false, "by": "", "at": 1795468400117}, "makro-118": {"p": "Makro", "t": "Ginebra Tanqueray", "q": "", "done": false, "by": "", "at": 1795468400118}, "makro-119": {"p": "Makro", "t": "Vodka Absolut", "q": "", "done": false, "by": "", "at": 1795468400119}, "makro-120": {"p": "Makro", "t": "Vodka Eristoff", "q": "", "done": false, "by": "", "at": 1795468400120}, "makro-121": {"p": "Makro", "t": "Ron Brugal", "q": "", "done": false, "by": "", "at": 1795468400121}, "makro-122": {"p": "Makro", "t": "Ron Barceló", "q": "", "done": false, "by": "", "at": 1795468400122}, "makro-123": {"p": "Makro", "t": "Whisky Johnnie Walker Red", "q": "", "done": false, "by": "", "at": 1795468400123}, "makro-124": {"p": "Makro", "t": "Centenario", "q": "", "done": false, "by": "", "at": 1795468400124}, "makro-125": {"p": "Makro", "t": "Campari", "q": "", "done": false, "by": "", "at": 1795468400125}, "makro-126": {"p": "Makro", "t": "Crema de mango tequila", "q": "", "done": false, "by": "", "at": 1795468400126}, "makro-127": {"p": "Makro", "t": "Licor de carajillo", "q": "", "done": false, "by": "", "at": 1795468400127}, "makro-128": {"p": "Makro", "t": "Licor de hierbas Panizo", "q": "", "done": false, "by": "", "at": 1795468400128}, "makro-129": {"p": "Makro", "t": "Vermut Miró", "q": "", "done": false, "by": "", "at": 1795468400129}, "makro-130": {"p": "Makro", "t": "Cava Visiega", "q": "", "done": false, "by": "", "at": 1795468400130}, "makro-131": {"p": "Makro", "t": "Servilletas 30×40", "q": "", "done": false, "by": "", "at": 1795468400131}, "makro-132": {"p": "Makro", "t": "Servilletas negras 20×20", "q": "", "done": false, "by": "", "at": 1795468400132}, "makro-133": {"p": "Makro", "t": "Bolsas de basura", "q": "", "done": false, "by": "", "at": 1795468400133}, "makro-134": {"p": "Makro", "t": "Bolsas de vacío", "q": "", "done": false, "by": "", "at": 1795468400134}, "makro-135": {"p": "Makro", "t": "Copas de vino", "q": "", "done": false, "by": "", "at": 1795468400135}, "makro-136": {"p": "Makro", "t": "Pajitas de papel", "q": "", "done": false, "by": "", "at": 1795468400136}, "makro-137": {"p": "Makro", "t": "Ensaladeras", "q": "", "done": false, "by": "", "at": 1795468400137}, "makro-138": {"p": "Makro", "t": "Tapas de ensaladera", "q": "", "done": false, "by": "", "at": 1795468400138}, "makro-139": {"p": "Makro", "t": "Caja take away", "q": "", "done": false, "by": "", "at": 1795468400139}, "makro-140": {"p": "Makro", "t": "Bolsa de papel con asa", "q": "", "done": false, "by": "", "at": 1795468400140}, "mercav-00": {"p": "Mercavalencia", "t": "Naranja", "q": "", "done": false, "by": "", "at": 1795468900000}, "mercav-01": {"p": "Mercavalencia", "t": "Limón", "q": "", "done": false, "by": "", "at": 1795468900001}, "mercav-02": {"p": "Mercavalencia", "t": "Lima", "q": "", "done": false, "by": "", "at": 1795468900002}, "mercav-03": {"p": "Mercavalencia", "t": "Yuca", "q": "", "done": false, "by": "", "at": 1795468900003}, "mercav-04": {"p": "Mercavalencia", "t": "Tomate pera", "q": "", "done": false, "by": "", "at": 1795468900004}, "mercav-05": {"p": "Mercavalencia", "t": "Tomate rosa", "q": "", "done": false, "by": "", "at": 1795468900005}, "mercav-06": {"p": "Mercavalencia", "t": "Tomate valenciano", "q": "", "done": false, "by": "", "at": 1795468900006}, "mercav-07": {"p": "Mercavalencia", "t": "Patata agria", "q": "", "done": false, "by": "", "at": 1795468900007}, "mercav-08": {"p": "Mercavalencia", "t": "Cebolla roja", "q": "", "done": false, "by": "", "at": 1795468900008}, "mercav-09": {"p": "Mercavalencia", "t": "Apio", "q": "", "done": false, "by": "", "at": 1795468900009}, "mercav-10": {"p": "Mercavalencia", "t": "Cilantro", "q": "", "done": false, "by": "", "at": 1795468900010}, "mercav-11": {"p": "Mercavalencia", "t": "Hierbabuena", "q": "", "done": false, "by": "", "at": 1795468900011}, "mercav-12": {"p": "Mercavalencia", "t": "Perejil", "q": "", "done": false, "by": "", "at": 1795468900012}, "mercav-13": {"p": "Mercavalencia", "t": "Champiñones", "q": "", "done": false, "by": "", "at": 1795468900013}, "mercav-14": {"p": "Mercavalencia", "t": "Setas", "q": "", "done": false, "by": "", "at": 1795468900014}, "mercav-15": {"p": "Mercavalencia", "t": "Grosella", "q": "", "done": false, "by": "", "at": 1795468900015}, "mercav-16": {"p": "Mercavalencia", "t": "Arándanos", "q": "", "done": false, "by": "", "at": 1795468900016}, "mercav-17": {"p": "Mercavalencia", "t": "Frambuesa", "q": "", "done": false, "by": "", "at": 1795468900017}, "mercav-18": {"p": "Mercavalencia", "t": "Mora", "q": "", "done": false, "by": "", "at": 1795468900018}, "mercav-19": {"p": "Mercavalencia", "t": "Mango", "q": "", "done": false, "by": "", "at": 1795468900019}, "consum-00": {"p": "Consum", "t": "Agua personal", "q": "", "done": false, "by": "", "at": 1795469000000}, "consum-01": {"p": "Consum", "t": "Aguacate", "q": "", "done": false, "by": "", "at": 1795469000001}, "consum-02": {"p": "Consum", "t": "Fuet", "q": "", "done": false, "by": "", "at": 1795469000002}, "consum-03": {"p": "Consum", "t": "Rúcula", "q": "", "done": false, "by": "", "at": 1795469000003}, "consum-04": {"p": "Consum", "t": "Mezclum", "q": "", "done": false, "by": "", "at": 1795469000004}, "consum-05": {"p": "Consum", "t": "Zumo de naranja recién exprimido", "q": "", "done": false, "by": "", "at": 1795469000005}, "consum-06": {"p": "Consum", "t": "Fresas", "q": "", "done": false, "by": "", "at": 1795469000006}, "consum-07": {"p": "Consum", "t": "Arándanos", "q": "", "done": false, "by": "", "at": 1795469000007}, "consum-08": {"p": "Consum", "t": "Mango", "q": "", "done": false, "by": "", "at": 1795469000008}, "consum-09": {"p": "Consum", "t": "Mantequilla", "q": "", "done": false, "by": "", "at": 1795469000009}, "consum-10": {"p": "Consum", "t": "Gelatina", "q": "", "done": false, "by": "", "at": 1795469000010}, "consum-11": {"p": "Consum", "t": "Pan de burger", "q": "", "done": false, "by": "", "at": 1795469000011}, "consum-12": {"p": "Consum", "t": "Piñones", "q": "", "done": false, "by": "", "at": 1795469000012}, "consum-13": {"p": "Consum", "t": "Helado de vainilla", "q": "", "done": false, "by": "", "at": 1795469000013}, "consum-14": {"p": "Consum", "t": "Helado leche merengada", "q": "", "done": false, "by": "", "at": 1795469000014}, "consum-15": {"p": "Consum", "t": "Helado chocolate", "q": "", "done": false, "by": "", "at": 1795469000015}, "consum-16": {"p": "Consum", "t": "Atún congelado", "q": "", "done": false, "by": "", "at": 1795469000016}, "mahou-00": {"p": "Mahou", "t": "Mahou Clásica", "q": "barril 50 L", "done": false, "by": "", "at": 1795469100000, "hay": "1", "min": "1", "pedir": "si"}, "mahou-01": {"p": "Mahou", "t": "Mahou Maestra Doble Lúpulo", "q": "barril 30 L", "done": false, "by": "", "at": 1795469100001, "hay": "0", "min": "1", "pedir": "si"}, "mahou-02": {"p": "Mahou", "t": "Mahou 5 Estrellas", "q": "botellín retornable 1/3", "done": false, "by": "", "at": 1795469100002}, "mahou-03": {"p": "Mahou", "t": "Mahou 5 Estrellas Sin Gluten", "q": "", "done": false, "by": "", "at": 1795469100003}, "mahou-04": {"p": "Mahou", "t": "Mahou Radler", "q": "", "done": false, "by": "", "at": 1795469100004}, "mahou-05": {"p": "Mahou", "t": "Mahou 0,0 Tostada", "q": "", "done": false, "by": "", "at": 1795469100005}, "mahou-06": {"p": "Mahou", "t": "Mahou 0,0 Rubia", "q": "", "done": false, "by": "", "at": 1795469100006}, "mahou-07": {"p": "Mahou", "t": "Alhambra Reserva 1925", "q": "", "done": false, "by": "", "at": 1795469100007}, "mahou-08": {"p": "Mahou", "t": "Stella Artois", "q": "", "done": false, "by": "", "at": 1795469100008}, "mahou-09": {"p": "Mahou", "t": "Leffe Blonde", "q": "", "done": false, "by": "", "at": 1795469100009}, "mahou-10": {"p": "Mahou", "t": "Corona", "q": "", "done": false, "by": "", "at": 1795469100010}, "mahou-11": {"p": "Mahou", "t": "Agua Solán de Cabras 1 L", "q": "vidrio retornable", "done": false, "by": "", "at": 1795469100011}, "mahou-12": {"p": "Mahou", "t": "Agua Solán de Cabras 50 cl", "q": "vidrio retornable", "done": false, "by": "", "at": 1795469100012}, "mahou-13": {"p": "Mahou", "t": "Agua Solán de Cabras 1,5 L", "q": "PET", "done": false, "by": "", "at": 1795469100013}, "mahou-14": {"p": "Mahou", "t": "Agua con gas Solán de Cabras 33 cl", "q": "", "done": false, "by": "", "at": 1795469100014}, "mahou-15": {"p": "Mahou", "t": "Agua Sierra Natura", "q": "garrafa 5 L", "done": false, "by": "", "at": 1795469100015}, "mahou-16": {"p": "Mahou", "t": "Vino tinto Soldepeñas", "q": "", "done": false, "by": "", "at": 1795469100016}, "mahou-17": {"p": "Mahou", "t": "Vino blanco Soldepeñas", "q": "", "done": false, "by": "", "at": 1795469100017}, "mahou-18": {"p": "Mahou", "t": "Vino tinto Castillo de Chiva", "q": "", "done": false, "by": "", "at": 1795469100018}, "mahou-19": {"p": "Mahou", "t": "Vino blanco Castillo de Chiva", "q": "", "done": false, "by": "", "at": 1795469100019}, "mahou-20": {"p": "Mahou", "t": "Cava Arts de Luna Brut", "q": "", "done": false, "by": "", "at": 1795469100020}, "fernando-00": {"p": "Vinos Fernando", "t": "Tramoya (blanco, Verdejo)", "q": "", "done": false, "by": "", "at": 1795469200000}, "fernando-01": {"p": "Vinos Fernando", "t": "Sola de Ramírez (blanco, Viura)", "q": "", "done": false, "by": "", "at": 1795469200001}, "fernando-02": {"p": "Vinos Fernando", "t": "Cañas y Barro (blanco)", "q": "", "done": false, "by": "", "at": 1795469200002}, "fernando-03": {"p": "Vinos Fernando", "t": "Rozas Albariño (blanco)", "q": "", "done": false, "by": "", "at": 1795469200003}, "fernando-04": {"p": "Vinos Fernando", "t": "Senda de la Higuera (blanco, Godello)", "q": "", "done": false, "by": "", "at": 1795469200004}, "fernando-05": {"p": "Vinos Fernando", "t": "Fuentelvira (blanco, Verdejo)", "q": "", "done": false, "by": "", "at": 1795469200005}, "fernando-06": {"p": "Vinos Fernando", "t": "Il·lusionat blanco", "q": "", "done": false, "by": "", "at": 1795469200006}, "fernando-07": {"p": "Vinos Fernando", "t": "Valdelagunde (blanco, Sauvignon Blanc)", "q": "", "done": false, "by": "", "at": 1795469200007}, "fernando-08": {"p": "Vinos Fernando", "t": "Sarmentero (tinto, Ribera del Duero)", "q": "", "done": false, "by": "", "at": 1795469200008}, "fernando-09": {"p": "Vinos Fernando", "t": "Malcriat (tinto)", "q": "", "done": false, "by": "", "at": 1795469200009}, "fernando-10": {"p": "Vinos Fernando", "t": "Melic (tinto)", "q": "", "done": false, "by": "", "at": 1795469200010}, "fernando-11": {"p": "Vinos Fernando", "t": "Alto de las Minas (tinto, Mencía)", "q": "", "done": false, "by": "", "at": 1795469200011}, "fernando-12": {"p": "Vinos Fernando", "t": "Maneras de Vivir (tinto)", "q": "", "done": false, "by": "", "at": 1795469200012}, "fernando-13": {"p": "Vinos Fernando", "t": "Luis XIV (tinto, Alicante)", "q": "", "done": false, "by": "", "at": 1795469200013}, "fernando-14": {"p": "Vinos Fernando", "t": "Pasiego Bobal (tinto)", "q": "", "done": false, "by": "", "at": 1795469200014}, "fernando-15": {"p": "Vinos Fernando", "t": "Il·lusionat rosado", "q": "", "done": false, "by": "", "at": 1795469200015}, "fernando-16": {"p": "Vinos Fernando", "t": "La Querida de Miguel (rosado)", "q": "", "done": false, "by": "", "at": 1795469200016}, "fernando-17": {"p": "Vinos Fernando", "t": "Sola de Ramírez (tinto)", "q": "", "done": false, "by": "", "at": 1795469200008.5}, "bauwe-00": {"p": "Bauwe", "t": "Café personal", "q": "cajas", "done": false, "by": "", "at": 1795471000000, "min": "1"}, "bauwe-01": {"p": "Bauwe", "t": "Café", "q": "cajas", "done": false, "by": "", "at": 1795471000001, "min": "1", "hay": "2"}, "bauwe-02": {"p": "Bauwe", "t": "Café descafeinado", "q": "cajas", "done": false, "by": "", "at": 1795471000002, "min": "1", "hay": "2"}, "bauwe-03": {"p": "Bauwe", "t": "Azúcar", "q": "cajas", "done": false, "by": "", "at": 1795471000003, "min": "1", "hay": "1"}, "bauwe-04": {"p": "Bauwe", "t": "Sacarina", "q": "cajas", "done": false, "by": "", "at": 1795471000004, "min": "1"}, "makro-141": {"p": "Makro", "t": "Papel de cocina", "q": "", "done": false, "by": "", "at": 1795468400141, "pedir": "si"}, "makro-142": {"p": "Makro", "t": "Panko sin gluten", "q": "", "done": false, "by": "", "at": 1795468400142, "pedir": "si"}, "makro-143": {"p": "Makro", "t": "Cecina de León", "q": "", "done": false, "by": "", "at": 1795468400143, "pedir": "si"}, "makro-144": {"p": "Makro", "t": "Etiquetas", "q": "", "done": false, "by": "", "at": 1795468400144, "pedir": "si"}, "cmwtrfj0dmtsq": {"p": "Mercadona", "t": "Pan mollete", "q": "", "done": false, "by": "", "at": 1795468238077}}, "st": {"st-barra-de-pan-de-torrija": {"v": "1", "by": "", "at": 1795470900000}, "st-barra-de-pan-sin-gluten": {"v": "2", "by": "", "at": 1795470900000}, "st-bravas-mallalo": {"v": "30", "by": "", "at": 1795470900000}, "st-burger-de-wagyu": {"v": "6", "by": "", "at": 1795470900000}, "st-burger-madurada": {"v": "4", "by": "", "at": 1795470900000}, "st-calamar-crujiente": {"v": "21", "by": "", "at": 1795470900000}, "st-corvina-kg": {"v": "1.5", "by": "", "at": 1795470900000}, "st-crispy-chicken": {"v": "3", "by": "", "at": 1795470900000}, "st-croquetas-de-jamon-iberico": {"v": "11", "by": "", "at": 1795470900000}, "st-croquetas-de-rabo-de-toro": {"v": "17", "by": "", "at": 1795470900000}, "st-doble-smash-burger": {"v": "3", "by": "", "at": 1795470900000}, "st-don-chicharron": {"v": "12", "by": "", "at": 1795470900000}, "st-entrana": {"v": "4", "by": "", "at": 1795470900000}, "st-esparragos-crujientes": {"v": "7", "by": "", "at": 1795470900000}, "st-fuet": {"v": "6", "by": "", "at": 1795470900000}, "st-langostino-tuppers": {"v": "7", "by": "", "at": 1795470900000}, "st-lomo-alto": {"v": "7", "by": "", "at": 1795470900000}, "st-lomo-alto-congelado": {"v": "3", "by": "", "at": 1795470900000}, "st-paca-de-patatas": {"v": "1", "by": "", "at": 1795470900000}, "st-pan-de-torrija-cortado": {"v": "30", "by": "", "at": 1795470900000}, "st-pan-sin-gluten": {"v": "6", "by": "", "at": 1795470900000}, "st-patatas-baston": {"v": "14", "by": "", "at": 1795470900000}, "st-pulpo-a-feira": {"v": "7", "by": "", "at": 1795470900000}, "st-salsa-brava-tuppers": {"v": "4", "by": "", "at": 1795470900000}, "st-smash-burger-congelada": {"v": "4", "by": "", "at": 1795470900000}, "st-steak-tartar-de-wagyu": {"v": "3.5", "by": "", "at": 1795470900000}}, "inv": {"inv-agua-con-gas-solan-de-cabras": {"v": "30", "by": "Alexander", "at": 1795611120000}, "inv-agua-solan-de-cabras": {"v": "45", "by": "Alexander", "at": 1795611120000}, "inv-agua-solan-de-cabras-1-l": {"v": "11", "by": "Alexander", "at": 1795611120000}, "inv-alhambra-reserva-roja": {"v": "0", "by": "Alexander", "at": 1795611120000}, "inv-alhambra-reserva-verde": {"v": "16", "by": "Alexander", "at": 1795611120000}, "inv-aquarius-limon": {"v": "23", "by": "Alexander", "at": 1795611120000}, "inv-aquarius-naranja": {"v": "32", "by": "Alexander", "at": 1795611120000}, "inv-cafe": {"v": "2", "by": "", "at": 1795471900000}, "inv-cafe-descafeinado-cajas": {"v": "2", "by": "", "at": 1795471900000}, "inv-cocacola": {"v": "18", "by": "Alexander", "at": 1795611120000}, "inv-cocacola-zero": {"v": "37", "by": "Alexander", "at": 1795611120000}, "inv-coronita": {"v": "6", "by": "Alexander", "at": 1795611120000}, "inv-estrella-galicia": {"v": "11", "by": "Alexander", "at": 1795611120000}, "inv-estrella-galicia-0-0-tostada": {"v": "5", "by": "Alexander", "at": 1795611120000}, "inv-fanta-limon": {"v": "32", "by": "Alexander", "at": 1795611120000}, "inv-fanta-naranja": {"v": "45", "by": "Alexander", "at": 1795611120000}, "inv-ginger-beer": {"v": "6", "by": "Alexander", "at": 1795611120000}, "inv-gran-via-sin-gluten": {"v": "0", "by": "Alexander", "at": 1795611120000}, "inv-leffe": {"v": "12", "by": "Alexander", "at": 1795611120000}, "inv-mahou-0-0-rubia": {"v": "0", "by": "Alexander", "at": 1795611120000}, "inv-mahou-0-0-tostada": {"v": "11", "by": "Alexander", "at": 1795611120000}, "inv-mahou-5-estrellas": {"v": "23", "by": "Alexander", "at": 1795611120000}, "inv-mahou-sin-gluten": {"v": "7", "by": "Alexander", "at": 1795611120000}, "inv-nestea": {"v": "8", "by": "Alexander", "at": 1795611120000}, "inv-radler-mahou": {"v": "20", "by": "Alexander", "at": 1795611120000}, "inv-sprite": {"v": "20", "by": "Alexander", "at": 1795611120000}, "inv-stella-artois": {"v": "29", "by": "Alexander", "at": 1795611120000}, "inv-tonica": {"v": "32", "by": "Alexander", "at": 1795611120000}, "inv-tyris-gluten-free": {"v": "2", "by": "Alexander", "at": 1795611120000}, "inv-tyris-ipa": {"v": "8", "by": "Alexander", "at": 1795611120000}, "inv-tyris-original": {"v": "7", "by": "Alexander", "at": 1795611120000}, "inv-vino-alto-de-las-minas-vino-tinto": {"v": "4", "by": "", "at": 1795471900000}, "inv-vino-canas-y-barro-vino-blanco": {"v": "3", "by": "", "at": 1795471900000}, "inv-vino-fuentelvira-vino-blanco": {"v": "11", "by": "", "at": 1795471900000}, "inv-vino-il-lusionat-blanco-vino-blanco": {"v": "6", "by": "", "at": 1795471900000}, "inv-vino-luis-xiv-vino-tinto": {"v": "1", "by": "", "at": 1795471900000}, "inv-vino-malcriat-vino-tinto": {"v": "6", "by": "", "at": 1795471900000}, "inv-vino-maneras-de-vivir-vino-tinto": {"v": "2", "by": "", "at": 1795471900000}, "inv-vino-melic-vino-tinto": {"v": "3", "by": "", "at": 1795471900000}, "inv-vino-pasiego-bobal-vino-tinto": {"v": "3", "by": "", "at": 1795471900000}, "inv-vino-rozas-albarino-vino-blanco": {"v": "3", "by": "", "at": 1795471900000}, "inv-vino-sarmentero-vino-tinto": {"v": "10", "by": "", "at": 1795471900000}, "inv-vino-senda-de-la-higuera-vino-blanco": {"v": "4", "by": "", "at": 1795471900000}, "inv-vino-sola-de-ramirez-tinto-vino-tinto": {"v": "4", "by": "", "at": 1795471900000}, "inv-vino-sola-de-ramirez-vino-blanco": {"v": "0", "by": "", "at": 1795471900000}, "inv-vino-tramoya-vino-blanco": {"v": "3", "by": "", "at": 1795471900000}, "inv-vino-valdelagunde-vino-blanco": {"v": "5", "by": "", "at": 1795471900000}, "inv-zumo-de-melocoton": {"v": "21", "by": "", "at": 1795471900000}, "inv-zumo-de-pina": {"v": "20", "by": "Alexander", "at": 1795611120000}}};
+let NAME='';try{NAME=localStorage.getItem('mx-name')||''}catch(e){}
+function askName(force){if(NAME&&!force)return;const n=(prompt('¿Cómo te llamas? Saldrá junto a lo que marques.',NAME)||'').trim().slice(0,30);if(n){NAME=n;ME=n;try{localStorage.setItem('mx-name',n)}catch(e){}}}
+const subs={},pend={};let seeded=false,pollT=null,polling=false;
+async function post(b){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(b),redirect:'follow'});const j=await r.json();if(j.error)throw j;return j}
+function emit(data){for(const c in subs){const d=Object.assign({},data[c]||{});for(const k in pend){const [pc,...rest]=k.split('/');if(pc!==c)continue;const id=rest.join('/');if(pend[k].del)delete d[id];else d[id]=pend[k].d}
+  subs[c]({docs:Object.entries(d).map(([id,x])=>({id,data:()=>x})),metadata:{fromCache:false}})}}
+let lastData=null;
+async function poll(){if(polling)return;polling=true;try{const r=await fetch(API+'?t='+Date.now(),{cache:'no-store',redirect:'follow'});const j=await r.json();if(j.error)throw j;
+  if(j.empty&&!seeded){seeded=true;await post({op:'seed',data:SEED});polling=false;return poll()}
+  lastData=j.data;emit(j.data)}catch(e){setSync('slow')}finally{polling=false}}
+DB={collection(c){return{onSnapshot(cb){subs[c]=cb;if(lastData)emit(lastData)},doc(id){const k=c+'/'+id;return{
+  set:async d=>{pend[k]={d};try{await post({op:'set',col:c,id,data:d,who:NAME})}catch(e){setSync('slow');throw e}finally{if(pend[k]&&pend[k].d===d){if(lastData){(lastData[c]=lastData[c]||{})[id]=d}delete pend[k]}}},
+  delete:async()=>{pend[k]={del:1};try{await post({op:'del',col:c,id,who:NAME})}finally{if(lastData&&lastData[c])delete lastData[c][id];delete pend[k]}}}}}}};
+USER={profiles:async ids=>Object.fromEntries(ids.map(i=>[i,{name:i}]))};
+ASSETS={upload:async blob=>{const b64=await new Promise((ok,ko)=>{const fr=new FileReader();fr.onload=()=>ok(String(fr.result).split(',')[1]);fr.onerror=ko;fr.readAsDataURL(blob)});const r=await post({op:'upload',name:'foto.jpg',type:blob.type||'image/jpeg',b64});return{id:r.id,url:r.url}},
+  delete:async id=>{await post({op:'unupload',id})}};
+(function start(){
+  mode='db';ME=NAME||null;
+  const onSnap=col=>s=>{shared[col]={};s.docs.forEach(d=>shared[col][d.id]=d.data());mode='db';setSync('db');applyK()};
+  DB.collection('cl').onSnapshot(onSnap('cl'));
+  DB.collection('st').onSnapshot(onSnap('st'));
+  DB.collection('inv').onSnapshot(onSnap('inv'));
+  DB.collection('compra').onSnapshot(onSnap('compra'));
+  DB.collection('kx').onSnapshot(s=>{onSnap('kx')(s);renderK()});
+  DB.collection('fx').onSnapshot(s=>{onSnap('fx')(s);const ae=document.activeElement;if(!(ae&&ae.matches&&ae.matches('[data-fdesc]')))renderB()});
+  poll();pollT=setInterval(()=>{if(!document.hidden)poll()},5000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)poll()});
+  setTimeout(()=>askName(),1500);
+  $('#sync').style.cursor='pointer';$('#sync').title='Cambiar tu nombre';$('#sync').addEventListener('click',()=>askName(true));
+})();
 
-/* ---------- BIBLIA DE SALA ---------- */
-const SERVICIO=[
- {t:'La casa',li:['Mállalo X nace del amor hacia los demás. Dar de comer es un acto de cuidado y cariño.','Un buen servicio y el amor por el producto bien trabajado: eso es lo que vendemos.','Gastrobar fusión latina, española y asiática, con casi toda la carta sin gluten.']},
- {t:'Pasos del servicio en mesa',prop:1,li:['Bienvenida en menos de un minuto, aunque sea con un «ahora mismo estoy con vosotros».','Preguntar siempre por alergias e intolerancias antes de tomar la comanda.','Ofrecer bebida y explicar la carta: «Lo nuestro» y los platos sin gluten.','Comanda a cocina y vigilar los tiempos de cada mesa.','Pasar por la mesa después del primer bocado.','Ofrecer postre y café; la cuenta, solo cuando la pidan.','Despedida en la puerta e invitar a dejar reseña.']},
- {t:'Tiempos del menú del día',li:['Pan de bienvenida: 5 min después de entrar la comanda.','Primeros: 5 min después del pan.','Segundos: 15 min después de los primeros, siempre con el visto bueno de sala.','No agobiamos con la comida: respetamos el ritmo de cada mesa.']},
- {t:'Menús',li:['Menú del día (precios de octubre): 14,90 € de lunes a jueves; 19,90 € viernes, sábados, domingos y festivos. Pan, entrante, principal y café.','Menú de grupos: 30 € por persona.']},
- {t:'Alérgenos y sin gluten',li:['Ante cualquier alergia, consultar la pestaña Alérgenos y confirmar con cocina antes de prometer nada.','Todo es sin gluten salvo el pan de burger y el pan brioche de la torrija; de los dos hay versión sin gluten.','Cervezas sin gluten: Tyris Gluten Free y Mahou Sin Gluten.']},
+
+/* Carta de bebidas (sala) */
+const BEB=[
+ {t:'Cervezas · tercios',r:[['Mahou 5 Estrellas','2,90'],['Alhambra Reserva Verde','3,50'],['Alhambra Reserva Roja','3,50'],['Estrella Galicia','3,00'],['Stella Artois','3,80'],['Coronita','4,00'],['Tyris Original','3,40'],['Tyris Gluten Free','3,50','sg'],['Tyris IPA','3,50'],['Radler Mahou','2,70'],['Mahou Sin Gluten','3,50','sg'],['Mahou 0,0 Tostada','3,50'],['Mahou 0,0 Rubia','3,20'],['Leffe','4,50']]},
+ {t:'Cervezas · tirador',r:[['Mahou Clásica · doble','3,00'],['Mahou Clásica · tanque','4,50'],['Mahou Maestra · doble','3,50'],['Mahou Maestra · tanque','4,90']]},
+ {t:'Bebidas',r:[['Agua Solán de Cabras','2,50'],['Agua Solán de Cabras 1 L','3,80'],['Agua con gas Solán de Cabras','2,60'],['Zumo de naranja natural','3,80'],['Zumo de melocotón','2,60'],['Zumo de piña','2,60'],['Cocacola','2,70'],['Cocacola zero','2,80'],['Nestea','2,70'],['Aquarius naranja','2,60'],['Aquarius limón','2,60'],['Fanta limón','2,70'],['Fanta naranja','2,70'],['Tónica','2,80'],['Sprite','2,60'],['Mocktail frutos rojos','5,50'],['Mocktail naranja','5,50']]},
+ {t:'Las de la casa',r:[['Agua de Valencia','8,00','19'],['Sangría','7,50','20'],['Sangría blanca','7,50','20'],['Tinto de verano','7,00','']]},
 ];
-const VINOS=[ /* [tipo, nombre, D.O., uvas, notas, botella, copa] — copa: '' = no se sirve por copa */
- ['Blanco','Tramoya','Valladolid','Verdejo · Rueda','13º','18','4'],
- ['Blanco','Sola de Ramírez','Rioja','Viura joven','12,5º','18','4'],
- ['Blanco','Cañas y Barro','Valencia','Malvasía · Merseguera · Moscatel romano','11,5º','21','4'],
- ['Blanco','Rozas Albariño','Rías Baixas','Albariño','12,5º','24','4,80'],
- ['Blanco','Senda de la Higuera','Bierzo','Godello sobre lías','Orgánico · vegano · 14º','23','4,30'],
- ['Blanco','Fuentelvira','Valladolid','Verdejo · Rueda','13º','22',''],
- ['Blanco','Il·lusionat','Valencia','Sauvignon blanc · Viognier','14º','20',''],
- ['Blanco','Valdelagunde','Castilla y León','Sauvignon blanc','Orgánico · vegano · 13º','23',''],
- ['Tinto','Sarmentero','Ribera del Duero','Tempranillo','14º','22','4,5'],
- ['Tinto','Malcriat','Valencia','Merlot · Garnacha','Vegano · 13º','21','4,5'],
- ['Tinto','Melic','Valencia','Bobal · Cabernet sauvignon · Merlot','Vegano · 13,5º','22','4'],
- ['Tinto','Alto de las Minas','Bierzo','Mencía','Vegano · 13,5º','22',''],
- ['Tinto','Maneras de Vivir','Valencia','Bobal · Shiraz','Vegano · 13,5º','23',''],
- ['Tinto','Luis XIV','Alicante','Monastrell · Bonicaire · Arco','14º · madurado 4 meses en ánfora','24',''],
- ['Tinto','Pasiego Bobal','Utiel-Requena','Bobal','14º','24',''],
- ['Rosado','Il·lusionat rosado','Valencia','Marselan · Tempranillo','Vegano · 12º','22','preguntar'],
- ['Rosado','La Querida de Miguel','Bierzo','Mencía rosé','Vegano · orgánico · 12º','23','preguntar'],
+
+/* Inventario de sala (compartido; no se borra cada día) */
+const MINS={'Cervezas · tercios':15,'Bebidas':15};
+const NOSTOCK=/Mocktail|naranja natural/;
+const carta=g=>`<div class="card"><div class="hd"><h3 class="hand">${g.t}</h3></div><div class="bd"><ul class="ing">${g.r.map(r=>`<li>${esc(r[0])}${r[2]==='sg'?' <span class="tag ok">Sin gluten</span>':''}</li>`).join('')}</ul></div></div>`;
+const VINOS=[
+ {t:'Vino blanco',r:[
+  {n:'Tramoya',do:'D.O. Valladolid',d:'Verdejo · Rueda · 13º',c:'si'},
+  {n:'Sola de Ramírez',do:'D.O. Rioja',d:'Viura joven · 12,5º',c:'si'},
+  {n:'Cañas y Barro',do:'D.O. Valencia',d:'Malvasía · Merseguera · Moscatel romano · 11,5º',c:'si'},
+  {n:'Rozas Albariño',do:'D.O. Rías Baixas',d:'Albariño · 12,5º',c:'si'},
+  {n:'Senda de la Higuera',do:'D.O. Bierzo',d:'Godello sobre lías · 14º · orgánico · vegano',c:'si'},
+  {n:'Fuentelvira',do:'D.O. Valladolid',d:'Verdejo · Rueda · 13º',c:'no'},
+  {n:'Il·lusionat blanco',do:'D.O. Valencia',d:'Sauvignon Blanc · Viognier · 14º',c:'no'},
+  {n:'Valdelagunde',do:'D.O. Castilla y León',d:'Sauvignon Blanc · 13º · orgánico · vegano',c:'no'}]},
+ {t:'Vino tinto',r:[
+  {n:'Sarmentero',do:'D.O. Ribera del Duero',d:'Tempranillo · 14º',c:'si'},
+  {n:'Sola de Ramírez tinto',do:'D.O. Rioja',d:'Uva y grados por confirmar',c:'?'},
+  {n:'Malcriat',do:'D.O. Valencia',d:'Merlot · Garnacha · vegano · 13º',c:'si'},
+  {n:'Melic',do:'D.O. Valencia',d:'Bobal · Cabernet Sauvignon · Merlot · vegano · 13,5º',c:'si'},
+  {n:'Alto de las Minas',do:'D.O. Bierzo',d:'Mencía · vegano · 13,5º',c:'no'},
+  {n:'Maneras de Vivir',do:'D.O. Valencia',d:'Bobal · Shiraz · vegano · 13,5º',c:'no'},
+  {n:'Luis XIV',do:'D.O. Alicante',d:'Monastrell · Bonicaire · Arco · 14º · 4 meses en ánfora',c:'no'},
+  {n:'Pasiego Bobal',do:'D.O. Utiel-Requena',d:'Bobal · 14º',c:'?'}]},
+ {t:'Vino rosado',r:[
+  {n:'Il·lusionat rosado',do:'D.O. Valencia',d:'Marselan · Tempranillo · vegano · 12º',c:'preg'},
+  {n:'La Querida de Miguel',do:'D.O. Bierzo',d:'Mencía rosé · orgánico · vegano · 12º',c:'preg'}]},
 ];
-const CERVEZAS=[ /* [nombre, formato, PVP, nota] */
- ['Mahou 5 Estrellas','Tercio','2,90',''],['Alhambra Reserva Verde','Tercio','3,50',''],['Alhambra Reserva Roja','Tercio','3,50',''],
- ['Estrella Galicia','Tercio','3,00',''],['Stella Artois','Tercio','3,80',''],['Coronita','Tercio','4,00',''],
- ['Tyris Original','Tercio','3,40',''],['Tyris Gluten Free','Tercio','3,50','Sin gluten'],['Tyris IPA','Tercio','3,50',''],
- ['Radler Mahou','Tercio','2,70',''],['Mahou Sin Gluten','Tercio','3,50','Sin gluten'],['Mahou 0,0 Tostada','Tercio','3,50','Sin alcohol'],
- ['Mahou 0,0 Rubia','Tercio','3,20','Sin alcohol'],['Leffe','Tercio','4,50',''],
- ['Mahou Clásica','Tirador · doble','3,00',''],['Mahou Clásica','Tirador · tanque','4,50',''],
- ['Mahou Maestra','Tirador · doble','3,50',''],['Mahou Maestra','Tirador · tanque','4,90',''],
-];
-const REFRESCOS=[['Agua Solán de Cabras','2,50'],['Agua Solán de Cabras 1 L','3,80'],['Agua con gas Solán de Cabras','2,60'],['Zumo de naranja natural','3,80'],['Zumo de melocotón','2,60'],['Zumo de piña','2,60'],['Coca-Cola','2,70'],['Coca-Cola Zero','2,80'],['Nestea','2,70'],['Aquarius naranja','2,60'],['Aquarius limón','2,60'],['Fanta limón','2,70'],['Fanta naranja','2,70'],['Tónica','2,80'],['Sprite','2,60']];
-const CASA=[['Agua de Valencia','8,00','19'],['Sangría','7,50','20'],['Sangría blanca','7,50','20'],['Tinto de verano','7,00','']];
+const COPA={si:['ok','Por copa'],no:['','Solo botella'],preg:['','Copa: preguntar'],'?':['','Copa: por confirmar']};
 const COCTELES=[ /* {c,n,ing:[],pasos:[],vaso,hielo,deco,pvp,alg:[],foto,sa} */
  {c:'Clásicos',n:'Mojito',foto:'mojito',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['½ onza de sirope','1 onza de ron Don Pablo','½ lima exprimida','La otra ½ lima en 4 trozos','5 hojas de hierbabuena (dar un golpe)','Sprite para completar'],pasos:['En el vaso: sirope, ron, la media lima exprimida y la otra media en 4 trozos.','Añadir las hojas de hierbabuena, dándoles antes un golpe.','Presionar con el machacador.','Llenar hasta la mitad con hielo perla.','Mezclar con la cuchara de coctelería pegada al vaso.','Terminar con Sprite.'],deco:'Rodaja de lima y hierbabuena (golpe)',alg:[]},
  {c:'Clásicos',n:'Moscow Mule (vodka)',foto:'mule',vaso:'El mismo vaso en el que se sirve',hielo:'Perla',ing:['1 lima exprimida','1 onza de vodka','1 onza de sirope','Ginger beer para completar'],pasos:['Llenar el vaso de hielo perla.','Exprimir la lima en el vaso.','Añadir vodka y sirope.','Completar con ginger beer.'],deco:'Rodaja de jengibre, tira de pepino en serpiente y hierbabuena (golpe)',alg:[]},
@@ -443,84 +727,106 @@ const COCTELES=[ /* {c,n,ing:[],pasos:[],vaso,hielo,deco,pvp,alg:[],foto,sa} */
  {c:'Sin alcohol',n:'Mocktail naranja',foto:'mocktail-naranja',sa:1,vaso:'Old fashioned',hielo:'Perla',ing:['½ de zumo de naranja','½ de ginger beer'],pasos:['Llenar el vaso de hielo perla.','Mitad de zumo de naranja y mitad de ginger beer.'],deco:'Rodaja de naranja y perfumar',alg:[]},
  {c:'Sin alcohol',n:'Mocktail frutos rojos',foto:'mocktail-frutos-rojos',sa:1,vaso:'Old fashioned',hielo:'Perla',ing:['1 onza de sirope','2 cucharadas de frutos rojos','Tónica para terminar'],pasos:['Llenar el vaso de hielo perla.','Añadir el sirope y los frutos rojos.','Terminar con tónica.'],deco:'Rodaja de lima',alg:[]},
 ];
+const ORIG={"Mojito": ["En el mismo vaso", "media onza sirope", "1 onza de don pablo", "media lima exprimida", "la otra media cortar en 4 cachos", "5 hojas de hierbabuena (golpe)", "MACHACADOR > PRESIONAR", "mitad hielo perla", "*mezclar pegado al vaso (cuchara cocktelería)", "Finalizamos con Sprite", "Decoramos", "Rodaja de lima", "Hierbabuena (golpe)"], "Moscow Mule (vodka)": ["Todo en el mismo vaso ponemos hielo perla", "exprimimos 1 lima", "1 onza de licor de vodka", "1 onza de sirope", "completar en ginger beer", "Decoramos", "Rodaja de jengibre una tira de pepino (serpiente) y hierbabuena (golpe)"], "London Mule (ginebra)": ["Todo en el mismo vaso ponemos hielo perla", "exprimimos 1 lima", "1 onza de licor de ginebra", "1 onza de sirope", "completar en ginger beer", "Decoramos", "Rodaja de jengibre una tira de pepino (serpiente) y hierbabuena (golpe)"], "Negroni": ["Vaso cocktelería una piedra de hielo", "1 onza bulldog", "1 onza de Campari", "1 onza de Vermouth cinzano rosso", "1 gota de angostura", "Mezclamos colamos en un vaso con 2 piedras de hielo", "Decoramos", "Rodaja naranja y perfumamos naranja"], "Espresso Martini": ["En el vaso de cocktelería añadimos", "1 piedra de hielo", "1 onza de licor de café", "2 shoot de café", "1 onza de vodka", "1 onza de sirope", "mezclamos (sacar espuma) y colamos", "Decoramos", "3 granos de café"], "Margarita": ["En vaso de cocktelería", "1 piedra hielo", "1 onza de tequila", "1 onza de sirope", "Media onza de vodka", "1 lima exprimida", "Mezclamos y colamos añadimos 2 piedras de hielo", "Decoramos", "Borde del vaso una parte con sal", "Rodaja de lima"], "Margarita spicy": ["Mezclamos todo en el vaso de coctelera,", "1 onza de sirope", "1 onza de tequila", "1 onza de vodka", "1 y medio lima (exprimida)", "2 gotas tabasco", "SHAKE Y COLAMOS", "Hielo perla en el vaso", "Decoramos", "Medio vaso restregado de lima con tajín", "Una rodaja de lima"], "Aperol Sprite": ["En el vaso de Aperol ponemos 3 hielo piedra", "1 parte de cava", "1 parte aperol", "1 parte de Sprite", "Decoramos", "Una rodaja naranja y pajita"], "Campari Sprite": ["En la copa de Campari poner 3 hielo piedra", "una parte de Campari", "una parte de proseco", "una parte de Sprite", "Decoramos", "Una rodaja de naranja y pajita"], "Agua de Valencia": ["Todo en el mismo vaso ponemos cubitos de perla", "media onza de agua de valencia", "1 parte de zumo de naranja natural", "una parte de cava proseco", "Decoramos", "Con una rodaja de naranja", "Perfumamos con naranja"], "Sangría": ["En el mismo vaso Old fashion ponemos hielo perla", "media onza de sangría", "1 parte fanta de limón", "1 parte fanta de naranja", "2 partes de vino tinto", "Decoramos", "Rodaja limón y naranja"], "Sangría blanca": ["Vaso Old fashion ponemos hielo perla", "media onza de agua de valencia", "1 parte de Fanta de limón", "1 parte de Sprite", "2 partes de vino blanco", "Decoramos", "Perfume de limón", "Rodaja de limón"], "Tinto de verano": ["Vaso de Old fashion hielo perla", "ponemos 1 parte de Fanta de limón", "1 parte de Fanta de naranja", "2 partes de vino tinto", "Decoramos", "Rodaja de limón y naranja"], "Mocktail naranja": ["En el vaso Old fashion ponemos hielo perla", "mitad de zumo de naranja", "mitad de ginger beer", "Decoramos", "1 rodaja de naranja y perfumamos"], "Mocktail frutos rojos": ["Vaso Old fashion con hielo perla", "1 onza de sirope", "2 cucharadas de frutos rojos", "terminar con tónica", "Decoramos", "Rodaja lima"]};
+{let lc='',h='';for(const c of COCTELES){if(c.c!==lc){h+=`<h3 style="font-size:17px;margin:14px 0 6px">${esc(c.c)}</h3>`;lc=c.c}
+ const L=ORIG[c.n]||[],d=L.indexOf('Decoramos'),pa=d<0?L:L.slice(0,d),de=d<0?[]:L.slice(d+1);
+ h+=`<details class="card"><summary><h3>${esc(c.n)}</h3></summary><div class="bd">${c.foto?`<img class="foto" src="img/coct/${c.foto}.jpg" alt="${esc(c.n)}" style="width:100%;border-radius:6px;margin:0 0 12px;display:block">`:''}
+  <h3 style="font-size:18px;margin:8px 0 4px">Paso a paso</h3><ol class="steps">${pa.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
+  ${de.length?`<h3 style="font-size:18px;margin:14px 0 4px">Decoramos</h3><ul class="ing">${de.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+  <div class="chips">${c.sa?'<span class="tag ok">Sin alcohol</span>':''}${c.alg.map(k=>`<span class="tag a">${ALG[k]||esc(k)}</span>`).join('')}</div></div></details>`}
+ const ce=$('#cocteles');if(ce)ce.innerHTML=h;}
+$('#bebcarta').innerHTML=VINOS.map(g=>`<div class="card"><div class="hd"><h3 class="hand">${g.t}</h3></div><div class="bd"><ul class="ing">${g.r.map(w=>`<li><b>${esc(w.n)}</b> <span class="tag ${COPA[w.c][0]}">${COPA[w.c][1]}</span><br><span class="meta">${esc(w.do)} · ${esc(w.d)}</span></li>`).join('')}</ul></div></div>`).join('')+`<div class="card"><div class="hd"><h3 class="hand">Cava</h3></div><div class="bd"><p style="margin:0">En carta: «pregunta a nuestro personal».</p></div></div>`;
+const BEXTRA=[['Ginger beer',15],['Estrella Galicia 0,0 Tostada',15],['Gran Vía sin gluten',15],['Café',null],['Café descafeinado (cajas)',null]];
+$('#bebstock').innerHTML=`<div class="card stock"><div class="hd"><h3 class="hand">Otros de barra</h3></div><div class="bd"><table><thead><tr><th>Producto</th><th class="n">Mín</th><th class="n">Hay</th></tr></thead><tbody>${BEXTRA.map(([n,m])=>{const id='inv-'+slug(n);return`<tr><td>${esc(n)}<small class="who" data-iw="${id}"></small></td><td class="n">${m??'—'}</td><td class="n"><input inputmode="decimal" aria-label="Unidades de ${esc(n)}" data-inv="${id}" data-min="${m??''}"></td></tr>`}).join('')}</tbody></table></div></div>`;
+$('#bebstock').innerHTML+=BEB.filter(g=>MINS[g.t]).map(g=>`<div class="card stock"><div class="hd"><h3 class="hand">${g.t}</h3><span class="tag">Mínimo ${MINS[g.t]}</span></div><div class="bd"><table><thead><tr><th>Producto</th><th class="n">Mín</th><th class="n">Hay</th></tr></thead><tbody>${g.r.filter(r=>!NOSTOCK.test(r[0])).map(r=>{const id='inv-'+slug(r[0]);return`<tr><td>${esc(r[0])}<small class="who" data-iw="${id}"></small></td><td class="n">${MINS[g.t]}</td><td class="n"><input inputmode="numeric" aria-label="Unidades de ${esc(r[0])}" data-inv="${id}" data-min="${MINS[g.t]}"></td></tr>`}).join('')}</tbody></table></div></div>`).join('')
+ +VINOS.map(g=>`<div class="card stock"><div class="hd"><h3 class="hand">${g.t}</h3><span class="tag">Mínimo 4 botellas</span></div><div class="bd"><table><thead><tr><th>Vino</th><th class="n">Mín</th><th class="n">Hay</th></tr></thead><tbody>${g.r.map(w=>{const id='inv-vino-'+slug(w.n+' '+g.t);return`<tr><td>${esc(w.n)}<small class="who" data-iw="${id}"></small></td><td class="n">4</td><td class="n"><input inputmode="numeric" aria-label="Botellas de ${esc(w.n)}" data-inv="${id}" data-min="4"></td></tr>`}).join('')}</tbody></table></div></div>`).join('')
+ +`<p class="meta">No se borra: se corrige cada vez que se cuenta.</p>`;
+const invVal=id=>mode==='db'?(shared.inv[id]?.v??''):(localInv[id]??'');
+function applyInv(){
+  $$('#pm-limpieza input[data-inv]').forEach(i=>{if(document.activeElement!==i){const v=invVal(i.dataset.inv);i.value=(v===''&&i.dataset.lmin)?'1':v}i.disabled=ro});limpLow();
+  $$('#bebstock input[data-inv]').forEach(i=>{if(document.activeElement!==i)i.value=invVal(i.dataset.inv);i.disabled=ro;i.classList.toggle('low',i.value!==''&&+i.value<+i.dataset.min)});
+  $$('#bebstock .who').forEach(w=>{const x=mode==='db'?shared.inv[w.dataset.iw]:null;w.textContent=x&&x.at?' · contado '+new Date(x.at).toLocaleString('es-ES',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):''});
+}
+$('#bebstock').addEventListener('input',e=>{const t=e.target;if(t.dataset.inv)t.classList.toggle('low',t.value!==''&&+t.value<+t.dataset.min)});
+$('#bebstock').addEventListener('change',e=>{const t=e.target;if(!t.dataset.inv)return;const v=t.value.trim();
+  if(mode==='db')put('inv',t.dataset.inv,{v,by:ME||'',at:Date.now()});else{localInv[t.dataset.inv]=v;try{localStorage.setItem('mx-inv',JSON.stringify(localInv))}catch(e){}applyInv()}});
+applyInv();
+$('#pm-cocina').innerHTML=`<div class="card stock"><div class="hd"><h3 class="hand">Stock de cocina</h3></div><div class="bd"><table><thead><tr><th>Plato</th><th class="n">Mín</th><th class="n">Hay</th></tr></thead><tbody>${STOCK.map(([c,min,ps])=>`<tr><td colspan="3" style="font-weight:600;color:var(--acc);padding-top:14px">${c}</td></tr>`+ps.map(p=>{const id='st-'+slug(p);return`<tr><td>${esc(p)}</td><td class="n"><span>${min??"—"}</span></td><td class="n"><input inputmode="numeric" aria-label="Stock de ${esc(p)}" data-st="${id}" data-min="${min}"></td></tr>`}).join('')).join('')}</tbody></table><p class="meta">No se borra: se corrige cada vez que se cuenta.</p></div></div>`;
 
-const R=a=>a.map(n=>[n,'','','','']);
-const PEDIDO=[ /* categoría -> [referencia, mínimo, objetivo, proveedor, día] */
- ['Alcoholes',R(['Ron Don Pablo','Vodka','Ginebra Bulldog','Tequila','Campari','Aperol','Vermut Cinzano Rosso','Licor de café','Fernet Branca','Brandy','Licor de melocotón','Angostura','Base de agua de Valencia','Base de sangría','Cava / prosecco'])],
- ['Vinos',R(VINOS.map(v=>v[1]))],
- ['Cervezas',R([...CERVEZAS.filter(c=>c[1]==='Tercio').map(c=>c[0]),'Barril Mahou Clásica','Barril Mahou Maestra'])],
- ['Refrescos y aguas',R([...REFRESCOS.filter(r=>!/natural/.test(r[0])).map(r=>r[0]),'Ginger beer'])],
- ['Hielo y consumibles de barra',R(['Hielo perla','Hielo en piedra','Sirope','Limas','Naranjas','Limones','Hierbabuena','Jengibre','Pepino','Frutos rojos','Café en grano','Tajín','Sal','Pajitas'])],
+/* Stock de limpieza: mínimo editable + existencias, compartido */
+const LIMP=[
+ ['Suelos y superficies',['Fregasuelos','Limpiasuperficies sin lejía','Limpiacristales','Desengrasante Trébol 5 L','Limpiador bioalcohol Nettion','Lubacin 5 L (limpiasuperficies)']],
+ ['Cocina y menaje',['Lavavajillas manual Delenex 5 L','Piedra pómez para planchas','Salvauñas industrial','Bayetas de microfibra','Rollo de bayeta estampada','Rollo amarillo precortado','Film industrial 30×300','Bolsas de basura','Guantes de nitrilo negros · talla S','Guantes de nitrilo negros · talla M','Guantes de nitrilo negros · talla L']],
+ ['Baños y ambiente',['Limpiador baños','Pastilla cisterna baño','Papel higiénico (pasta y laminado)','Ambientador en spray','Velas aromáticas']],
+ ['Papel y desechables',['Papel Chemine laminado','Toallitas ZZ 2 capas']],
 ];
-const SC=['Servicio','Vinos','Cervezas y refrescos','Cócteles','Pedido mínimo'];
-let sc='Servicio';
-$('#scats').innerHTML=SC.map(c=>`<button data-sc="${c}" aria-pressed="${c===sc}">${c}</button>`).join('');
-$('#scats').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;sc=b.dataset.sc;$$('[data-sc]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderS()});
-const vacio=(que,campos)=>`<div class="empty" style="padding:14px"><p style="margin:0 0 6px"><b>Aún no hay ${que}.</b> Pásame la lista y la cargo.</p><p class="meta" style="margin:0">Cada ficha lleva: ${campos}.</p></div>`;
-const dash=v=>v?esc(v):'<span class="pend">Pendiente</span>';
-function renderS(){
-  let h='';
-  if(sc==='Servicio')h=SERVICIO.map(x=>`<div class="card"><div class="hd"><h3>${esc(x.t)}</h3>${x.prop?'<span class="tag">Propuesta</span>':''}</div><div class="bd"><ul class="ing">${x.li.map(l=>`<li>${esc(l)}</li>`).join('')}</ul></div></div>`).join('');
-    const BAN=`<p class="banner" style="background:var(--head);color:var(--headink)">Aquí solo aparece el precio de venta. Los costes de compra no se enseñan en la app.</p>`;
-  if(sc==='Vinos'){
-    h+=BAN;
-    for(const t of ['Blanco','Tinto','Rosado']){
-      h+=`<p class="sec">Vino ${t.toLowerCase()}</p>`+VINOS.filter(v=>v[0]===t).map(([_,n,dO,uva,not,bt,cp])=>`<div class="card"><div class="hd"><h3 style="font-size:20px">${esc(n)}</h3><span class="price">${esc(bt)} € bot.</span></div><div class="bd" style="padding-top:8px"><p style="margin:0">${esc(uva)}</p><p class="meta" style="margin:4px 0 0">D.O. ${esc(dO)} · ${esc(not)}</p><p class="meta" style="margin:6px 0 0"><span class="k">Copa:</span> ${cp==='preguntar'?'Preguntar':cp?esc(cp)+' €':'No se sirve por copa'}</p></div></div>`).join('');
-    }
-    h+=`<p class="sec">Cava</p><div class="card"><div class="bd"><p style="margin:0">Según disponibilidad: en la carta pone «pregunta a nuestro personal».</p></div></div>`;
-  }
-  if(sc==='Cervezas y refrescos'){
-    h+=BAN;
-    h+=`<p class="sec">Cervezas</p><div class="card"><div class="bd"><table><thead><tr><th>Cerveza</th><th>Formato</th><th class="n">PVP</th></tr></thead><tbody>${CERVEZAS.map(([n,f,p,nota])=>`<tr><td><b>${esc(n)}</b>${nota?`<br><span class="tag ok" style="margin-top:4px">${esc(nota)}</span>`:''}</td><td>${esc(f)}</td><td class="n">${esc(p)} €</td></tr>`).join('')}</tbody></table></div></div>`;
-    h+=`<p class="sec">Refrescos, aguas y zumos</p><div class="card"><div class="bd"><table><tbody>${REFRESCOS.map(([n,p])=>`<tr><td>${esc(n)}</td><td class="n"><b>${esc(p)} €</b></td></tr>`).join('')}</tbody></table></div></div>`;
-    h+=`<p class="sec">Las de la casa</p><div class="card"><div class="bd"><table><thead><tr><th>Bebida</th><th class="n">Copa</th><th class="n">1 L</th></tr></thead><tbody>${CASA.map(([n,c,l])=>`<tr><td>${esc(n)}</td><td class="n"><b>${esc(c)} €</b></td><td class="n">${l?'<b>'+esc(l)+' €</b>':'—'}</td></tr>`).join('')}</tbody></table><p class="meta">Las recetas están en Cócteles.</p></div></div>`;
-  }
-  if(sc==='Cócteles'){
-    h+=BAN;
-    let lc='';for(const c of COCTELES){if(c.c!==lc){h+=`<p class="meta" style="font-weight:600;color:var(--ink);margin:14px 0 6px">${esc(c.c)}</p>`;lc=c.c}
-      h+=`<details class="card"><summary><h3>${esc(c.n)}</h3><span class="price">${esc(c.pvp||'')}</span></summary><div class="bd">${c.foto?`<img class="foto" src="img/${c.foto}.jpg" alt="${esc(c.n)}" loading="lazy">`:'<figure class="ph"><span>Foto pendiente</span></figure>'}
-      <p class="meta" style="margin:0 0 8px"><span class="k">Vaso:</span> ${dash(c.vaso)} · <span class="k">Hielo:</span> ${dash(c.hielo)}</p>
-      <h3 style="font-size:18px;margin:8px 0 4px">Ingredientes</h3><ul class="ing">${c.ing.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>
-      <h3 style="font-size:18px;margin:14px 0 4px">Cómo se hace</h3><ol class="steps">${c.pasos.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
-      <p class="meta"><span class="k">Decoración:</span> ${dash(c.deco)}</p>
-      ${c.pvp?'':'<p class="meta"><span class="k">Precio:</span> <span class="pend">Pendiente</span></p>'}
-      <div class="chips">${c.sa?'<span class="tag ok">Sin alcohol</span>':''}${c.alg.map(k=>`<span class="tag a">${ALG[k]}</span>`).join('')}</div></div></details>`}
-  }
-  if(sc==='Pedido mínimo'){
-    h+=`<div class="card"><div class="bd"><p style="margin:0">Al hacer inventario, apunta lo que <b>hay</b>. Si algo está por debajo del <b>mínimo</b>, se pide hasta llegar al <b>objetivo</b>. Lo que se anota se ve en todos los móviles.</p></div></div>`;
-    for(const [cat,rows] of PEDIDO){
-      h+=`<p class="sec">${cat}</p>`;
-      if(!rows.length){h+=`<div class="empty" style="padding:14px"><p style="margin:0">Sin referencias todavía. Pásame la lista con mínimo, objetivo, proveedor y día de pedido.</p></div>`;continue}
-      h+=`<div class="card stock"><div class="bd"><table class="stack"><thead><tr><th>Referencia</th><th class="n">Mín</th><th class="n">Obj.</th><th class="n">Hay</th><th class="n">Pedir</th><th>Proveedor</th><th>Día</th></tr></thead><tbody>${rows.map(([n,mi,ob,pr,dia])=>{const id='beb-'+slug(cat+'-'+n);return`<tr><td><b>${esc(n)}</b></td><td class="n">${dash(mi)}</td><td class="n">${dash(ob)}</td><td class="n"><input inputmode="numeric" aria-label="Hay de ${esc(n)}" data-bst="${id}" data-min="${esc(mi)}" data-obj="${esc(ob)}"></td><td class="n"><b data-ped="${id}"></b></td><td>${dash(pr)}</td><td>${dash(dia)}</td></tr>`}).join('')}</tbody></table></div></div>`;
-    }
-  }
-  $('#scont').innerHTML=h;applyS();
-}
-function applyS(){
-  $$('#scont input[data-bst]').forEach(i=>{if(document.activeElement!==i)i.value=stockOf(i.dataset.bst);calcPed(i)});
-}
-function calcPed(i){
-  const v=i.value===''?null:+i.value,mi=+i.dataset.min,ob=+i.dataset.obj,o=$(`[data-ped="${i.dataset.bst}"]`);
-  const low=v!==null&&i.dataset.min!==''&&v<mi;i.classList.toggle('low',low);
-  if(o)o.textContent=low&&i.dataset.obj!==''?Math.max(0,ob-v):'';
-}
-$('#scont').addEventListener('input',e=>{if(e.target.dataset.bst)calcPed(e.target)});
-$('#scont').addEventListener('change',e=>{const t=e.target;if(t.dataset.bst)put('st',t.dataset.bst,t.value.trim())});
+$('#pm-limpieza').innerHTML=LIMP.map(([c,ps])=>`<div class="card stock"><div class="hd"><h3 class="hand">${c}</h3></div><div class="bd"><table class="limp"><thead><tr><th>Producto</th><th class="n">Mín</th><th class="n">Hay</th></tr></thead><tbody>${ps.map(n=>{const id='inv-limp-'+slug(n);return`<tr><td>${esc(n)}</td><td class="n"><input inputmode="numeric" aria-label="Mínimo de ${esc(n)}" data-inv="${id}-min" data-lmin="${id}"></td><td class="n"><input inputmode="numeric" aria-label="Hay de ${esc(n)}" data-inv="${id}" data-lhay="${id}"></td></tr>`}).join('')}</tbody></table></div></div>`).join('')+'<p class="meta">El mínimo es 1 de cada producto (se puede cambiar). Apunta lo que hay. En rojo, lo que hay que pedir. No se borra.</p>';
+function limpLow(){$$('#pm-limpieza input[data-lhay]').forEach(h=>{const m=$(`#pm-limpieza input[data-lmin="${h.dataset.lhay}"]`);const mv=m?m.value.trim():'';h.classList.toggle('low',h.value.trim()!==''&&mv!==''&&+h.value<+mv)})}
+$('#pm-limpieza').addEventListener('input',limpLow);
+$('#pm-limpieza').addEventListener('change',e=>{const t=e.target;if(!t.dataset.inv)return;const v=t.value.trim();
+  if(mode==='db')put('inv',t.dataset.inv,{v,by:ME||'',at:Date.now()});else{localInv[t.dataset.inv]=v;try{localStorage.setItem('mx-inv',JSON.stringify(localInv))}catch(e){}applyInv()}});
+$$('[data-pm]').forEach(b=>b.addEventListener('click',()=>{$$('[data-pm]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#pm-cocina').hidden=b.dataset.pm!=='cocina';$('#pm-sala').hidden=b.dataset.pm!=='sala';$('#pm-limpieza').hidden=b.dataset.pm!=='limpieza'}));
+applyK();
 
+/* Compra por proveedor (lista compartida) */
+const PROVS=['Makro','Mercadona','Consum','Mercavalencia','Drycer','Mahou','Vinos Fernando','Bauwe'];
+let prov=PROVS[0],localC=[];
+try{localC=JSON.parse(localStorage.getItem('mx-compra')||'[]')}catch(e){}
+const saveC=()=>{try{localStorage.setItem('mx-compra',JSON.stringify(localC))}catch(e){}};
+$('#provs').innerHTML=PROVS.map(p=>`<button data-pv="${p}" aria-pressed="${p===prov}">${p}</button>`).join('');
+$('#provs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;prov=b.dataset.pv;$$('[data-pv]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderC()});
+const items=()=>mode==='db'?Object.entries(shared.compra).map(([id,d])=>({id,...d})):localC;
+const num=v=>v!==undefined&&v!==null&&String(v).trim()!==''&&!isNaN(+String(v).replace(',','.'));
+const need=x=>x.pedir==='si'||(x.pedir!=='no'&&num(x.min)&&num(x.hay)&&+String(x.hay).replace(',','.')<+String(x.min).replace(',','.'));
+let soloPedir=false,cPending=false,delSt={id:null,step:0};
+function renderC(){
+  if(!$('#clist'))return;
+  const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('#clist')&&ae.tagName==='INPUT'&&ae.type!=='checkbox'){cPending=true;return}
+  cPending=false;
+  $('#cprov').textContent=prov;
+  const all=items(),cnt={};all.forEach(x=>{if(!x.done&&need(x))cnt[x.p]=(cnt[x.p]||0)+1});
+  $$('[data-pv]').forEach(b=>b.textContent=b.dataset.pv+(cnt[b.dataset.pv]?` (${cnt[b.dataset.pv]})`:''));
+  let l=all.filter(x=>x.p===prov).sort((a,b)=>(a.done-b.done)||(a.at-b.at));
+  if(soloPedir)l=l.filter(x=>need(x)&&!x.done);
+  const dis=ro?'disabled':'';
+  $('#clist').innerHTML=`<div class="seg" style="margin:0 0 10px"><button data-sp="0" aria-pressed="${!soloPedir}">Todo</button><button data-sp="1" aria-pressed="${soloPedir}">Solo lo que hay que pedir</button></div>`+(l.length?`<div class="card">${l.map(x=>{const n=need(x),auto=x.pedir!=='si'&&x.pedir!=='no'&&n;return`<div class="it ${x.done?'done':''} ${n&&!x.done?'need':''}">
+   <div class="row1"><label><input type="checkbox" data-c="${esc(x.id)}" ${x.done?'checked':''} ${dis} aria-label="Comprado"><span class="t">${esc(x.t)}</span></label><span class="q">${esc(x.q||'')}</span><button class="del" data-cd="${esc(x.id)}" aria-label="Eliminar ${esc(x.t)}" ${dis}>×</button></div>
+   ${delSt.id===x.id?`<div class="confirm">${delSt.step===1?`<span>¿Eliminar «${esc(x.t)}» de la lista?</span><button class="btn" data-dk="1">Eliminar</button><button class="btn" data-dk="0">Cancelar</button>`:`<span><b>¿Seguro?</b> No se puede deshacer.</span><button class="btn danger" data-dk="2">Sí, eliminar</button><button class="btn" data-dk="0">Cancelar</button>`}</div>`:''}
+   <div class="row2"><label>Mín<input inputmode="decimal" data-cf="min" data-id="${esc(x.id)}" value="${esc(x.min??'')}" ${dis}></label><label>Hay<input inputmode="decimal" data-cf="hay" data-id="${esc(x.id)}" value="${esc(x.hay??'')}" ${dis}></label>
+   <span class="pedir" role="group" aria-label="Pedir">Pedir <button data-pd="si" data-id="${esc(x.id)}" aria-pressed="${x.pedir==='si'||auto}" ${dis}>Sí</button><button data-pd="no" data-id="${esc(x.id)}" aria-pressed="${x.pedir==='no'}" ${dis}>No</button></span></div>
+   ${auto?'<small class="who">Por debajo del mínimo</small>':''}</div>`}).join('')}</div>`:`<div class="empty"><p style="margin:0">${soloPedir?'No hay nada que pedir en '+esc(prov)+'.':'No hay nada apuntado para '+esc(prov)+'.'}</p></div>`);
+  $('#cnote').textContent='Apunta el stock mínimo y lo que hay. Si hay menos del mínimo, se marca «Pedir: Sí» solo. La casilla de la izquierda es para marcarlo como comprado. Con la × se elimina un producto (pide confirmar dos veces).';
+  $('#cform').querySelectorAll('input,button').forEach(x=>x.disabled=ro);
+}
+async function setCQuiet(id,patch){
+  if(mode==='db'){const d=shared.compra[id];if(!d)return;const {id:_,...rest}=d;const body={...rest,...patch};shared.compra[id]=body;
+    if(busy[id]){busy[id]=body}else{busy[id]=body;try{while(true){const b=busy[id];await DB.collection('compra').doc(id).set(b);if(busy[id]===b)break}}catch(e){refused(e)}finally{delete busy[id]}}}
+  else{const x=localC.find(x=>x.id===id);if(x){Object.assign(x,patch);saveC()}}
+  cPending=true;
+}
+function setC(id,patch){if(mode==='db'){const d=shared.compra[id];if(d){const {id:_,...rest}=d;put('compra',id,{...rest,...patch})}}else{const x=localC.find(x=>x.id===id);if(x){Object.assign(x,patch);saveC();renderC()}}}
+$('#clist').addEventListener('focusout',()=>setTimeout(()=>{if(cPending)renderC()},0));
+$('#clist').addEventListener('click',e=>{const cd=e.target.closest('[data-cd]');if(cd){delSt={id:cd.dataset.cd,step:1};renderC();return}
+  const dk=e.target.closest('[data-dk]');if(dk){const k=dk.dataset.dk;if(k==='1'){delSt.step=2;renderC()}else if(k==='2'){const id=delSt.id;delSt={id:null,step:0};delC(id)}else{delSt={id:null,step:0};renderC()}return}
+  const sp=e.target.closest('[data-sp]');if(sp){soloPedir=sp.dataset.sp==='1';renderC();return}
+  const pd=e.target.closest('[data-pd]');if(pd){const x=items().find(x=>x.id===pd.dataset.id);const v=pd.dataset.pd;setC(pd.dataset.id,{pedir:x&&x.pedir===v?'':v})}});
+async function delC(id){if(mode==='db'){delete shared.compra[id];renderC();try{await DB.collection('compra').doc(id).delete()}catch(e){refused(e)}}else{localC=localC.filter(x=>x.id!==id);saveC();renderC()}}
+$('#cform').addEventListener('submit',e=>{e.preventDefault();const t=$('#ct').value.trim(),q=$('#cq').value.trim();if(!t)return;
+  const it={p:prov,t,q,done:false,by:ME||'',at:Date.now()};
+  if(mode==='db'){const id='c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);put('compra',id,it)}else{localC.push({id:'c'+Date.now(),...it});saveC();renderC()}
+  $('#ct').value='';$('#cq').value='';$('#ct').focus()});
+$('#clist').addEventListener('change',e=>{if(e.target.dataset.cf){setCQuiet(e.target.dataset.id,{[e.target.dataset.cf]:e.target.value.trim()});setTimeout(()=>{const ae=document.activeElement;if(!(ae&&ae.closest&&ae.closest('#clist')&&ae.tagName==='INPUT'))renderC()},300);return}const id=e.target.dataset.c;if(!id)return;
+  if(mode==='db'){const d=shared.compra[id];if(d)put('compra',id,{...d,done:e.target.checked})}else{const x=localC.find(x=>x.id===id);if(x){x.done=e.target.checked;saveC();renderC()}}});
+cReady=true;renderC();
 /* Navegación */
-const views=['biblia','protocolos','alergenos','checklist'];
+const views=['biblia','alergenos','pedido','compra','checklist'];
 function go(v){if(!views.includes(v))v='biblia';views.forEach(x=>$('#v-'+x).classList.toggle('on',x===v));
   $$('nav.tabs button').forEach(b=>{if(b.dataset.v===v)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});scrollTo(0,0)}
-$$('nav.tabs button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.v)));
-renderB();renderA();renderK();renderS();go('biblia');
-/* Instalación */
-const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
-let deferred=null;
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(!standalone)$('#install').style.display='inline-block'});
-$('#install').addEventListener('click',async()=>{if(!deferred)return;deferred.prompt();await deferred.userChoice;deferred=null;$('#install').style.display='none'});
-if(!standalone&&/iphone|ipad|ipod/i.test(navigator.userAgent))$('#ioshint').style.display='block';
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+$$('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{location.hash=b.dataset.v}));
+addEventListener('hashchange',()=>go(location.hash.slice(1)));
+renderB();renderA();renderK();go(location.hash.slice(1));
 }
 </script>
+<script>if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js")</script>
 </body>
 </html>
