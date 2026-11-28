@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mállalo X · Reservas</title>
+<meta name="apple-mobile-web-app-title" content="MX Reservas"><meta name="application-name" content="MX Reservas">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1c1a16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Mállalo X · Reservas — el pase de sala en el bolsillo.
+   Misma casa que la app del equipo: crema, tinta y acento rojo; Playfair + Inter.
+   Una columna, pestañas abajo, todo a un toque con una mano. */
+:root{color-scheme:light dark;
+--bg:light-dark(#f6f1e7,#15130f);--card:light-dark(#fffdf8,#201d18);--ink:light-dark(#1c1a16,#f2ece1);
+--mute:light-dark(#6d655a,#a69c8e);--line:light-dark(#e4dccd,#35302a);--soft:light-dark(#efe7d8,#2a261f);
+--acc:light-dark(#b3361f,#ff7a5c);--ok:light-dark(#3f6b2a,#a9d68a);--warn:light-dark(#8a5a00,#f2b84b);--wa:light-dark(#1f7a4d,#5fd39a);
+--head:#1c1a16;--headink:#f2ece1}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;line-height:1.1;margin:0;text-wrap:balance}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+header{background:var(--head);color:var(--headink);padding:calc(14px + env(safe-area-inset-top)) max(4vw,16px) 14px;position:sticky;top:0;z-index:5}
+header .row{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:820px;margin:auto}
+header h1{font-size:26px;font-weight:800}header h1 i{color:#ff7a5c}
+.live{display:flex;align-items:center;gap:8px;font-size:13px;color:#b9ae9f;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;background:#6d655a;flex:none}
+.dot.on{background:#5fd39a;box-shadow:0 0 0 0 #5fd39a88;animation:pulse 2s infinite}.dot.bad{background:#ff7a5c}
+@keyframes pulse{70%{box-shadow:0 0 0 7px #5fd39a00}100%{box-shadow:0 0 0 0 #5fd39a00}}
+main{max-width:820px;margin:auto;padding:16px max(4vw,12px)}
+.view{display:none}.view.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 12px}
+.pad{padding:14px 16px}
+.muted{color:var(--mute)}.small{font-size:13px}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:0 16px;min-height:44px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;color:var(--ink)}
+.btn.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.acc{background:var(--acc);color:#fff;border-color:var(--acc)}
+.btn.sm{min-height:36px;padding:0 12px;font-size:14px}
+.btn:disabled{opacity:.5}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--soft);color:var(--mute);white-space:nowrap}
+.tag.wa{color:var(--wa)}.tag.tel{color:var(--warn)}.tag.ok{color:var(--ok)}.tag.acc{color:var(--acc)}
+/* Día */
+.daybar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 12px}
+.daybar h2{font-size:28px}
+[hidden]{display:none!important}
+.daybar .nav{display:flex;gap:6px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font:800 26px "Playfair Display",Georgia,serif}
+.kpi span{font-size:12px;color:var(--mute)}
+.turno .th{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:12px 16px 8px}
+.turno .th h3{font-size:24px}
+.bar{height:6px;background:var(--soft);border-radius:9px;margin:0 16px 8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);border-radius:9px}
+.bar i.mid{background:var(--warn)}.bar i.full{background:var(--acc)}
+.res{border-top:1px solid var(--line);padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 10px}
+.res .who{font-weight:600}
+.res .pax{font:800 22px "Playfair Display",Georgia,serif;text-align:right}
+.res .meta{grid-column:1/-1;font-size:13px;color:var(--mute)}
+.res .act{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.res.done .who{opacity:.55}.res.done .pax{opacity:.55}
+.res .note{grid-column:1/-1;font-size:14px;background:var(--soft);border-radius:6px;padding:6px 10px}
+.empty{padding:14px 16px;color:var(--mute);border-top:1px solid var(--line);font-size:14px}
+.fab{position:fixed;right:max(16px,calc(50vw - 394px));bottom:calc(92px + env(safe-area-inset-bottom));z-index:6;box-shadow:0 6px 20px #0004}
+/* Agenda */
+.ag{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);cursor:pointer}
+.ag:first-child{border-top:0}
+.ag .d{font:800 22px "Playfair Display",Georgia,serif;width:44px;text-align:center;line-height:1}
+.ag .d small{display:block;font:600 11px Inter,sans-serif;color:var(--mute);text-transform:uppercase}
+.ag .mini{display:flex;gap:4px;flex-wrap:wrap}
+.ag .tot{font-weight:700}
+/* Chats */
+.chat{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);cursor:pointer}
+.chat:first-child{border-top:0}
+.av{width:40px;height:40px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-weight:700}
+.chat .last{font-size:14px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.thread{display:flex;flex-direction:column;gap:8px;padding:14px 12px}
+.msg{max-width:86%;padding:8px 12px;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}
+.msg.cliente{align-self:flex-start;background:var(--soft);border-bottom-left-radius:4px}
+.msg.asistente{align-self:flex-end;background:var(--ink);color:var(--bg);border-bottom-right-radius:4px}
+.msg.equipo{align-self:flex-end;background:var(--acc);color:#fff;border-bottom-right-radius:4px}
+.msg small{display:block;font-size:11px;opacity:.7;margin-top:2px}
+.msg.tool{align-self:center;max-width:100%;font-size:12px;color:var(--mute);background:none;border:1px dashed var(--line)}
+.msg.resumen{align-self:stretch;max-width:100%;background:var(--card);border:1px solid var(--line);font-size:14px}
+.reply{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line);position:sticky;bottom:calc(76px + env(safe-area-inset-bottom));background:var(--card);border-radius:0 0 8px 8px}
+.reply textarea{flex:1;resize:none;border:1px solid var(--line);border-radius:18px;padding:9px 14px;background:var(--bg);min-height:44px;max-height:120px}
+/* Avisos */
+.aviso{padding:14px 16px;border-top:1px solid var(--line)}.aviso:first-child{border-top:0}
+.aviso.pendiente{border-left:4px solid var(--acc)}
+.aviso p{margin:4px 0 8px}
+/* Formularios */
+label.f{display:block;margin:0 0 12px;font-size:14px;font-weight:600}
+label.f input,label.f select,label.f textarea{display:block;width:100%;margin-top:4px;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:10px 12px;min-height:44px;font-weight:400;font-size:16px}
+label.f small{display:block;font-weight:400;color:var(--mute)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* Hoja inferior */
+.sheet{position:fixed;inset:0;background:#0007;z-index:20;display:none;align-items:flex-end;justify-content:center}
+.sheet.on{display:flex}
+.sheet .box{background:var(--card);width:min(560px,100%);max-height:92vh;overflow:auto;border-radius:16px 16px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
+.sheet h3{font-size:26px;margin:0 0 12px}
+.slots{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 0}
+.slot{border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--bg);font-weight:600}
+.slot[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.slot small{display:block;font-weight:400;font-size:11px;opacity:.75}
+/* Pestañas */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--head);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom);z-index:8}
+nav.tabs button{background:none;border:0;color:#b9ae9f;min-height:64px;font-size:12px;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;position:relative}
+nav.tabs button svg{width:22px;height:22px}
+nav.tabs button[aria-current=page]{color:#fff}
+nav.tabs button[aria-current=page]::before{content:"";position:absolute;top:0;left:28%;right:28%;height:3px;background:#ff7a5c;border-radius:0 0 3px 3px}
+.badge{position:absolute;top:8px;left:calc(50% + 6px);background:#ff7a5c;color:#1c1a16;font-size:11px;font-weight:800;border-radius:999px;padding:0 6px;min-width:18px}
+/* Login */
+.login{max-width:420px;margin:8vh auto;padding:0 16px}
+.login h2{font-size:34px;margin:0 0 6px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;z-index:30;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+.sec{font:600 12px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin:18px 2px 8px}
+code{font-size:12px;overflow-wrap:anywhere;background:var(--soft);padding:2px 6px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){.dot.on{animation:none}}
+</style>
+</head>
+<body>
+<header><div class="row"><h1>Mállalo <i>X</i> · Reservas</h1><div class="live"><span class="dot" id="dot"></span><span id="liveTxt">Sin conectar</span></div></div></header>
+
+<main>
+  <section id="login" class="login" hidden>
+    <h2>Panel de reservas</h2>
+    <p class="muted">Entra con el PIN del call center. Este panel muestra las reservas, las conversaciones de WhatsApp y llamadas, y los avisos para la encargada.</p>
+    <form id="loginF" class="card pad">
+      <label class="f">PIN<input id="lPin" inputmode="numeric" autocomplete="one-time-code" required></label>
+      <details><summary class="small muted">Servidor</summary><label class="f" style="margin-top:8px">Dirección del servidor<input id="lUrl" placeholder="https://script.google.com/macros/s/…/exec"></label></details>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><button class="btn pri">Entrar</button><button type="button" class="btn" id="demoB">Ver con datos de ejemplo</button></div>
+      <p id="lErr" class="small" style="color:var(--acc);margin:10px 0 0"></p>
+    </form>
+  </section>
+
+  <section id="v-dia" class="view">
+    <div class="daybar"><h2 id="dTitle">Hoy</h2><div class="nav"><button class="btn sm" id="dPrev" aria-label="Día anterior">‹</button><button class="btn sm" id="dToday">Hoy</button><button class="btn sm" id="dNext" aria-label="Día siguiente">›</button></div></div>
+    <div class="kpis"><div class="kpi"><b id="kRes">0</b><span>reservas</span></div><div class="kpi"><b id="kPax">0</b><span>comensales</span></div><div class="kpi"><b id="kIa">0</b><span>por el asistente</span></div></div>
+    <div id="turnos"></div>
+  </section>
+
+  <section id="v-agenda" class="view"><p class="sec">Próximos 30 días</p><div class="card" id="agenda"></div></section>
+
+  <section id="v-chats" class="view">
+    <div id="chatList"><div class="chips" style="margin:0 0 12px" id="chatFilter"><button class="btn sm" data-cf="todos" aria-pressed="true">Todos</button><button class="btn sm" data-cf="whatsapp">WhatsApp</button><button class="btn sm" data-cf="llamada">Llamadas</button><button class="btn sm" data-cf="prueba">Pruebas</button></div><div class="card" id="chats"></div></div>
+    <div id="chatOne" hidden></div>
+  </section>
+
+  <section id="v-avisos" class="view"><div class="card" id="avisos"></div></section>
+
+  <section id="v-ajustes" class="view">
+    <p class="sec">Probar el asistente</p>
+    <div class="card"><div class="thread" id="testThread"><div class="msg tool">Escribe como si fueras un cliente por WhatsApp. Las reservas de prueba se guardan con el canal «prueba»; cancélalas después.</div></div>
+      <form class="reply" id="testF" style="position:static"><textarea id="testIn" rows="1" placeholder="Hola, ¿tenéis mesa mañana para 4?"></textarea><button class="btn pri">Enviar</button></form></div>
+    <p class="sec">Restaurante</p>
+    <form class="card pad" id="cfgF">
+      <label class="f">Turnos de reserva<input name="turnos"><small>Separados por comas, por ejemplo 13:00, 14:30, 20:00, 21:30</small></label>
+      <div class="grid2"><label class="f">Aforo por turno<input name="aforo" inputmode="numeric"></label><label class="f">Grupo máximo<input name="grupo_max" inputmode="numeric"><small>Más que esto lo lleva la encargada</small></label></div>
+      <div class="grid2"><label class="f">Antelación mínima (min)<input name="antelacion_min" inputmode="numeric"></label><label class="f">Reservas hasta (días)<input name="dias_reserva" inputmode="numeric"></label></div>
+      <label class="f">Días cerrados<input name="cerrado"><small>Vacío si abrís todos los días. Ej.: «martes» o «2026-12-25, 2027-01-01»</small></label>
+      <label class="f">Horario (lo que dice el asistente)<input name="horario"></label>
+      <label class="f">Dirección<input name="direccion"></label>
+      <label class="f">Información para el asistente<textarea name="info_extra" rows="4"></textarea><small>Carta, alergias, terraza, mascotas, aparcamiento… Lo que deba saber para contestar.</small></label>
+      <p class="sec" style="margin-top:6px">Encargada</p>
+      <div class="grid2"><label class="f">Nombre<input name="nombre_jefa"></label><label class="f">Teléfono<input name="telefono_jefa" inputmode="tel" placeholder="+34 6…"><small>Aquí se pasan las llamadas</small></label></div>
+      <label class="f">Email de avisos<input name="email_jefa" type="email"></label>
+      <label class="f">Asistente activo en WhatsApp<select name="ia_activa"><option value="si">Sí, responde solo</option><option value="no">No, solo guarda los mensajes</option></select></label>
+      <button class="btn pri">Guardar cambios</button>
+    </form>
+    <p class="sec">Estado</p>
+    <div class="card pad" id="estado"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 30px"><button class="btn" id="notifB">Activar avisos en este móvil</button><button class="btn" id="logoutB">Cerrar sesión</button></div>
+  </section>
+</main>
+
+<button class="btn acc fab" id="newB" hidden>＋ Reserva</button>
+
+<nav class="tabs" id="tabs" hidden>
+  <button data-v="dia" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Día</button>
+  <button data-v="agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Agenda</button>
+  <button data-v="chats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Chats</button>
+  <button data-v="avisos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>Avisos<span class="badge" id="avBadge" hidden></span></button>
+  <button data-v="ajustes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Ajustes</button>
+</nav>
+
+<div class="sheet" id="sheet"><div class="box" id="sheetBox"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT_URL='';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const DIAS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'],MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+let URL_=ls.get('mxr-url')||DEFAULT_URL,PIN=ls.get('mxr-pin')||'',DEMO=ls.get('mxr-demo')==='1';
+let D=null,day=null,view='dia',chatSel=null,chatFilter='todos',lastOk=0,seen=JSON.parse(ls.get('mxr-seen')||'{}'),busy=false;
+
+/* ---------- utilidades ---------- */
+const dOf=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(Date.UTC(a,b-1,c,12))};
+const addD=(s,n)=>{const d=dOf(s);d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)};
+const niceD=s=>{const d=dOf(s);return DIAS[d.getUTCDay()]+' '+d.getUTCDate()+' de '+MESES[d.getUTCMonth()]};
+const turnos=()=>String(D.config.turnos).split(/[,;\s]+/).map(t=>{const m=t.match(/(\d{1,2})(?:[:.h](\d{2}))?/);return m?('0'+m[1]).slice(-2)+':'+(m[2]||'00'):''}).filter(Boolean);
+const tel=t=>String(t||'').replace(/[^\d+]/g,'');
+const waLink=t=>'https://wa.me/'+tel(t).replace('+','');
+const fmtTel=t=>{t=tel(t);const m=t.match(/^(\+34)?(\d{3})(\d{2})(\d{2})(\d{2})$/);return m?(m[1]?m[1]+' ':'')+m[2]+' '+m[3]+' '+m[4]+' '+m[5]:t};
+const CANAL={whatsapp:['WhatsApp','wa'],llamada:['Llamada','tel'],panel:['Panel',''],prueba:['Prueba','']};
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2600)}
+
+/* ---------- conexión ---------- */
+async function api(op,data){
+  if(DEMO)return demoOp(op,data);
+  const r=await fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({a:'panel',pin:PIN,op,data})});
+  const j=await r.json();if(j.error)throw new Error(j.error);return j;
+}
+async function load(first){
+  if(busy)return;busy=true;
+  try{
+    const j=DEMO?demoData():await fetch(URL_+(URL_.includes('?')?'&':'?')+'a=panel&pin='+encodeURIComponent(PIN)+'&t='+Date.now(),{cache:'no-store'}).then(r=>r.json());
+    if(j.error)throw new Error(j.error);
+    const prev=D;D=j;lastOk=Date.now();if(!day)day=D.hoy;
+    if(prev)notifyNew(prev,D);
+    render(first);
+  }catch(e){
+    if(first)throw e;
+    $('#dot').className='dot bad';$('#liveTxt').textContent='Sin conexión';
+  }finally{busy=false}
+}
+function live(){if(!D)return;const s=Math.round((Date.now()-lastOk)/1000);$('#dot').className='dot '+(s<40?'on':'bad');$('#liveTxt').textContent=DEMO?'Ejemplo':s<40?'En directo':'Hace '+Math.round(s/60)+' min'}
+setInterval(live,5000);
+setInterval(()=>{if(D&&!document.hidden)load()},10000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&D)load()});
+
+/* ---------- avisos sonoros ---------- */
+function beep(){try{const a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=880;g.gain.setValueAtTime(.2,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.5);o.start();o.stop(a.currentTime+.5)}catch(e){}}
+function notifyNew(a,b){
+  const oldR=new Set(a.reservas.map(r=>r.id)),oldA=new Set(a.avisos.map(x=>x.id));
+  const nr=b.reservas.filter(r=>!oldR.has(r.id)&&r.canal!=='panel'),na=b.avisos.filter(x=>!oldA.has(x.id));
+  const msgs=[...na.map(x=>['⚠️ Aviso: '+(x.nombre||fmtTel(x.contacto)),x.motivo]),...nr.map(r=>['Nueva reserva · '+r.personas+' pax',r.nombre+' · '+niceD(r.fecha)+' '+r.hora])];
+  if(!msgs.length)return;
+  beep();try{navigator.vibrate&&navigator.vibrate([120,60,120])}catch(e){}
+  msgs.slice(0,3).forEach(([t,body])=>{toast(t);try{if(Notification.permission==='granted')navigator.serviceWorker.ready.then(sw=>sw.showNotification(t,{body,icon:'icon-192.png',tag:t}))}catch(e){}});
+}
+
+/* ---------- render ---------- */
+function render(){
+  live();
+  const pend=D.avisos.filter(a=>a.estado==='pendiente').length;
+  $('#avBadge').hidden=!pend;$('#avBadge').textContent=pend;
+  if(view==='dia')rDia();if(view==='agenda')rAgenda();if(view==='chats')rChats();if(view==='avisos')rAvisos();if(view==='ajustes')rAjustes();
+}
+function resOf(f){return D.reservas.filter(r=>r.fecha===f)}
+function rDia(){
+  const nd=niceD(day);$('#dTitle').textContent=day===D.hoy?'Hoy, '+nd.split(' ').slice(1).join(' '):nd.charAt(0).toUpperCase()+nd.slice(1);
+  const all=resOf(day),act=all.filter(r=>r.estado!=='cancelada');
+  $('#kRes').textContent=act.length;$('#kPax').textContent=act.reduce((s,r)=>s+(+r.personas||0),0);
+  $('#kIa').textContent=act.filter(r=>r.canal==='whatsapp'||r.canal==='llamada').length;
+  const aforo=+D.config.aforo||46,T=turnos(),extra=[...new Set(all.map(r=>r.hora))].filter(h=>!T.includes(h));
+  $('#turnos').innerHTML=[...T,...extra].sort().map(h=>{
+    const rs=all.filter(r=>r.hora===h).sort((a,b)=>(a.estado==='cancelada')-(b.estado==='cancelada')),pax=rs.filter(r=>r.estado!=='cancelada'&&r.estado!=='no vino').reduce((s,r)=>s+(+r.personas||0),0),pct=Math.min(100,pax/aforo*100);
+    return `<div class="card turno"><div class="th"><h3>${h}</h3><span class="muted small"><b style="color:var(--ink)">${pax}</b> / ${aforo} · ${Math.max(0,aforo-pax)} libres</span></div><div class="bar"><i style="width:${pct}%" class="${pct>=100?'full':pct>=75?'mid':''}"></i></div>
+    ${rs.length?rs.map(resHTML).join(''):'<div class="empty">Sin reservas</div>'}</div>`}).join('');
+}
+function resHTML(r){
+  const c=CANAL[r.canal]||[r.canal,''],done=r.estado!=='confirmada';
+  const ST={confirmada:'',sentada:'<span class="tag ok">Sentada</span>','no vino':'<span class="tag acc">No vino</span>',cancelada:'<span class="tag acc">Cancelada</span>'};const st=r.estado in ST?ST[r.estado]:`<span class="tag">${esc(r.estado)}</span>`;
+  return `<div class="res ${done&&r.estado!=='sentada'?'done':''}"><div><div class="who">${esc(r.nombre)}</div></div><div class="pax">${esc(r.personas)}<span class="small muted"> pax</span></div>
+  <div class="meta"><span class="chips"><span class="tag ${c[1]}">${c[0]}</span>${st}${r.telefono?`<span class="tag">${esc(fmtTel(r.telefono))}</span>`:''}</span></div>
+  ${r.notas?`<div class="note">${esc(r.notas)}</div>`:''}
+  <div class="act">${r.estado==='confirmada'?`<button class="btn sm" data-st="sentada" data-id="${r.id}">Sentada</button><button class="btn sm" data-st="no vino" data-id="${r.id}">No vino</button>`:`<button class="btn sm" data-st="confirmada" data-id="${r.id}">Deshacer</button>`}
+  ${r.telefono?`<a class="btn sm" href="tel:${esc(tel(r.telefono))}">Llamar</a><a class="btn sm" href="${waLink(r.telefono)}" target="_blank" rel="noopener">WhatsApp</a>`:''}<button class="btn sm" data-edit="${r.id}">Editar</button></div></div>`;
+}
+function rAgenda(){
+  const T=turnos(),aforo=+D.config.aforo||46;let h='';
+  for(let i=0;i<30;i++){const f=addD(D.hoy,i),rs=resOf(f).filter(r=>r.estado!=='cancelada'),d=dOf(f);
+    const pax=rs.reduce((s,r)=>s+(+r.personas||0),0);
+    h+=`<div class="ag" data-day="${f}"><div class="d">${d.getUTCDate()}<small>${DIAS[d.getUTCDay()].slice(0,3)}</small></div>
+    <div><div class="small muted">${i===0?'Hoy':i===1?'Mañana':MESES[d.getUTCMonth()]}</div><div class="mini">${T.map(t=>{const p=rs.filter(r=>r.hora===t).reduce((s,r)=>s+(+r.personas||0),0);return `<span class="tag ${p>=aforo?'acc':p?'ok':''}">${t} · ${p}</span>`}).join('')}</div></div>
+    <div class="tot">${rs.length?rs.length+' <span class="small muted">res.</span><div class="small muted" style="text-align:right">'+pax+' pax</div>':'<span class="muted small">—</span>'}</div></div>`}
+  $('#agenda').innerHTML=h;
+}
+function convs(){
+  const m={};D.mensajes.forEach(x=>{const k=x.canal+'|'+x.contacto;(m[k]=m[k]||{canal:x.canal,contacto:x.contacto,nombre:'',msgs:[]}).msgs.push(x);if(x.nombre)m[k].nombre=x.nombre});
+  Object.values(m).forEach(c=>{if(!c.nombre){const r=D.reservas.find(r=>tel(r.telefono).slice(-9)===tel(c.contacto).slice(-9));if(r)c.nombre=r.nombre}});
+  return Object.values(m).sort((a,b)=>b.msgs.at(-1).fecha.localeCompare(a.msgs.at(-1).fecha));
+}
+function when(f){const[d,t]=f.split(' ');return d===D.hoy?t.slice(0,5):d===addD(D.hoy,-1)?'ayer':d.slice(8,10)+'/'+d.slice(5,7)}
+function rChats(){
+  if(chatSel){rChat();return}
+  $('#chatList').hidden=false;$('#chatOne').hidden=true;
+  const cs=convs().filter(c=>chatFilter==='todos'?c.canal!=='prueba':c.canal===chatFilter);
+  $('#chats').innerHTML=cs.length?cs.map(c=>{const l=c.msgs.filter(x=>x.rol!=='herramienta').at(-1)||c.msgs.at(-1),ch=CANAL[c.canal]||[c.canal,''];
+    return `<div class="chat" data-chat="${esc(c.canal+'|'+c.contacto)}"><div class="av">${esc((c.nombre||'?').charAt(0).toUpperCase())}</div><div><div><b>${esc(c.nombre||fmtTel(c.contacto))}</b> <span class="tag ${ch[1]}">${ch[0]}</span>${D.pausas['whatsapp_'+c.contacto]?' <span class="tag acc">IA en pausa</span>':''}</div><div class="last">${esc((l.rol==='cliente'?'':l.rol==='equipo'?'Equipo: ':'↳ ')+l.texto)}</div></div><div class="small muted">${when(l.fecha)}</div></div>`}).join(''):'<div class="empty" style="border:0">Todavía no hay conversaciones.</div>';
+}
+function rChat(){
+  const c=convs().find(c=>c.canal+'|'+c.contacto===chatSel);
+  $('#chatList').hidden=true;$('#chatOne').hidden=false;
+  if(!c){$('#chatOne').innerHTML='<button class="btn sm" data-back>‹ Chats</button>';return}
+  const ch=CANAL[c.canal]||[c.canal,''],paus=D.pausas['whatsapp_'+c.contacto];
+  const keep=$('#replyIn')?.value||'';
+  $('#chatOne').innerHTML=`<div style="display:flex;gap:8px;align-items:center;margin:0 0 12px;flex-wrap:wrap"><button class="btn sm" data-back>‹ Chats</button><h2 style="font-size:24px;flex:1">${esc(c.nombre||fmtTel(c.contacto))}</h2><span class="tag ${ch[1]}">${ch[0]}</span></div>
+  <div class="chips" style="margin:0 0 10px">${c.contacto&&!c.contacto.startsWith('prueba')?`<a class="btn sm" href="tel:${esc(tel(c.contacto))}">Llamar</a><a class="btn sm" href="${waLink(c.contacto)}" target="_blank" rel="noopener">Abrir en WhatsApp</a>`:''}${c.canal==='whatsapp'?`<button class="btn sm" data-pausa="${paus?0:120}">${paus?'Reactivar asistente':'Pausar asistente 2 h'}</button>`:''}</div>
+  <div class="card"><div class="thread">${c.msgs.map(m=>m.rol==='herramienta'?`<div class="msg tool">${esc(toolTxt(m.texto))}</div>`:m.rol==='resumen'?`<div class="msg resumen"><b>Resumen de la llamada</b><br>${esc(m.texto)}</div>`:`<div class="msg ${esc(m.rol)}">${esc(m.texto)}<small>${m.rol==='equipo'?'Equipo · ':m.rol==='asistente'?'Asistente · ':''}${when(m.fecha)}</small></div>`).join('')}</div>
+  ${c.canal==='whatsapp'?`<form class="reply" id="replyF"><textarea id="replyIn" rows="1" placeholder="Responder como el equipo…"></textarea><button class="btn pri">Enviar</button></form>`:''}</div>
+  ${c.canal==='whatsapp'?'<p class="small muted">Si respondes tú, el asistente se pausa 2 horas con este cliente para no pisaros.</p>':''}`;
+  if($('#replyIn'))$('#replyIn').value=keep;
+  const t=$('#chatOne .thread');t.lastElementChild?.scrollIntoView({block:'nearest'});
+}
+function toolTxt(s){const m=s.match(/^(\w+)\s(.*?)\s→\s(.*)$/s);if(!m)return s;const n={consultar_disponibilidad:'Consultó disponibilidad',crear_reserva:'Creó una reserva',buscar_reservas:'Buscó reservas',modificar_reserva:'Modificó una reserva',cancelar_reserva:'Canceló una reserva',avisar_encargada:'Avisó a la encargada'}[m[1]]||m[1];let ok='';try{const o=JSON.parse(m[3]);ok=o.ok===false||o.error?' · '+(o.error||'no se pudo'):o.ok?' ✓':''}catch(e){}return n+ok}
+function rAvisos(){
+  const a=[...D.avisos].sort((x,y)=>(x.estado!=='pendiente')-(y.estado!=='pendiente')||y.fecha.localeCompare(x.fecha));
+  $('#avisos').innerHTML=a.length?a.map(x=>{const ch=CANAL[x.canal]||[x.canal,''];return `<div class="aviso ${x.estado==='pendiente'?'pendiente':''}"><div class="chips"><span class="tag ${ch[1]}">${ch[0]}</span><span class="tag">${esc(when(x.fecha))}</span>${x.estado==='pendiente'?'<span class="tag acc">Pendiente</span>':'<span class="tag ok">Resuelto</span>'}</div>
+  <p><b>${esc(x.nombre||fmtTel(x.contacto))}</b> — ${esc(x.motivo)}</p><div class="chips">${x.contacto&&!x.contacto.startsWith('prueba')?`<a class="btn sm" href="tel:${esc(tel(x.contacto))}">Llamar</a><a class="btn sm" href="${waLink(x.contacto)}" target="_blank" rel="noopener">WhatsApp</a>`:''}<button class="btn sm" data-goto="${esc(x.canal+'|'+x.contacto)}">Ver conversación</button>${x.estado==='pendiente'?`<button class="btn sm pri" data-av="${x.id}">Resuelto</button>`:''}</div></div>`}).join(''):'<div class="empty" style="border:0">Sin avisos. Cuando el asistente necesite a la encargada, aparecerá aquí.</div>';
+}
+function rAjustes(){
+  const f=$('#cfgF');if(!f.contains(document.activeElement))[...f.elements].forEach(el=>{if(el.name&&D.config[el.name]!=null)el.value=D.config[el.name]});
+  const e=D.estado||{};
+  $('#estado').innerHTML=`<div class="chips" style="margin-bottom:8px"><span class="tag ${e.ia?'ok':'acc'}">${e.ia?'✓':'✗'} Clave de IA</span><span class="tag ${e.whatsapp?'ok':'acc'}">${e.whatsapp?'✓':'✗'} WhatsApp (Twilio)</span><span class="tag ${D.config.telefono_jefa?'ok':'acc'}">${D.config.telefono_jefa?'✓':'✗'} Teléfono de la encargada</span></div>
+  <p class="small muted" style="margin:0 0 4px">Dirección para Twilio y Vapi (no la compartas):</p><code>${esc(e.webhook||'')}</code>`;
+  $('#notifB').hidden=!('Notification' in window)||Notification.permission==='granted';
+}
+
+/* ---------- navegación ---------- */
+function go(v){view=v;$$('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));$$('#tabs button').forEach(b=>b.toggleAttribute('aria-current',b.dataset.v===v));$$('#tabs button[aria-current]').forEach(b=>b.setAttribute('aria-current','page'));$('#newB').hidden=!(v==='dia'||v==='agenda');if(D)render();scrollTo(0,0)}
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){if(b.dataset.v==='chats')chatSel=null;go(b.dataset.v)}});
+$('#dPrev').onclick=()=>{day=addD(day,-1);rDia()};$('#dNext').onclick=()=>{day=addD(day,1);rDia()};$('#dToday').onclick=()=>{day=D.hoy;rDia()};
+document.addEventListener('click',async e=>{
+  const t=e.target.closest('[data-day],[data-chat],[data-back],[data-st],[data-edit],[data-av],[data-goto],[data-pausa],[data-cf]');if(!t)return;
+  if(t.dataset.day){day=t.dataset.day;go('dia')}
+  else if(t.dataset.chat){chatSel=t.dataset.chat;rChat();scrollTo(0,0)}
+  else if(t.hasAttribute('data-back')){chatSel=null;rChats()}
+  else if(t.dataset.goto){chatSel=t.dataset.goto;go('chats')}
+  else if(t.dataset.cf){chatFilter=t.dataset.cf;$$('[data-cf]').forEach(b=>b.setAttribute('aria-pressed',b===t));rChats()}
+  else if(t.dataset.st){const r=D.reservas.find(x=>x.id===t.dataset.id);r.estado=t.dataset.st;rDia();try{await api('reserva_cambiar',{id:r.id,estado:t.dataset.st})}catch(err){toast(err.message);load()}}
+  else if(t.dataset.av){const a=D.avisos.find(x=>x.id===t.dataset.av);a.estado='resuelto';render();try{await api('aviso',{id:a.id,estado:'resuelto'})}catch(err){toast(err.message)}}
+  else if(t.dataset.pausa!=null){const c=chatSel.split('|')[1];try{await api('pausa',{contacto:c,minutos:+t.dataset.pausa});toast(+t.dataset.pausa?'Asistente en pausa con este cliente':'Asistente reactivado');load()}catch(err){toast(err.message)}}
+  else if(t.dataset.edit)openRes(D.reservas.find(x=>x.id===t.dataset.edit));
+});
+document.addEventListener('submit',async e=>{
+  if(e.target.id!=='replyF')return;e.preventDefault();const v=$('#replyIn').value.trim();if(!v)return;const c=chatSel.split('|')[1];
+  const b=e.target.querySelector('button');b.disabled=true;
+  try{await api('responder',{contacto:c,texto:v});$('#replyIn').value='';toast('Enviado');await load()}catch(err){toast('No se pudo enviar: '+err.message)}finally{b.disabled=false}
+});
+
+/* ---------- hoja de reserva ---------- */
+function openRes(r){
+  const isNew=!r;r=r||{fecha:day||D.hoy,hora:'',personas:2,nombre:'',telefono:'',notas:'',estado:'confirmada'};
+  $('#sheetBox').innerHTML=`<h3>${isNew?'Nueva reserva':'Editar reserva'}</h3><form id="resF">
+  <div class="grid2"><label class="f">Día<input name="fecha" type="date" value="${esc(r.fecha)}" required></label><label class="f">Personas<input name="personas" type="number" min="1" max="99" value="${esc(r.personas)}" required></label></div>
+  <div class="f" style="font-size:14px;font-weight:600;margin:0 0 12px">Turno<div class="slots" id="slots"></div><input type="hidden" name="hora" value="${esc(r.hora)}"></div>
+  <label class="f">Nombre<input name="nombre" value="${esc(r.nombre)}" required autocomplete="off"></label>
+  <label class="f">Teléfono<input name="telefono" inputmode="tel" value="${esc(r.telefono)}"></label>
+  <label class="f">Notas<textarea name="notas" rows="2" placeholder="Alergias, trona, cumpleaños…">${esc(r.notas)}</textarea></label>
+  ${isNew?'':`<label class="f">Estado<select name="estado">${['confirmada','sentada','no vino','cancelada'].map(s=>`<option ${s===r.estado?'selected':''}>${s}</option>`).join('')}</select></label>`}
+  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn pri">${isNew?'Reservar':'Guardar'}</button><button type="button" class="btn" data-close>Cerrar</button></div><p id="resErr" class="small" style="color:var(--acc)"></p></form>`;
+  const f=$('#resF');
+  const slots=()=>{const fe=f.fecha.value,p=+f.personas.value||1,aforo=+D.config.aforo||46;
+    $('#slots').innerHTML=turnos().map(h=>{const occ=D.reservas.filter(x=>x.fecha===fe&&x.hora===h&&x.estado!=='cancelada'&&x.estado!=='no vino'&&x.id!==r.id).reduce((s,x)=>s+(+x.personas||0),0),lib=aforo-occ;
+      return `<button type="button" class="slot" data-h="${h}" aria-pressed="${f.hora.value===h}" ${lib<p?'style="opacity:.5"':''}>${h}<small>${lib} libres</small></button>`}).join('')};
+  slots();f.fecha.onchange=slots;f.personas.oninput=slots;
+  $('#slots').onclick=e=>{const b=e.target.closest('[data-h]');if(b){f.hora.value=b.dataset.h;slots()}};
+  f.onsubmit=async e=>{e.preventDefault();if(!f.hora.value){$('#resErr').textContent='Elige un turno';return}
+    const d=Object.fromEntries(new FormData(f));d.personas=+d.personas;const btn=f.querySelector('.pri');btn.disabled=true;
+    try{const res=isNew?await api('reserva_nueva',d):await api('reserva_cambiar',Object.assign({id:r.id},d));if(res.ok===false)throw new Error(res.error);closeSheet();toast(isNew?'Reserva creada':'Reserva guardada');day=d.fecha;await load()}catch(err){$('#resErr').textContent=err.message;btn.disabled=false}};
+  $('#sheet').classList.add('on');
+}
+function closeSheet(){$('#sheet').classList.remove('on')}
+$('#sheet').addEventListener('click',e=>{if(e.target.id==='sheet'||e.target.hasAttribute('data-close'))closeSheet()});
+$('#newB').onclick=()=>openRes(null);
+
+/* ---------- ajustes y prueba ---------- */
+$('#cfgF').onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));const b=e.target.querySelector('button');b.disabled=true;try{const r=await api('config',d);D.config=r.config;toast('Guardado');rAjustes()}catch(err){toast(err.message)}finally{b.disabled=false}};
+let testId=ls.get('mxr-test')||String(Math.floor(Math.random()*1e8));ls.set('mxr-test',testId);
+$('#testF').onsubmit=async e=>{e.preventDefault();const v=$('#testIn').value.trim();if(!v)return;$('#testIn').value='';
+  const th=$('#testThread');th.insertAdjacentHTML('beforeend',`<div class="msg cliente">${esc(v)}</div><div class="msg tool" id="typing">El asistente está escribiendo…</div>`);
+  try{const r=await api('probar',{contacto:testId,texto:v});$('#typing').remove();th.insertAdjacentHTML('beforeend',`<div class="msg asistente">${esc(r.respuesta)}</div>`);load()}catch(err){$('#typing').textContent='Error: '+err.message;$('#typing').removeAttribute('id')}};
+$('#testIn').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#testF').requestSubmit()}});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&e.target.id==='replyIn'){e.preventDefault();$('#replyF').requestSubmit()}});
+$('#notifB').onclick=async()=>{try{const p=await Notification.requestPermission();toast(p==='granted'?'Avisos activados':'Permiso denegado');rAjustes()}catch(e){}};
+$('#logoutB').onclick=()=>{ls.del('mxr-pin');ls.del('mxr-demo');location.reload()};
+
+/* ---------- entrada ---------- */
+async function start(){
+  $('#login').hidden=true;$('#tabs').hidden=false;
+  try{await load(true);go(view)}catch(e){$('#tabs').hidden=true;$('#login').hidden=false;$('#lErr').textContent=e.message==='PIN incorrecto'?'PIN incorrecto':'No se puede conectar: '+e.message;ls.del('mxr-pin')}
+}
+$('#lUrl').value=URL_;
+$('#loginF').onsubmit=e=>{e.preventDefault();PIN=$('#lPin').value.trim();URL_=$('#lUrl').value.trim()||DEFAULT_URL;if(!URL_){$('#lErr').textContent='Falta la dirección del servidor';$('#lUrl').closest('details').open=true;return}DEMO=false;ls.set('mxr-pin',PIN);ls.set('mxr-url',URL_);ls.del('mxr-demo');start()};
+$('#demoB').onclick=()=>{DEMO=true;ls.set('mxr-demo','1');start()};
+if(DEMO||(PIN&&URL_))start();else $('#login').hidden=false;
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
+
+/* ---------- datos de ejemplo ---------- */
+let DM=null;
+function demoData(){
+  if(!DM){
+    const now=new Date(),p=n=>('0'+n).slice(-2),hoy=now.getFullYear()+'-'+p(now.getMonth()+1)+'-'+p(now.getDate()),ts=(d,h)=>addD(hoy,d)+' '+h;
+    const N=['Laura Gómez','Carlos Ruiz','Marta Pons','Javi Martínez','Lucía Ferrer','Andrés Soler','Paula Vidal','Diego Navarro','Sara Blasco','Héctor Marín','Nuria Sanz','Iván Roig'];
+    const R=[];let k=0;const C=['whatsapp','whatsapp','llamada','panel','whatsapp','llamada'];
+    for(let d=0;d<14;d++)['13:00','14:30','20:00','21:30'].forEach((h,i)=>{const n=(d*3+i*5)%5+(i>1?2:0);for(let j=0;j<n;j++){k++;R.push({id:'D'+k,fecha:addD(hoy,d),hora:h,personas:String(2+(k*7)%5),nombre:N[k%N.length],telefono:'+3461'+String(1000000+k*7919).slice(-7),canal:C[k%C.length],estado:d===0&&h<p(now.getHours())+':'+p(now.getMinutes())?(k%7?'sentada':'no vino'):'confirmada',notas:k%6===0?'Alergia a frutos secos':k%9===0?'Cumpleaños, traen tarta':'',creada:ts(0,'10:00'),actualizada:''})}});
+    const M=[['whatsapp','+34611234567','Laura Gómez',[['cliente','Hola! Tenéis mesa para 4 este sábado a las 21:30?'],['herramienta','consultar_disponibilidad {"fecha":"'+addD(hoy,1)+'","personas":4} → {"ok":true}'],['asistente','¡Hola Laura! Sí, el sábado a las 21:30 tenemos sitio para 4. ¿Te la reservo a tu nombre?'],['cliente','Sí porfa, y una es celíaca'],['herramienta','crear_reserva {"nombre":"Laura"} → {"ok":true}'],['asistente','¡Hecho! Mesa para 4 el sábado a las 21:30 a nombre de Laura. Toda nuestra cocina es sin gluten salvo el pan de burger y el de la torrija; lo dejamos anotado. ¡Os esperamos! 😊']]],
+      ['llamada','+34622345678','',[['asistente','Hola, Mállalo X, ¿en qué puedo ayudarte?'],['cliente','Quería reservar para dos mañana a las ocho'],['asistente','Perfecto, mañana a las 20:00 para dos. ¿A nombre de quién?'],['cliente','Carlos'],['resumen','Carlos reserva mesa para 2 mañana a las 20:00. Duración: 54 s']]],
+      ['whatsapp','+34633456789','Pepe',[['cliente','El sábado pasado esperamos 40 minutos por los platos, no me parece normal'],['herramienta','avisar_encargada {"motivo":"Queja por espera"} → {"ok":true}'],['asistente','Siento mucho la espera, Pepe. Ya he avisado a la encargada y te contactará hoy mismo.']]]];
+    const mens=[];M.forEach(([c,t,n,l],i)=>l.forEach(([rol,texto],j)=>mens.push({fecha:ts(0,p(10+i)+':'+p(j*2)+':00'),canal:c,contacto:t,nombre:n,rol,texto})));
+    DM={hoy,ahora:'',config:{turnos:'13:00, 14:30, 20:00, 21:30',aforo:'46',grupo_max:'8',antelacion_min:'60',dias_reserva:'60',cerrado:'',horario:'Todos los días de 12:00 a 00:00',direccion:'Calle San Ramón 2, 46003 Valencia',info_extra:'Cocina de fusión latina, asiática y española. Toda la cocina es sin gluten salvo el pan de burger y el de la torrija.',nombre_jefa:'la encargada',telefono_jefa:'',email_jefa:'',ia_activa:'si'},
+      reservas:R,avisos:[{id:'A1',fecha:ts(0,'12:04'),canal:'whatsapp',contacto:'+34633456789',nombre:'Pepe',motivo:'Queja por la espera del sábado pasado (40 min). Pide que le llamen.',estado:'pendiente'},{id:'A2',fecha:ts(-1,'19:30'),canal:'llamada',contacto:'+34644567890',nombre:'Empresa Ruzafa',motivo:'Cena de empresa para 18 personas el 12 de diciembre',estado:'resuelto'}],
+      mensajes:mens,pausas:{},estado:{ia:false,whatsapp:false,webhook:'(ejemplo)'}};
+  }
+  DM.t=Date.now();return JSON.parse(JSON.stringify(DM));
+}
+async function demoOp(op,d){
+  demoData();
+  if(op==='reserva_nueva'){const r=Object.assign({id:'N'+Date.now(),canal:'panel',estado:'confirmada'},d);DM.reservas.push(r);return{ok:true,id:r.id}}
+  if(op==='reserva_cambiar'){Object.assign(DM.reservas.find(x=>x.id===d.id),d);return{ok:true}}
+  if(op==='aviso'){DM.avisos.find(x=>x.id===d.id).estado=d.estado;return{ok:true}}
+  if(op==='config'){Object.assign(DM.config,d);return{ok:true,config:DM.config}}
+  if(op==='probar')return{ok:true,respuesta:'(Modo ejemplo) Aquí responderá el asistente de verdad cuando el servidor tenga la clave de IA.'};
+  if(op==='responder'){DM.mensajes.push({fecha:DM.hoy+' 23:59:00',canal:'whatsapp',contacto:d.contacto,nombre:'',rol:'equipo',texto:d.texto});return{ok:true}}
+  if(op==='pausa'){if(d.minutos)DM.pausas['whatsapp_'+d.contacto]=1;else delete DM.pausas['whatsapp_'+d.contacto];return{ok:true}}
+  return{ok:true};
+}
+</script>
+</body>
+</html>
